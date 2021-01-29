@@ -1,0 +1,22 @@
+---
+title: "DS6372Project1"
+author: "Andre Mauldin"
+date: "1/24/2021"
+output: html_document
+---
+
+```{r, fig.height=5,fig.width=5}
+library(leaps)
+library(magrittr) # makes the pipe %>% work
+library(ggplot2)
+library(tidyverse)
+library(reshape2)
+
+cars<-read.csv("data1.csv")
+price.model<-lm(MSRP~., data=cars)
+
+par(mfrow=c(2,2))
+summary(price.model)
+plot(price.model)
+```
+
