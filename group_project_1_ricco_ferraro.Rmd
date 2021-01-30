@@ -168,9 +168,7 @@ CaseData.NewCars %>% filter(!isEmpty(Engine.Fuel.Type) & Engine.Fuel.Type != "na
 # filter Engine.Hp
 Vehicle.Size.Summary <- CaseData.NewCars.Filtered %>% filter(!isEmpty(Engine.HP)) %>% group_by(Vehicle.Size) %>% summarise(median_hp_by_vehicle_size=median(Engine.HP)) 
 
-CaseData.NewCars.Filtered.ImpudedHP <-merge(CaseData.NewCars.Filtered, Vehicle.Size.Summary, by="Vehicle.Size")  %>% mutate(Engine.HP = if_else(isEmpty(Engine.HP), median_hp_by_vehicle_size, Engine.HP)) 
-
-
+CaseData.NewCars.Filtered.ImpudedHP <-merge(CaseData.NewCars.Filtered, Vehicle.Size.Summary, by="Vehicle.Size")  %>% mutate(Engine.HP.Clean = if_else(isEmpty(Engine.HP), median_hp_by_vehicle_size, Engine.HP)) 
 
 
 ```
