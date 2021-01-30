@@ -1,0 +1,52 @@
+---
+title: "group_project_1_ricco_ferraro"
+author: "Ricco Ferraro"
+date: "1/30/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+  
+Libraries
+```{r}
+library(dplyr)
+library(knitr)
+library(ggplot2)
+library(dplyr)
+library(class)
+library(caret)
+library(corrplot)
+library(RColorBrewer)
+```
+
+Data I/O
+```{r}
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+CaseData = read.csv('data1.csv',header = T,sep = ",")
+```
+
+Summary Stats Original Data
+Summary Stats Original Data
+```{r}
+CaseData %>% ggplot(aes(x=Year, y=MSRP, fill = Vehicle.Style)) + geom_boxplot() + theme_dark() 
+CaseData %>% ggplot(aes(x=Engine.Cylinders, y=MSRP,color=Vehicle.Size))+ geom_point() + facet_grid(~Driven_Wheels) + theme_dark()
+
+
+#remove_missing(CaseData)
+
+classifyDATA <- CaseData[,c(3,5,6,9,13,14,15)]
+classifyDATA$Response <- CaseData[,c(16)]
+
+glimpse(classifyDATA)
+M <- cor(classifyDATA)
+
+corrplot(M, col=brewer.pal(n=6, name="RdYlBu"),tl.cex = .75)
+```
+
+Filter the Data
+```{r}
+CaseData %>% filter(Year == 1990) %>% select(MSRP) %>% ggplot(aes(y=MSRP)) + geom_boxplot() + theme_dark() 
+```
+
