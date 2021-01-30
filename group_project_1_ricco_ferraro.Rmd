@@ -166,16 +166,9 @@ CaseData.NewCars = data.frame(CaseData.NewCars.1, stringsAsFactors = TRUE)
 CaseData.NewCars %>% filter(!isEmpty(Engine.Fuel.Type) & Engine.Fuel.Type != "natural gas") -> CaseData.NewCars.Filtered
 
 # filter Engine.Hp
-CaseData.NewCars.Filtered
+Vehicle.Size.Summary <- CaseData.NewCars.Filtered %>% filter(!isEmpty(Engine.HP)) %>% group_by(Vehicle.Size) %>% summarise(median_hp_by_vehicle_size=median(Engine.HP)) 
 
-glimpse(CaseData.NewCars.Filtered)
-
-#Glimpse at the Engine.HP stats by Vehicle.Size
-Vehicle.Size.Summary <- CaseData.NewCars.Filtered %>% filter(!isEmpty(Engine.HP)) %>% group_by(Vehicle.Size) %>% summarise(maxHP=max(Engine.HP), minHP=min(Engine.HP), medianHP=median(Engine.HP)) 
-
-merge(CaseData.NewCars.Filtered, Vehicle.Size.Summary, by="Vehicle.Size") %>% mutate(if_else(isEmpty(Engine.HP),Engine.Hp = Vehicle.Size.Summary ) Engine.Hp=) -> CaseData.NewCars.Filtered
-
-CaseData.NewCars.Filtered
+CaseData.NewCars.Filtered.ImpudedHP <-merge(CaseData.NewCars.Filtered, Vehicle.Size.Summary, by="Vehicle.Size")  %>% mutate(Engine.HP = if_else(isEmpty(Engine.HP), median_hp_by_vehicle_size, Engine.HP)) 
 
 
 
