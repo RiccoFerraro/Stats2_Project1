@@ -4,19 +4,101 @@ author: "Andre Mauldin"
 date: "1/24/2021"
 output: html_document
 ---
+### Project 1
 
-```{r, fig.height=5,fig.width=5}
+### Libraries
+```{r}
 library(leaps)
 library(magrittr) # makes the pipe %>% work
 library(ggplot2)
 library(tidyverse)
 library(reshape2)
+library(car)     # where vif function lives
+library(ISLR)
+library(leaps)
+library(dplyr)
+library(doBy)
+```
 
-cars<-read.csv("data1.csv")
-price.model<-lm(MSRP~., data=cars)
+### Data
+```{r}
+options(scipen = 999) # removes scientific notation
 
+carData<-read.csv("data1.csv")
+carDataFiltered<- filter(carData, Year > 1999) # 
+view(carData) # shows the whole data set
+head(carData) # shows the first 6 rows
+```
+
+### Data Prep
+```{r, fig.height=25,fig.width=25}
+
+# carData$Engine.Cylinders<-as.factor(carData$Engine.Cylinders)
+# attach(carData)
+
+summary(carData)
+
+pairs(carData[,-c(2,3)]) # -c(column to exclude 1, column to exclude 2, and so on....) 
+
+t(aggregate(MSRP~Engine.Cylinders,data=carData,summary))
+# t(aggregate(MSRP~Engine.Cylinders,data=carData,mean)) # to just get means of each cylinder
+# t(aggregate(MSRP~Engine.Cylinders,data=carData,sd)) # to just get standard deviations of each cylinder
+```
+# NA's
+Engine.HP   69 | Engine.Cylinders    30 | Number.of.Doors   6
+
+### Basic Residual Diagnostics
+```{r, fig.height=15,fig.width=15}
+price.model<-lm(log(MSRP)~Popularity, data=carData)
+# price.model<-lm(MSRP~Year+Engine.HP+Engine.Cylinders+Number.of.Doors+highway.MPG+city.mpg+Popularity, data=carData)
+mean(Popularity)
 par(mfrow=c(2,2))
 summary(price.model)
 plot(price.model)
+
+
+
+# vif(price.model) # This checks for redundant variables
+```
+```{r, fig.height=15,fig.width=15}
+reg.fwd=regsubsets(MSRP~.,data=carData,method="forward",nvmax=20)
+summary(reg.fwd)$adjr2
+summary(reg.fwd)$rss
+summary(reg.fwd)$bic
+
+par(mfrow=c(1,3))
+bics<-summary(reg.fwd)$bic
+bics
+plot(1:21,bics,type="l",ylab="BIC",xlab="# of predictors") # 1:21  This has to match the number of columns in bics.
+index<-which(bics==min(bics))
+points(index,bics[index],col="red",pch=10)
+
+adjr2<-summary(reg.fwd)$adjr2
+plot(1:21,adjr2,type="l",ylab="Adjusted R-squared",xlab="# of predictors")
+index<-which(adjr2==max(adjr2))
+points(index,adjr2[index],col="red",pch=10)
+
+rss<-summary(reg.fwd)$rss
+plot(1:21,rss,type="l",ylab="train RSS",xlab="# of predictors")
+index<-which(rss==min(rss))
+points(index,rss[index],col="red",pch=10)
+
 ```
 
+```{r}
+mysummary<-function(x){
+  result<-c(length(x),mean(x),sd(x),sd(x)/length(x),min(x), max(x), IQR(x))
+  names(result)<-c("N","Mean","SD","SE","MIN", "MAX","IQR")
+  return(result)
+}
+sumstats<-aggregate(MSRP~Popularity,data=carData, mysummary)
+sumstats<-cbind(sumstats[,1:2],sumstats[,-(1:2)])
+
+library(ggplot2)
+ggplot(sumstats,aes(x=Popularity,y=,group=Popularity,colour=Popularity))+
+  ylab("Plot")+
+  geom_line()+
+  geom_point()+
+  geom_errorbar(aes(ymin=Mean-SE,ymax=Mean+SE),width=.1)
+
+```
