@@ -1,21 +1,46 @@
+---
+title: "group_project_1_ricco_ferraro"
+author: "Ricco Ferraro"
+date: "1/30/2021"
+output: html_document
+---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+  
+Libraries
+```{r}
 library(dplyr)
 library(knitr)
 library(ggplot2)
 library(dplyr)
 library(class)
 library(caret)
+library(corrplot)
+library(RColorBrewer)
+library(e1071) 
+library(doBy)
+```
 
-
+Data I/O
+```{r}
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
-CaseData = read.csv('data1.csv',header = T,sep = ",")
+CaseData = read.csv('data1.csv',header = T,sep = ",", stringsAsFactors = TRUE)
+```
+
+
+Summary Stats Original Data
+```{r}
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 CaseData = data.frame(CaseData, stringsAsFactors = TRUE)
 
 CaseData <- filter(CaseData, MSRP < 100000)
 
 CaseData %>% ggplot(aes(x=Year, y=MSRP, fill = Vehicle.Style)) + geom_boxplot() + theme_dark() 
 
-CaseData %>% ggplot(aes(x=Year, y=MSRP, fill = Vehicle.Style)) + geom_boxplot() + theme_dark()  facet_wrap(~Driven_Wheels) 
+
+facet_wrap(~Driven_Wheels) 
 
 CaseData %>% ggplot(aes(x=Engine.Cylinders, y=MSRP,color=Year))+ geom_point() + facet_wrap(~Driven_Wheels) + theme_dark()
 
@@ -29,13 +54,8 @@ classifyDATA$Response <- CaseData[,c(16)]
 
 glimpse(classifyDATA)
 
-
-library(corrplot)
-library(RColorBrewer)
-M <- cor(CaseData)
-
-corrplot(M, col=brewer.pal(n=6, name="RdYlBu"),tl.cex = .75)
-
+#M <- cor(CaseData)
+#corrplot(M, col=brewer.pal(n=6, name="RdYlBu"),tl.cex = .75)
 
 sapply(CaseData, function(x) length(unique(x)))
 
@@ -77,42 +97,32 @@ CaseData %>%
 
 colnames(is.na(CaseData))
 
-
 #CHANGE TO THE IS 0 , NA 
 which (is.na(CaseData))
-
-
-
 
 CaseData %>%
   summarise_all(funs(sum(is.na(.))))
 
-
-library(e1071) 
 skewness(CaseData$MSRP)
-
 skewness(CaseData$Popularity)
 
 CaseData$Popularity2 <- as.factor(CaseData$Popularity)
 
 CaseData %>% ggplot(mapping = aes(x=Popularity)) + geom_histogram(binwidth =250 )
 
-CaseData %>% ggplot(mapping = aes(x=Popularity2, fill = Market.Category)) + geom_histogram(binwidth =250 )
+#CaseData %>% ggplot(mapping = aes(x=Popularity2, fill = Market.Category)) + geom_histogram(binwidth =250 )
 
 glimpse(CaseData)
 
 CaseData %>% ggplot(mapping = aes(x=MSRP)) + geom_histogram(binwidth =250 )
-
 
 model.fit<-aov(MSRP~Popularity2,data=CaseData)
 #par(mfrow=c(2,2))
 #plot(model.fit$fitted.values,model.fit$residuals,ylab="Resdiduals",xlab="Fitted")
 #qqnorm(model.fit$residuals)
 
-
 par(mfrow=c(2,2))
 plot(model.fit)
-
 
 
 model2.fit<-lm(MSRP~Popularity2,data=CaseData)
@@ -120,10 +130,8 @@ model2.fit<-lm(MSRP~Popularity2,data=CaseData)
 #plot(model.fit$fitted.values,model.fit$residuals,ylab="Resdiduals",xlab="Fitted")
 #qqnorm(model.fit$residuals)
 
-
 par(mfrow=c(2,2))
 plot(model2.fit)
-
 
 
 mysummary<-function(x){
@@ -131,14 +139,37 @@ mysummary<-function(x){
   names(result)<-c("N","Mean","SD","SE","MIN", "MAX","IQR")
   return(result)
 }
-sumstats<-aggregate(MSRP~Cylinders,data=CaseData,mysummary)
-sumstats<-cbind(sumstats[,1:2],sumstats[,-(1:2)])
 
-library(ggplot2)
-ggplot(sumstats,aes(x=DepthCat,y=Mean,group=Strata,colour=Strata))+
-  ylab("Plot")+
-  geom_line()+
-  geom_point()+
-  geom_errorbar(aes(ymin=Mean-SE,ymax=Mean+SE),width=.1)
+#sumstats<-aggregate(MSRP~Cylinders,data=CaseData,mysummary)
+#sumstats<-cbind(sumstats[,1:2],sumstats[,-(1:2)])
 
+# ggplot(sumstats,aes(x=DepthCat,y=Mean,group=Strata,colour=Strata))+
+#  ylab("Plot")+
+# geom_line()+
+# geom_point()+
+# geom_errorbar(aes(ymin=Mean-SE,ymax=Mean+SE),width=.1)
+```
+
+Filter the Data
+```{r}
+isEmpty <- function(column) {
+    is.na(column) | column == 0 | column == "" | column == " " | column == "NA" | column == "na" | column == "Na" | column == "nA" | column == "NaN" 
+}
+
+#Filter out old cars
+CaseData
+CaseData %>% filter(Year > 1999) -> CaseData.NewCars.1
+
+CaseData.NewCars = data.frame(CaseData.NewCars.1, stringsAsFactors = TRUE)
+
+# filter Fuel.Type
+CaseData.NewCars %>% filter(!isEmpty(Engine.Fuel.Type) & Engine.Fuel.Type != "natural gas") -> CaseData.NewCars.Filtered
+
+# filter Engine.Hp
+Vehicle.Size.Summary <- CaseData.NewCars.Filtered %>% filter(!isEmpty(Engine.HP)) %>% group_by(Vehicle.Size) %>% summarise(median_hp_by_vehicle_size=median(Engine.HP)) 
+
+CaseData.NewCars.Filtered.ImpudedHP <-merge(CaseData.NewCars.Filtered, Vehicle.Size.Summary, by="Vehicle.Size")  %>% mutate(Engine.HP.Clean = if_else(isEmpty(Engine.HP), median_hp_by_vehicle_size, Engine.HP)) 
+
+
+```
 
