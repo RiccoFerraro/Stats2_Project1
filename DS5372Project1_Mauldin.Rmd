@@ -40,40 +40,80 @@ t(aggregate(MSRP~Engine.Cylinders,data=CaseData,summary))
 
 
 ### Data Prep
-
-Filter the Data
 ```{r}
 isEmpty <- function(column) {
     is.na(column) | column == 0 | column == "" | column == " " | column == "NA" | column == "na" | column == "Na" | column == "nA" | column == "NaN" 
 }
 
 #Filter out old cars
-CaseData
-CaseData %>% filter(Year > 1999) -> CaseData.NewCars.1
+CaseData %>% filter(MSRP > 1999) -> CaseData.NewCars.1
 
 CaseData.NewCars = data.frame(CaseData.NewCars.1, stringsAsFactors = TRUE)
 
 # filter Fuel.Type
 CaseData.NewCars %>% filter(!isEmpty(Engine.Fuel.Type) & Engine.Fuel.Type != "natural gas") -> CaseData.NewCars.Filtered
 
-# Summary of data before removing NA's
+# Set missing horsepower, Cylinders, and Doors to the median of each by size
+# First we filter to get values to set variables for the median of each
+# Horsepower
+Vehicle.Size.Summary <- CaseData.NewCars.Filtered %>% filter(!isEmpty(Engine.HP)) %>% group_by(Vehicle.Size) %>%  summarise(median_hp_by_vehicle_size=median(Engine.HP))
+Vehicle.Size.Summary
+# Cylinders
+Vehicle.Size.Summary <- CaseData.NewCars.Filtered %>% filter(!isEmpty(Engine.Cylinders)) %>% group_by(Vehicle.Size) %>%  summarise(median_cylinders_by_vehicle_size=median(Engine.Cylinders))
+Vehicle.Size.Summary
+# Doors
+Vehicle.Size.Summary <- CaseData.NewCars.Filtered %>% filter(!isEmpty(Number.of.Doors)) %>% group_by(Vehicle.Size) %>%  summarise(median_doors_by_vehicle_size=median(Number.of.Doors))
+Vehicle.Size.Summary
+
+# Median horsepower by size based on Vehicle.Size.Summary
+compact.hp.median = 180
+large.hp.median = 310
+midsize.hp.median = 250
+# Median cylinders by size based on Vehicle.Size.Summary
+compact.cyl.median = 4
+large.cyl.median = 8
+midsize.cyl.median = 6
+# Here we set the NAs to the median by size in new columns called Engine.HP.Clean, Engine.Cylinders.Clean, Number.of.Doors.Clean
+CaseData.NewCars.Filtered.Impuded <- CaseData.NewCars.Filtered %>%
+  mutate(
+    Engine.HP.Clean =
+    ifelse(isEmpty(Engine.HP) & Vehicle.Size == "Compact", compact.hp.median,
+           ifelse(isEmpty(Engine.HP) & Vehicle.Size == "Large", large.hp.median,
+                  ifelse(isEmpty(Engine.HP) & Vehicle.Size == "Midsize", midsize.hp.median, Engine.HP))),
+    Engine.Cylinders.Clean =
+    ifelse(isEmpty(Engine.Cylinders) & Vehicle.Size == "Compact", compact.cyl.median,
+           ifelse(isEmpty(Engine.Cylinders) & Vehicle.Size == "Large", large.cyl.median,
+                  ifelse(isEmpty(Engine.Cylinders) & Vehicle.Size == "Midsize", midsize.cyl.median, Engine.Cylinders))),
+    Number.of.Doors.Clean = ifelse(isEmpty(Number.of.Doors), 4, Number.of.Doors)
+  )
+
+# Shows results of our cleaned columns
+# Horsepower
+CaseData.NewCars.Filtered.Impuded %>% select(Vehicle.Size, Engine.HP, Engine.HP.Clean) %>% filter(isEmpty(Engine.HP))
+# Cylinders
+CaseData.NewCars.Filtered.Impuded %>% select(Vehicle.Size, Engine.Cylinders, Engine.Cylinders.Clean) %>% filter(isEmpty(Engine.Cylinders))
+# Doors
+CaseData.NewCars.Filtered.Impuded %>% select(Vehicle.Size, Number.of.Doors, Number.of.Doors.Clean) %>% filter(isEmpty(Number.of.Doors))
+
+# Cleaned Data Set
+CaseData
+CaseData.NewCars.Filtered.Impuded
+```
+## Summary of Data Before and After Impuding
+```{r}
+# Summary of Data Before and After Impuding
 df <- data.frame(
-  Horsepower = matrix(summary(CaseData[5])),
-  Cylinders = matrix(summary(CaseData[6])),
-  Doors =	matrix(summary(CaseData[9]))
+  Horsepower = matrix(summary(CaseData.NewCars.Filtered.Impuded[5])),
+  HorsepowerClean = c(matrix(summary(CaseData.NewCars.Filtered.Impuded[17])),"-"),
+  Cylinders = matrix(summary(CaseData.NewCars.Filtered.Impuded[6])),
+  CylendersClean = c(matrix(summary(CaseData.NewCars.Filtered.Impuded[18])),"-"),
+  Doors =	matrix(summary(CaseData.NewCars.Filtered.Impuded[9])),
+  DoorsClean = c(matrix(summary(CaseData.NewCars.Filtered.Impuded[19])),"-")
 )%>%
  kbl() %>%
   kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)%>%
-    add_header_above(c("Summary Data Continued" = 3))
+    add_header_above(c("Summary Data Continued" = 6))
 df
-
-# filter Engine.Hp
-Vehicle.Size.Summary <- CaseData.NewCars.Filtered %>% filter(!isEmpty(Engine.HP)) %>% group_by(Vehicle.Size) %>% summarise(median_hp_by_vehicle_size=median(Engine.HP))
-
-
-CaseData.NewCars.Filtered.ImpudedHP <- merge(CaseData.NewCars.Filtered, Vehicle.Size.Summary, by="Vehicle.Size") %>% mutate(Engine.HP.Clean = if_else(isEmpty(Engine.HP), median_hp_by_vehicle_size, Engine.HP))
-
-
 ```
 
 ```{r}
