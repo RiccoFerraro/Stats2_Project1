@@ -11,16 +11,23 @@ knitr::opts_chunk$set(echo = TRUE)
   
 Libraries
 ```{r}
-library(dplyr)
-library(knitr)
+library(leaps)
+library(magrittr) # makes the pipe %>% work
 library(ggplot2)
+library(tidyverse)
+library(reshape2)
+library(car)     # where vif function lives
+library(ISLR)
+library(leaps)
 library(dplyr)
+library(doBy)
+library(e1071)
 library(class)
 library(caret)
-library(corrplot)
-library(RColorBrewer)
-library(e1071) 
-library(doBy)
+library(Metrics)
+library(gtools)
+library(glmnet)
+library(kableExtra)
 ```
 
 Data I/O
@@ -181,7 +188,6 @@ Vehicle.Size.Summary <- CaseData.NewCars.Filtered.ImputedHP %>% filter(!isEmpty(
 # look at our summary
 Vehicle.Size.Summary
 
-
 #Impute values for Engine.HP by Vehicle.Size (for median Engine.HP)
 CaseData.NewCars.Filtered.ImputedHPAndCylinders <-merge(CaseData.NewCars.Filtered.ImputedHP, Vehicle.Size.Summary, by="Vehicle.Size")  %>% mutate(Engine.Cylinders.Clean = if_else(isEmpty(Engine.Cylinders), median_cylinder_by_vehicle_size, as.double(Engine.Cylinders)))
 
@@ -191,11 +197,33 @@ CaseData.NewCars.Filtered.ImputedHPAndCylinders
 Vehicle.Size.Summary
 
 
-#Doors 
+#Doors (This mutates CaseData.NewCars.Filtered.ImputedHPAndCylinders)
 CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean <- if_else(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Make == 'Tesla' & isEmpty(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Number.of.Doors), 4,as.numeric(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Number.of.Doors))
 CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean <- if_else(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Make == 'Ferrari' & isEmpty(CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean), 2,as.numeric(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Number.of.Doors))
 
+CaseData.NewCars.Filtered.ImputedHPAndCylinders
+glimpse(CaseData.NewCars.Filtered.ImputedHPAndCylinders)
+```
 
+## Summary of Data Before and After Impuding (Data Prep Continued)
+```{r}
+# This can be placed in the main document
+# Summary of Data Before and After Imputing
+ktable <- data.frame(
+  Horsepower = matrix(summary(CaseData.NewCars[5])),
+  HorsepowerClean = c(matrix(summary(CaseData.NewCars.Filtered.ImputedHPAndCylinders[18])),"-"),
+  Cylinders = matrix(summary(CaseData.NewCars[6])),
+  CylindersClean = c(matrix(summary(CaseData.NewCars.Filtered.ImputedHPAndCylinders[20])),"-"),
+  Doors =	matrix(summary(CaseData.NewCars[9])),
+  DoorsClean = c(matrix(summary(CaseData.NewCars.Filtered.ImputedHPAndCylinders[21])),"-")
+)%>%
+ kbl() %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)%>%
+    add_header_above(c("Summary Data Continued" = 6))
+ktable
+
+# data.frame(summary(CaseData.NewCars))
+# data.frame(matrix(summary(CaseData.NewCars)))
 
 ```
 
