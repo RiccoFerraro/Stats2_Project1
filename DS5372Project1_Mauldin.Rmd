@@ -22,6 +22,8 @@ library(e1071)
 library(class)
 library(caret)
 library(Metrics)
+library(gtools)
+library(glmnet)
 ```
 
 ### Data
@@ -32,8 +34,8 @@ CaseData = read.csv('data1.csv',header = T,sep = ",", stringsAsFactors = TRUE)
 # view(CaseData) # shows the whole data set
 head(CaseData) # shows the first 6 rows
 ```
-```{r, fig.height=5, fig.width=10}
-# pairs(CaseData[,-c(2,3)]) # -c(column to exclude 1, column to exclude 2, and so on....) 
+```{r, fig.height=25, fig.width=25}
+pairs(CaseData[1:8]) # -c(column to exclude 1, column to exclude 2, and so on....) 
 pairs(CaseData)
 t(aggregate(MSRP~Engine.Cylinders,data=CaseData,summary))
 ```
@@ -99,14 +101,15 @@ CaseData.NewCars.Filtered.Impuded %>% select(Vehicle.Size, Number.of.Doors, Numb
 CaseData
 CaseData.NewCars.Filtered.Impuded
 ```
-## Summary of Data Before and After Impuding
+## Summary of Data Before and After Impuding (Data Prep Continued)
 ```{r}
+# This can be placed in the main document
 # Summary of Data Before and After Impuding
 df <- data.frame(
   Horsepower = matrix(summary(CaseData.NewCars.Filtered.Impuded[5])),
   HorsepowerClean = c(matrix(summary(CaseData.NewCars.Filtered.Impuded[17])),"-"),
   Cylinders = matrix(summary(CaseData.NewCars.Filtered.Impuded[6])),
-  CylendersClean = c(matrix(summary(CaseData.NewCars.Filtered.Impuded[18])),"-"),
+  CylindersClean = c(matrix(summary(CaseData.NewCars.Filtered.Impuded[18])),"-"),
   Doors =	matrix(summary(CaseData.NewCars.Filtered.Impuded[9])),
   DoorsClean = c(matrix(summary(CaseData.NewCars.Filtered.Impuded[19])),"-")
 )%>%
@@ -116,7 +119,8 @@ df <- data.frame(
 df
 ```
 
-```{r}
+```{r, fig.height=25, fig.width=25}
+# This can be placed in the appendix
 CaseDataSummary <- data.frame(
   MSRP = c(matrix(summary(CaseData[16])), "-"),
   Make = matrix(summary(CaseData[1])),
@@ -124,16 +128,19 @@ CaseDataSummary <- data.frame(
   Year = c(matrix(summary(CaseData[3])), "-"),
   Fuel_Type = matrix(summary(CaseData[4])),
   Horsepower = matrix(summary(CaseData[5])),
+  HorsepowerClean = c(matrix(summary(CaseData.NewCars.Filtered.Impuded[17])),"-"),
   Cylinders = matrix(summary(CaseData[6])),
+  CylindersClean = c(matrix(summary(CaseData.NewCars.Filtered.Impuded[18])),"-"),
   Transmission =	c(matrix(summary(CaseData[7])),"-","-")
 )%>%
  kbl() %>%
-  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12) %>%
-    add_header_above(c("Summary Data" = 8))
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 10) %>%
+    add_header_above(c("Summary Data" = 10))
 
 CaseDataSummary2 <- data.frame(
   Driven_Wheels =	c(matrix(summary(CaseData[8])),"-","-","-"),
   Doors =	matrix(summary(CaseData[9])),
+  DoorsClean = c(matrix(summary(CaseData.NewCars.Filtered.Impuded[19])),"-"),
   Market_Category =	matrix(summary(CaseData[10])),
   Size = c(matrix(summary(CaseData[11])),"-","-","-","-"),
   Style =	matrix(summary(CaseData[12])),
@@ -143,8 +150,12 @@ CaseDataSummary2 <- data.frame(
 )%>%
  kbl() %>%
   kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)%>%
-    add_header_above(c("Summary Data Continued" = 8))
+    add_header_above(c("Summary Data Continued" = 9))
 
 CaseDataSummary
 CaseDataSummary2
 ```
+The differences in values for horsepower, cylinders, and doors are minor after imputing.
+
+# Feature Selection
+
