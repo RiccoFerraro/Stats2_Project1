@@ -191,11 +191,9 @@ CaseData.NewCars.Filtered.ImputedHPAndCylinders
 Vehicle.Size.Summary
 
 
-
 #Doors 
-CaseData.NewCars.Filtered.ImputedHPAndCylinders$CleanNumDoors <- if_else(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Make == 'Tesla' & isEmpty(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Number.of.Doors), 4,as.numeric(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Number.of.Doors))
-CaseData.NewCars.Filtered.ImputedHPAndCylinders$CleanNumDoors <- if_else(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Make == 'Ferrari' & isEmpty(CaseData.NewCars.Filtered.ImputedHPAndCylinders$CleanNumDoors), 2,as.numeric(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Number.of.Doors))
-
+CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean <- if_else(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Make == 'Tesla' & isEmpty(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Number.of.Doors), 4,as.numeric(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Number.of.Doors))
+CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean <- if_else(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Make == 'Ferrari' & isEmpty(CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean), 2,as.numeric(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Number.of.Doors))
 
 
 
