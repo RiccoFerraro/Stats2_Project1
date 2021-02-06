@@ -150,7 +150,7 @@ mysummary<-function(x){
 # geom_errorbar(aes(ymin=Mean-SE,ymax=Mean+SE),width=.1)
 ```
 
-Filter the Data
+Filter and Impute the Data
 ```{r}
 isEmpty <- function(column) {
     is.na(column) | column == 0 | column == "" | column == " " | column == "NA" | column == "na" | column == "Na" | column == "nA" | column == "NaN" 
@@ -158,17 +158,45 @@ isEmpty <- function(column) {
 
 #Filter out old cars
 CaseData
-CaseData %>% filter(Year > 1999) -> CaseData.NewCars.1
-
+CaseData %>% filter(MSRP > 2000) -> CaseData.NewCars.1
 CaseData.NewCars = data.frame(CaseData.NewCars.1, stringsAsFactors = TRUE)
 
 # filter Fuel.Type
 CaseData.NewCars %>% filter(!isEmpty(Engine.Fuel.Type) & Engine.Fuel.Type != "natural gas") -> CaseData.NewCars.Filtered
+CaseData.NewCars.Filtered
 
-# filter Engine.Hp
+# summary known Engine.Hp's
 Vehicle.Size.Summary <- CaseData.NewCars.Filtered %>% filter(!isEmpty(Engine.HP)) %>% group_by(Vehicle.Size) %>% summarise(median_hp_by_vehicle_size=median(Engine.HP)) 
 
-CaseData.NewCars.Filtered.ImpudedHP <-merge(CaseData.NewCars.Filtered, Vehicle.Size.Summary, by="Vehicle.Size")  %>% mutate(Engine.HP.Clean = if_else(isEmpty(Engine.HP), median_hp_by_vehicle_size, Engine.HP)) 
+# look at our summary
+Vehicle.Size.Summary
+
+#Impute values for Engine.HP by Vehicle.Size (for median Engine.HP)
+CaseData.NewCars.Filtered.ImputedHP <-merge(CaseData.NewCars.Filtered, Vehicle.Size.Summary, by="Vehicle.Size")  %>% mutate(Engine.HP.Clean = if_else(isEmpty(Engine.HP), median_hp_by_vehicle_size, as.double(Engine.HP)))
+CaseData.NewCars.Filtered.ImputedHP
+
+# summary known Engine.Cylinders
+Vehicle.Size.Summary <- CaseData.NewCars.Filtered.ImputedHP %>% filter(!isEmpty(Engine.Cylinders)) %>% group_by(Vehicle.Size) %>% summarise(median_cylinder_by_vehicle_size=median(Engine.Cylinders)) 
+
+# look at our summary
+Vehicle.Size.Summary
+
+
+#Impute values for Engine.HP by Vehicle.Size (for median Engine.HP)
+CaseData.NewCars.Filtered.ImputedHPAndCylinders <-merge(CaseData.NewCars.Filtered.ImputedHP, Vehicle.Size.Summary, by="Vehicle.Size")  %>% mutate(Engine.Cylinders.Clean = if_else(isEmpty(Engine.Cylinders), median_cylinder_by_vehicle_size, as.double(Engine.Cylinders)))
+
+
+CaseData.NewCars.Filtered.ImputedHPAndCylinders %>% filter(isEmpty(Engine.Cylinders.Clean) | isEmpty(Engine.HP.Clean))
+CaseData.NewCars.Filtered.ImputedHPAndCylinders
+Vehicle.Size.Summary
+
+
+
+#Doors 
+CaseData.NewCars.Filtered.ImputedHPAndCylinders$CleanNumDoors <- if_else(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Make == 'Tesla' & isEmpty(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Number.of.Doors), 4,as.numeric(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Number.of.Doors))
+CaseData.NewCars.Filtered.ImputedHPAndCylinders$CleanNumDoors <- if_else(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Make == 'Ferrari' & isEmpty(CaseData.NewCars.Filtered.ImputedHPAndCylinders$CleanNumDoors), 2,as.numeric(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Number.of.Doors))
+
+
 
 
 ```
