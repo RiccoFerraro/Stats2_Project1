@@ -42,11 +42,7 @@ Summary Stats Original Data
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 CaseData = data.frame(CaseData, stringsAsFactors = TRUE)
 
-CaseData <- filter(CaseData, MSRP < 100000)
-
 CaseData %>% ggplot(aes(x=Year, y=MSRP, fill = Vehicle.Style)) + geom_boxplot() + theme_dark() 
-
-
 facet_wrap(~Driven_Wheels) 
 
 CaseData %>% ggplot(aes(x=Engine.Cylinders, y=MSRP,color=Year))+ geom_point() + facet_wrap(~Driven_Wheels) + theme_dark()
@@ -54,7 +50,7 @@ CaseData %>% ggplot(aes(x=Engine.Cylinders, y=MSRP,color=Year))+ geom_point() + 
 
 CaseData %>% ggplot(aes(x=Engine.Cylinders, y=MSRP,color=Year))+ geom_point()+ theme_dark()
 
-remove_missing(CaseData)
+#remove_missing(CaseData)
 
 classifyDATA <- CaseData[,c(3,5,6,9,13,14,15)]
 classifyDATA$Response <- CaseData[,c(16)]
@@ -203,6 +199,12 @@ CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean <- if_else(CaseDa
 
 CaseData.NewCars.Filtered.ImputedHPAndCylinders
 glimpse(CaseData.NewCars.Filtered.ImputedHPAndCylinders)
+
+CaseData.NewCars.Filtered.ImputedHPAndCylinders$Engine.Cylinders.Clean <- as.factor(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Engine.Cylinders.Clean)
+
+CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean <- as.factor(CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean)
+
+
 ```
 
 ## Summary of Data Before and After Impuding (Data Prep Continued)
@@ -227,3 +229,93 @@ ktable
 
 ```
 
+
+``` {r}
+
+myData <- CaseData.NewCars.Filtered.ImputedHPAndCylinders
+
+glimpse(myData)
+#classifyDATA_All <- myData[,c(1,2,3,4,5,8,9,11,13,14,15,16,19,21,22)]
+
+
+#sapply(classifyDATA_All, function(x) length(unique(x)))
+
+myModelHP = lm(log(MSRP) ~ .-Engine.HP -Engine.Cylinders -Make -Number.of.Doors -Model -Engine.Fuel.Type -Market.Category -Popularity2 -median_cylinder_by_vehicle_size -median_hp_by_vehicle_size, data = myData)
+predicted <- predict.lm(myModelHP)
+summary(myModelHP)
+
+vif(myModelHP)
+
+
+```
+
+``` {r}
+
+count_pct <- function(df) {
+  return(
+    df %>%
+      tally %>% 
+      mutate(n_pct = 100*n/sum(n))
+  )
+}
+
+myData %>% 
+  group_by(Engine.Cylinders.Clean) %>% 
+  count_pct
+
+
+myData %>% 
+  group_by(Transmission.Type) %>% 
+  count_pct
+
+
+myData %>% 
+  group_by(Driven_Wheels) %>% 
+  count_pct
+
+myData %>% 
+  group_by(Number.of.Doors) %>% 
+  count_pct
+
+
+myData %>% 
+  group_by(Vehicle.Size) %>% 
+  count_pct
+
+myData %>% 
+  group_by(Engine.Fuel.Type) %>% 
+  count_pct
+
+
+myData %>% 
+  group_by(Vehicle.Style) %>% 
+  count_pct
+
+
+
+```
+
+
+```{r}
+
+myModel2 = lm(log(MSRP) ~ .-Engine.HP -Engine.Cylinders -Make -Vehicle.Style -Number.of.Doors -Model -Market.Category -Popularity2 -median_cylinder_by_vehicle_size -median_hp_by_vehicle_size, data = myData)
+predicted <- predict.lm(myModel2)
+summary(myModel2)
+
+varImp(myModel2)
+
+vif(myModel2)
+
+```
+
+
+
+```{r}
+
+myModel3 = lm(MSRP ~ Engine.HP.Clean + Year, data = myData)
+predicted <- predict.lm(myModel3)
+summary(myModel3)
+
+vif(myModel3)
+
+```
