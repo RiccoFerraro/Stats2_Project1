@@ -28,6 +28,7 @@ library(Metrics)
 library(gtools)
 library(glmnet)
 library(kableExtra)
+library(coefplot)
 ```
 
 Data I/O
@@ -175,6 +176,7 @@ Vehicle.Size.Summary <- CaseData.NewCars.Filtered %>% filter(!isEmpty(Engine.HP)
 Vehicle.Size.Summary
 
 #Impute values for Engine.HP by Vehicle.Size (for median Engine.HP)
+
 CaseData.NewCars.Filtered.ImputedHP <-merge(CaseData.NewCars.Filtered, Vehicle.Size.Summary, by="Vehicle.Size")  %>% mutate(Engine.HP.Clean = if_else(isEmpty(Engine.HP), median_hp_by_vehicle_size, as.double(Engine.HP)))
 CaseData.NewCars.Filtered.ImputedHP
 
@@ -185,17 +187,16 @@ Vehicle.Size.Summary <- CaseData.NewCars.Filtered.ImputedHP %>% filter(!isEmpty(
 Vehicle.Size.Summary
 
 #Impute values for Engine.HP by Vehicle.Size (for median Engine.HP)
-CaseData.NewCars.Filtered.ImputedHPAndCylinders <-merge(CaseData.NewCars.Filtered.ImputedHP, Vehicle.Size.Summary, by="Vehicle.Size")  %>% mutate(Engine.Cylinders.Clean = if_else(isEmpty(Engine.Cylinders), median_cylinder_by_vehicle_size, as.double(Engine.Cylinders)))
 
-
-CaseData.NewCars.Filtered.ImputedHPAndCylinders %>% filter(isEmpty(Engine.Cylinders.Clean) | isEmpty(Engine.HP.Clean))
-CaseData.NewCars.Filtered.ImputedHPAndCylinders
-Vehicle.Size.Summary
+CaseData.NewCars.Filtered.ImputedHP$Engine.Cylinders <- as.double(CaseData.NewCars.Filtered.ImputedHP$Engine.Cylinders)
+CaseData.NewCars.Filtered.ImputedHPAndCylinders <-merge(CaseData.NewCars.Filtered.ImputedHP, Vehicle.Size.Summary, by="Vehicle.Size")  %>% mutate(Engine.Cylinders.Clean = if_else(isEmpty(Engine.Cylinders), as.double(median_cylinder_by_vehicle_size), Engine.Cylinders))
 
 
 #Doors (This mutates CaseData.NewCars.Filtered.ImputedHPAndCylinders)
-CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean <- if_else(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Make == 'Tesla' & isEmpty(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Number.of.Doors), 4,as.numeric(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Number.of.Doors))
-CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean <- if_else(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Make == 'Ferrari' & isEmpty(CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean), 2,as.numeric(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Number.of.Doors))
+CaseData.NewCars.Filtered.ImputedHPAndCylinders <- CaseData.NewCars.Filtered.ImputedHPAndCylinders %>% mutate(NumDoors.Clean=if_else((Make == 'Tesla' | Make == 'Ferrari') & isEmpty(Number.of.Doors), 4, as.numeric(Number.of.Doors))) 
+
+CaseData.NewCars.Filtered.ImputedHPAndCylinders %>% filter(isEmpty(NumDoors.Clean))
+
 
 CaseData.NewCars.Filtered.ImputedHPAndCylinders
 glimpse(CaseData.NewCars.Filtered.ImputedHPAndCylinders)
@@ -204,6 +205,7 @@ CaseData.NewCars.Filtered.ImputedHPAndCylinders$Engine.Cylinders.Clean <- as.fac
 
 CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean <- as.factor(CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean)
 
+CaseData.NewCars.Filtered.ImputedHPAndCylinders 
 
 ```
 
@@ -233,7 +235,9 @@ ktable
 ``` {r}
 
 myData <- CaseData.NewCars.Filtered.ImputedHPAndCylinders
+CaseData.NewCars.Filtered.ImputedHPAndCylinders %>% filter(isEmpty(NumDoors.Clean))
 
+summary(myData)
 glimpse(myData)
 #classifyDATA_All <- myData[,c(1,2,3,4,5,8,9,11,13,14,15,16,19,21,22)]
 
@@ -318,4 +322,39 @@ summary(myModel3)
 
 vif(myModel3)
 
+```
+
+Lasso
+``` {r}
+myData <- CaseData.NewCars.Filtered.ImputedHPAndCylinders[, c('Vehicle.Size','Year', 'Engine.Fuel.Type', 'Transmission.Type', 'Driven_Wheels', 'Vehicle.Style', 'highway.MPG', 'city.mpg', 'Popularity', 'Engine.HP.Clean', 'Engine.Cylinders.Clean', 'NumDoors.Clean', 'MSRP')]
+myData <- myData %>% filter(Year > 2000)
+myData<-myData[c(-9517),]
+
+glimpse(myData)
+set.seed(1234)
+splitPerc = .70
+summary(myData)
+trainIndices = sample(1:dim(myData)[1],round(splitPerc * dim(myData)[1]))
+train = myData[trainIndices,]
+test = myData[-trainIndices,]
+
+#Formatting data for GLM net
+x_train=model.matrix(MSRP~.,train)[, -1]
+y_train=log(train$MSRP)
+x_test<-model.matrix(MSRP~.,test)[, -1]
+y_test<-log(test$MSRP)
+lambdas <- 10^seq(2, -3, by = -.1)
+# Setting alpha = 1 implements lasso regression
+grid=10^seq(10,-2, length =100)
+lasso_reg <- cv.glmnet(x_train,y_train, alpha=1, lambda =grid, scale=TRUE, center=TRUE)
+plot(lasso_reg)
+coef(lasso_reg)
+coefplot(lasso_reg)
+?coefplot
+
+tempModel <- lm(log(MSRP)~., data=myData)
+plot(tempModel)
+coefplot(tempModel)
+
+myData %>% ggplot(aes(x=Year, y=MSRP)) + geom_point()
 ```
