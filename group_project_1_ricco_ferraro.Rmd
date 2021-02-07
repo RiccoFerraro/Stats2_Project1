@@ -339,9 +339,9 @@ train = myData[trainIndices,]
 test = myData[-trainIndices,]
 
 #Formatting data for GLM net
-x_train=model.matrix(MSRP~.+I(Year^2)+I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Engine.HP.Clean^2),train)[, -1]
+x_train=model.matrix(MSRP~.+I(Year^2)+I(Year^3)+I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Popularity^3)+ I(Engine.HP.Clean^2),train)[, -1]
 y_train=log(train$MSRP)
-x_test<-model.matrix(MSRP~.+I(Year^2)+I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Engine.HP.Clean^2),test)[, -1]
+x_test<-model.matrix(MSRP~.+I(Year^2)+I(Year^3)+I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Popularity^3)+ I(Engine.HP.Clean^2),test)[, -1]
 y_test<-log(test$MSRP)
 lambdas <- 10^seq(2, -3, by = -.1)
 # Setting alpha = 1 implements lasso regression
@@ -351,17 +351,21 @@ plot(lasso_reg)
 coef(lasso_reg)
 coefplot(lasso_reg)
 ?coefplot
-myData %>% ggplot(aes(x=Year, y=MSRP)) + geom_point()
-myData %>% ggplot(aes(x=highway.MPG, y=MSRP, colour=Engine.Fuel.Type)) + geom_point()
-myData %>% ggplot(aes(x=city.mpg, y=MSRP, colour=Engine.Fuel.Type)) + geom_point()
-myData %>% ggplot(aes(x=Popularity, y=MSRP,colour=Engine.Fuel.Type)) + geom_point()
-myData %>% ggplot(aes(x=Engine.HP.Clean, y=MSRP, colour=Vehicle.Size)) + geom_point()
 
+myData %>% ggplot(aes(x=Year, y=log(MSRP))) + geom_point()
 myData %>% ggplot(aes(x=Year, y=MSRP)) + geom_smooth()
-myData %>% ggplot(aes(x=highway.MPG, y=MSRP)) + geom_smooth()
-myData %>% ggplot(aes(x=city.mpg, y=MSRP)) + geom_smooth()
-myData %>% ggplot(aes(x=Popularity, y=MSRP)) + geom_smooth()
-myData %>% ggplot(aes(x=Engine.HP.Clean, y=MSRP)) + geom_smooth()
+
+myData %>% ggplot(aes(x=highway.MPG, y=log(MSRP), colour=Engine.Fuel.Type)) + geom_point()
+myData %>% ggplot(aes(x=highway.MPG, y=log(MSRP))) + geom_smooth()
+
+myData %>% ggplot(aes(x=city.mpg, y=log(MSRP), colour=Engine.Fuel.Type)) + geom_point()
+myData %>% ggplot(aes(x=city.mpg, y=log(MSRP))) + geom_smooth()
+
+myData %>% ggplot(aes(x=Popularity, y=log(MSRP),colour=Engine.Fuel.Type)) + geom_point()
+myData %>% ggplot(aes(x=Popularity, y=log(MSRP))) + geom_smooth()
+
+myData %>% ggplot(aes(x=Engine.HP.Clean, y=log(MSRP), colour=Vehicle.Size)) + geom_point()
+myData %>% ggplot(aes(x=Engine.HP.Clean, y=log(MSRP))) + geom_smooth()
 
 
 tempModel <- lm(log(MSRP)~.+I(Year^2)+I(Year^3)+I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Popularity^3)+ I(Engine.HP.Clean^2), data=myData)
