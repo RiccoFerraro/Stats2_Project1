@@ -327,7 +327,7 @@ vif(myModel3)
 Lasso
 ``` {r}
   CaseData.NewCars.Filtered.ImputedHPAndCylinders[, c('Vehicle.Size','Year', 'Engine.Fuel.Type', 'Transmission.Type', 'Driven_Wheels', 'Vehicle.Style', 'highway.MPG', 'city.mpg', 'Popularity', 'Engine.HP.Clean', 'Engine.Cylinders.Clean', 'NumDoors.Clean', 'MSRP')]
-myData <- myData %>% filter(Year > 2000 & MSRP < 100000 & Engine.Fuel.Type != "electric") 
+myData <- myData %>% filter(Year > 2000 & MSRP < 150000 & Engine.Fuel.Type != "electric") 
 #myData<-myData[c(-9517),]
 
 glimpse(myData)
@@ -339,9 +339,9 @@ train = myData[trainIndices,]
 test = myData[-trainIndices,]
 
 #Formatting data for GLM net
-x_train=model.matrix(MSRP~.+I(Year^2)+I(Year^3)+I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Popularity^3)+ I(Engine.HP.Clean^2),train)[, -1]
+x_train=model.matrix(log(MSRP)~.+I(Popularity*Engine.Fuel.Type) +I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Popularity^3)+ I(Engine.HP.Clean^2),train)[, -1]
 y_train=log(train$MSRP)
-x_test<-model.matrix(MSRP~.+I(Year^2)+I(Year^3)+I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Popularity^3)+ I(Engine.HP.Clean^2),test)[, -1]
+x_test<-model.matrix(log(MSRP)~.+I(Popularity*Engine.Fuel.Type) +I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Popularity^3)+ I(Engine.HP.Clean^2),test)[, -1]
 y_test<-log(test$MSRP)
 lambdas <- 10^seq(2, -3, by = -.1)
 # Setting alpha = 1 implements lasso regression
@@ -353,7 +353,7 @@ coefplot(lasso_reg)
 ?coefplot
 
 myData %>% ggplot(aes(x=Year, y=log(MSRP))) + geom_point()
-myData %>% ggplot(aes(x=Year, y=MSRP)) + geom_smooth()
+myData %>% ggplot(aes(x=Year, y=log(MSRP))) + geom_smooth()
 
 myData %>% ggplot(aes(x=highway.MPG, y=log(MSRP), colour=Engine.Fuel.Type)) + geom_point()
 myData %>% ggplot(aes(x=highway.MPG, y=log(MSRP))) + geom_smooth()
@@ -362,13 +362,15 @@ myData %>% ggplot(aes(x=city.mpg, y=log(MSRP), colour=Engine.Fuel.Type)) + geom_
 myData %>% ggplot(aes(x=city.mpg, y=log(MSRP))) + geom_smooth()
 
 myData %>% ggplot(aes(x=Popularity, y=log(MSRP),colour=Engine.Fuel.Type)) + geom_point()
-myData %>% ggplot(aes(x=Popularity, y=log(MSRP))) + geom_smooth()
+myData %>% ggplot(aes(x=Popularity, y=log(MSRP), colour=Engine.Fuel.Type)) +  geom_point() +
+  geom_smooth(method = "nls", formula = y ~ a * x + b, se = F,
+              method.args = list(start = list(a = 0.1, b = 0.1)))
 
 myData %>% ggplot(aes(x=Engine.HP.Clean, y=log(MSRP), colour=Vehicle.Size)) + geom_point()
 myData %>% ggplot(aes(x=Engine.HP.Clean, y=log(MSRP))) + geom_smooth()
 
 
-tempModel <- lm(log(MSRP)~.+I(Year^2)+I(Year^3)+I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Popularity^3)+ I(Engine.HP.Clean^2), data=myData)
+tempModel <- lm(log(MSRP)~. +I(Popularity*Engine.Fuel.Type) +I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Popularity^3)+ I(Engine.HP.Clean^2), data=myData)
 plot(tempModel)
 coefplot(tempModel)
 summary(tempModel)
