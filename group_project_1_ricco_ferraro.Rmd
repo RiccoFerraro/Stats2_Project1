@@ -211,15 +211,17 @@ CaseData.NewCars.Filtered.ImputedHPAndCylinders
 
 ## Summary of Data Before and After Impuding (Data Prep Continued)
 ```{r}
+CaseData.NewCars.Filtered.ImputedHPAndCylinders -> A
+
 # This can be placed in the main document
 # Summary of Data Before and After Imputing
 ktable <- data.frame(
-  Horsepower = matrix(summary(CaseData.NewCars[5])),
-  HorsepowerClean = c(matrix(summary(CaseData.NewCars.Filtered.ImputedHPAndCylinders[18])),"-"),
-  Cylinders = matrix(summary(CaseData.NewCars[6])),
-  CylindersClean = c(matrix(summary(CaseData.NewCars.Filtered.ImputedHPAndCylinders[20])),"-"),
-  Doors =	matrix(summary(CaseData.NewCars[9])),
-  DoorsClean = c(matrix(summary(CaseData.NewCars.Filtered.ImputedHPAndCylinders[21])),"-")
+  Horsepower = matrix(summary(A$Engine.HP)),
+  HorsepowerClean = c(matrix(summary(as.double(A$Engine.HP.Clean))),"-"),
+  Cylinders = matrix(summary(A$Engine.Cylinders)),
+  CylindersClean = c(matrix(summary(as.numeric(A$Engine.Cylinders.Clean))),"-"),
+  Doors =	matrix(summary(A$Number.of.Doors)),
+  DoorsClean = c(matrix(summary(as.numeric(A$NumDoors.Clean))),"-")
 )%>%
  kbl() %>%
   kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)%>%
