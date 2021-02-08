@@ -160,6 +160,16 @@ isEmpty <- function(column) {
     is.na(column) | column == 0 | column == "" | column == " " | column == "NA" | column == "na" | column == "Na" | column == "nA" | column == "NaN" 
 }
 
+bucketFuelType <- function(fuelType) {
+  regexPremium = "premium"
+  regexNonPremium= "diesel|electric|unleaded"
+  if_else(str_detect(fuelType, regexPremium), "premium", 
+          if_else(str_detect(fuelType, regexNonPremium), str_extract(fuelType, regexNonPremium),
+                  "other")
+  )
+}
+
+
 #Filter out old cars
 CaseData
 CaseData %>% filter(MSRP > 2000) -> CaseData.NewCars.1
@@ -187,26 +197,21 @@ Vehicle.Size.Summary <- CaseData.NewCars.Filtered.ImputedHP %>% filter(!isEmpty(
 Vehicle.Size.Summary
 
 #Impute values for Engine.HP by Vehicle.Size (for median Engine.HP)
-
 CaseData.NewCars.Filtered.ImputedHP$Engine.Cylinders <- as.double(CaseData.NewCars.Filtered.ImputedHP$Engine.Cylinders)
 CaseData.NewCars.Filtered.ImputedHPAndCylinders <-merge(CaseData.NewCars.Filtered.ImputedHP, Vehicle.Size.Summary, by="Vehicle.Size")  %>% mutate(Engine.Cylinders.Clean = if_else(isEmpty(Engine.Cylinders), as.double(median_cylinder_by_vehicle_size), Engine.Cylinders))
-
 
 #Doors (This mutates CaseData.NewCars.Filtered.ImputedHPAndCylinders)
 CaseData.NewCars.Filtered.ImputedHPAndCylinders <- CaseData.NewCars.Filtered.ImputedHPAndCylinders %>% mutate(NumDoors.Clean=if_else((Make == 'Tesla' | Make == 'Ferrari') & isEmpty(Number.of.Doors), 4, as.numeric(Number.of.Doors))) 
 
-CaseData.NewCars.Filtered.ImputedHPAndCylinders %>% filter(isEmpty(NumDoors.Clean))
-
-
-CaseData.NewCars.Filtered.ImputedHPAndCylinders
-glimpse(CaseData.NewCars.Filtered.ImputedHPAndCylinders)
-
 CaseData.NewCars.Filtered.ImputedHPAndCylinders$Engine.Cylinders.Clean <- as.factor(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Engine.Cylinders.Clean)
-
 CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean <- as.factor(CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean)
 
-CaseData.NewCars.Filtered.ImputedHPAndCylinders 
+#Bucket Engine.Fuel.Type 
+CaseData.NewCars.Filtered.ImputedHPAndCylindersAndFuelType <- CaseData.NewCars.Filtered.ImputedHPAndCylinders %>% filter(Engine.Fuel.Type != "electric" & highway.MPG < 100) %>%  mutate(Engine.Fuel.Type.Clean=as.factor(bucketFuelType(Engine.Fuel.Type)))
 
+myData <- CaseData.NewCars.Filtered.ImputedHPAndCylindersAndFuelType[, c('Vehicle.Size','Year', 'Engine.Fuel.Type.Clean', 'Transmission.Type', 'Driven_Wheels', 'Vehicle.Style', 'highway.MPG', 'city.mpg', 'Popularity', 'Engine.HP.Clean', 'Engine.Cylinders.Clean', 'NumDoors.Clean', 'MSRP')]
+myData <- myData %>% filter(Year > 2000 & MSRP < 100000)
+summary(myData)
 ```
 
 ## Summary of Data Before and After Impuding (Data Prep Continued)
@@ -235,24 +240,11 @@ ktable
 
 
 ``` {r}
-
-myData <- CaseData.NewCars.Filtered.ImputedHPAndCylinders
-CaseData.NewCars.Filtered.ImputedHPAndCylinders %>% filter(isEmpty(NumDoors.Clean))
-
-summary(myData)
-glimpse(myData)
-#classifyDATA_All <- myData[,c(1,2,3,4,5,8,9,11,13,14,15,16,19,21,22)]
-
-
-#sapply(classifyDATA_All, function(x) length(unique(x)))
-
 myModelHP = lm(log(MSRP) ~ .-Engine.HP -Engine.Cylinders -Make -Number.of.Doors -Model -Engine.Fuel.Type -Market.Category -Popularity2 -median_cylinder_by_vehicle_size -median_hp_by_vehicle_size, data = myData)
 predicted <- predict.lm(myModelHP)
 summary(myModelHP)
 
 vif(myModelHP)
-
-
 ```
 
 ``` {r}
@@ -328,27 +320,27 @@ vif(myModel3)
 
 Lasso
 ``` {r}
-  CaseData.NewCars.Filtered.ImputedHPAndCylinders[, c('Vehicle.Size','Year', 'Engine.Fuel.Type', 'Transmission.Type', 'Driven_Wheels', 'Vehicle.Style', 'highway.MPG', 'city.mpg', 'Popularity', 'Engine.HP.Clean', 'Engine.Cylinders.Clean', 'NumDoors.Clean', 'MSRP')]
-myData <- myData %>% filter(Year > 2000 & MSRP < 150000 & Engine.Fuel.Type != "electric") 
-#myData<-myData[c(-9517),]
-
 glimpse(myData)
+myData[8845,]
 set.seed(1234)
 splitPerc = .70
 summary(myData)
 trainIndices = sample(1:dim(myData)[1],round(splitPerc * dim(myData)[1]))
 train = myData[trainIndices,]
+dim(train)
 test = myData[-trainIndices,]
+dim(test)
 
 #Formatting data for GLM net
-x_train=model.matrix(log(MSRP)~.+I(Popularity*Engine.Fuel.Type) +I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Popularity^3)+ I(Engine.HP.Clean^2),train)[, -1]
+x_train=model.matrix(log(MSRP)~.+Engine.Fuel.Type.Clean*Popularity +I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Popularity^3)+ I(Engine.HP.Clean^2),train)[, -1]
 y_train=log(train$MSRP)
-x_test<-model.matrix(log(MSRP)~.+I(Popularity*Engine.Fuel.Type) +I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Popularity^3)+ I(Engine.HP.Clean^2),test)[, -1]
+x_test<-model.matrix(log(MSRP)~.+Engine.Fuel.Type.Clean*Popularity +I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Popularity^3)+ I(Engine.HP.Clean^2),test)[, -1]
 y_test<-log(test$MSRP)
 lambdas <- 10^seq(2, -3, by = -.1)
 # Setting alpha = 1 implements lasso regression
 grid=10^seq(10,-2, length =100)
-lasso_reg <- cv.glmnet(x_train,y_train, alpha=1, lambda =grid, scale=TRUE, center=TRUE)
+x_train
+lasso_reg <- cv.glmnet(x_train, y_train, alpha=1, lambda =grid, scale=TRUE, center=TRUE)
 plot(lasso_reg)
 coef(lasso_reg)
 coefplot(lasso_reg)
@@ -357,14 +349,13 @@ coefplot(lasso_reg)
 myData %>% ggplot(aes(x=Year, y=log(MSRP))) + geom_point()
 myData %>% ggplot(aes(x=Year, y=log(MSRP))) + geom_smooth()
 
-myData %>% ggplot(aes(x=highway.MPG, y=log(MSRP), colour=Engine.Fuel.Type)) + geom_point()
+myData %>% ggplot(aes(x=highway.MPG, y=log(MSRP), colour=Engine.Fuel.Type.Clean)) + geom_point()
 myData %>% ggplot(aes(x=highway.MPG, y=log(MSRP))) + geom_smooth()
 
-myData %>% ggplot(aes(x=city.mpg, y=log(MSRP), colour=Engine.Fuel.Type)) + geom_point()
+myData %>% ggplot(aes(x=city.mpg, y=log(MSRP), colour=Engine.Fuel.Type.Clean)) + geom_point()
 myData %>% ggplot(aes(x=city.mpg, y=log(MSRP))) + geom_smooth()
 
-myData %>% ggplot(aes(x=Popularity, y=log(MSRP),colour=Engine.Fuel.Type)) + geom_point()
-myData %>% ggplot(aes(x=Popularity, y=log(MSRP), colour=Engine.Fuel.Type)) +  geom_point() +
+myData %>% ggplot(aes(x=Popularity, y=log(MSRP), colour=Engine.Fuel.Type.Clean)) +  geom_point() +
   geom_smooth(method = "nls", formula = y ~ a * x + b, se = F,
               method.args = list(start = list(a = 0.1, b = 0.1)))
 
@@ -372,7 +363,7 @@ myData %>% ggplot(aes(x=Engine.HP.Clean, y=log(MSRP), colour=Vehicle.Size)) + ge
 myData %>% ggplot(aes(x=Engine.HP.Clean, y=log(MSRP))) + geom_smooth()
 
 
-tempModel <- lm(log(MSRP)~. +I(Popularity*Engine.Fuel.Type) +I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Popularity^3)+ I(Engine.HP.Clean^2), data=myData)
+tempModel <- lm(log(MSRP)~.+Engine.Fuel.Type.Clean*Popularity +I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Popularity^3)+ I(Engine.HP.Clean^2), data=myData)
 plot(tempModel)
 coefplot(tempModel)
 summary(tempModel)
