@@ -169,7 +169,6 @@ bucketFuelType <- function(fuelType) {
   )
 }
 
-
 #Filter out old cars
 CaseData
 CaseData %>% filter(MSRP > 2000) -> CaseData.NewCars.1
