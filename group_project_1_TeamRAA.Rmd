@@ -159,16 +159,13 @@ The correlation plot in Appendix 2.1 supports the VIF findings, showing highest 
 
 Lasso
 ``` {r, echo = FALSE}
-glimpse(myData)
-myData[8845,]
+
 set.seed(1234)
 splitPerc = .70
-summary(myData)
 trainIndices = sample(1:dim(myData)[1],round(splitPerc * dim(myData)[1]))
 train = myData[trainIndices,]
-dim(train)
 test = myData[-trainIndices,]
-dim(test)
+
 
 #Formatting data for GLM net
 x_train=model.matrix(log(MSRP)~.+Engine.Fuel.Type.Clean*Popularity +I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Popularity^3)+ I(Engine.HP.Clean^2),train)[, -1]
@@ -303,9 +300,10 @@ CaseData %>% ggplot(aes(x=Year, y=MSRP, group = Year, color=Driven_Wheels)) + ge
 
 CaseData %>% ggplot(mapping = aes(x=Popularity)) + geom_histogram(binwidth =250 )
 
-#CaseData$Market.Category.Clean <- substr(CaseData$Market.Category,1,regexpr(",| ",CaseData$Market.Category)-1)
+CaseData$Market.Category.Clean <- 
+  substr(CaseData$Market.Category,1,regexpr(",",CaseData$Market.Category)-1)
 
-#CaseData %>% ggplot(mapping = aes(x=Popularity, fill = Market.Category.Clean)) + geom_histogram(binwidth =250 )
+CaseData %>% ggplot(mapping = aes(x=Popularity, fill = Market.Category.Clean)) + geom_histogram(binwidth =250 )
 
 
 ```
