@@ -233,10 +233,6 @@ CaseDataPlot <- CaseData %>% filter(MSRP < 500000)
 
 CaseDataPlot %>% ggplot(aes(x=Year, y=MSRP)) + geom_point()
 
-
-
-CaseData %>% ggplot(aes(x=Engine.Cylinders, y=MSRP,color=Year))+ geom_point()+ theme_dark()
-
 ```
 
 
