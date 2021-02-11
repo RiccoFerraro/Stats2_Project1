@@ -321,6 +321,7 @@ vif(myModel3)
 
 Lasso Complex
 ``` {r}
+# Todo: split out validation set so we don't use it here!!
 matrixFormula <- function(data)
 {
   # use fully saturated model with squared terms
@@ -337,7 +338,8 @@ x_train= matrixFormula(train)
 y_train=log(train$MSRP)
 x_test<-matrixFormula(test)
 y_test<-log(test$MSRP)
-# Setting alpha = 1 implements lasso regression
+
+# Setting alpha = 1 implements lasso regression 
 ?seq
 grid=10^seq(from=-3.0,to=0.5,by=0.1)
 lasso_reg <- cv.glmnet(x_train, y_train, alpha=1, lambda =grid, scale=TRUE, center=TRUE)
@@ -374,8 +376,7 @@ testMSE_LASSO.1se<-mean((y_test-lasso.pred.lambda.1se)^2)
 testMSE_LASSO.1se
 
 chosenLassoModel <-lasso.pred.lambda.min
-
-## We use Lambda MIN! 
+## We use Lambda MIN, it works the best on our test set! 
 ```
 
 ```{r}
@@ -398,8 +399,6 @@ Backward-Selection for validation of Lasso
 ```{r}
 # Forward Selection 
 reg.bkwd=regsubsets(log(MSRP)~(.)^2,data=train,method="backward",nvmax=50)
-
-
 ```
 
 
@@ -414,14 +413,14 @@ which(bics==min(bics))
  
 # Adjr2
 adjr2<-summary(reg.bkwd)$adjr2
-plot(1:20,adjr2,type="l",ylab="Adjusted R-squared",xlab="# of predictors")
+plot(1:50,adjr2,type="l",ylab="Adjusted R-squared",xlab="# of predictors")
 index<-which(adjr2==max(adjr2))
 points(index,adjr2[index],col="red",pch=10)
 print("Max Adj R2 is:")
 which(adjr2==max(adjr2))
  
 MallowCP <- summary(reg.bkwd)$cp
-plot(1:20,MallowCP,type="l",ylab="Mallow's CP",xlab="# of predictors")
+plot(1:50,MallowCP,type="l",ylab="Mallow's CP",xlab="# of predictors")
 index<-which(MallowCP==min(MallowCP))
 points(index,MallowCP[index],col="red",pch=10)
 print("Min Mallow CP is:")
