@@ -147,65 +147,20 @@ myData <- myData %>% filter(Year > 2000 & MSRP < 100000)
 ```
 
 
-# Model Diagnostics
+# Model Selection
 
-After preparing the data for modeling, we evaluate the relationship of the data by doing a first pass MLR by MSRP considering our subset of attributes.  As observed by the pattern of the residuals on Appendix 2.0, they appear random and the QQ plot looks normally distributed.
+#### Collinearity
+After preparing the data for modeling, we evaluate the relationship of the data by generating a correlation plot, Appendix 2.0.  We can observe the correlations between Highway and City MPG, Engine HP and Number of Doors show signs of collinearity.   
 
-Looking at the VIF data among variables, we can see that both Highway and City MPG Engine HP and Number of Doors all have a VIF greater than 2, so we will evaluate those for collinearity.
+We verify our observations, with a first pass linear modeling of MSRP vs the cleaned subset of data, including the highly correlated attributes.  
 
-The correlation plot in Appendix 2.1 supports the VIF findings, showing highest correlation among those we identified as having high VIF. 
-
-
-
-Lasso
-``` {r, echo = FALSE}
-
-set.seed(1234)
-splitPerc = .70
-trainIndices = sample(1:dim(myData)[1],round(splitPerc * dim(myData)[1]))
-train = myData[trainIndices,]
-test = myData[-trainIndices,]
+The pattern of the residuals on Appendix 2.1, appears random and the QQ plot looks normally distributed.  After confirming our assumptions, we move on to look at the model results.  The VIF data for the regressor variables, , appendix 2.2, indicates that the highly correlated atttributes also carry a VIF greater than 2, so we will remove City MPG from the first pair and Number of Doors and reasses our model.
 
 
-#Formatting data for GLM net
-x_train=model.matrix(log(MSRP)~.+Engine.Fuel.Type.Clean*Popularity +I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Popularity^3)+ I(Engine.HP.Clean^2),train)[, -1]
-y_train=log(train$MSRP)
-x_test<-model.matrix(log(MSRP)~.+Engine.Fuel.Type.Clean*Popularity +I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Popularity^3)+ I(Engine.HP.Clean^2),test)[, -1]
-y_test<-log(test$MSRP)
-lambdas <- 10^seq(2, -3, by = -.1)
-# Setting alpha = 1 implements lasso regression
-grid=10^seq(10,-2, length =100)
-#x_train
-lasso_reg <- cv.glmnet(x_train, y_train, alpha=1, lambda =grid, scale=TRUE, center=TRUE)
-plot(lasso_reg)
-coef(lasso_reg)
-coefplot(lasso_reg)
-?coefplot
-
-myData %>% ggplot(aes(x=Year, y=log(MSRP))) + geom_point()
-myData %>% ggplot(aes(x=Year, y=log(MSRP))) + geom_smooth()
-
-myData %>% ggplot(aes(x=highway.MPG, y=log(MSRP), colour=Engine.Fuel.Type.Clean)) + geom_point()
-myData %>% ggplot(aes(x=highway.MPG, y=log(MSRP))) + geom_smooth()
-
-myData %>% ggplot(aes(x=city.mpg, y=log(MSRP), colour=Engine.Fuel.Type.Clean)) + geom_point()
-myData %>% ggplot(aes(x=city.mpg, y=log(MSRP))) + geom_smooth()
-
-myData %>% ggplot(aes(x=Popularity, y=log(MSRP), colour=Engine.Fuel.Type.Clean)) +  geom_point() +
-  geom_smooth(method = "nls", formula = y ~ a * x + b, se = F,
-              method.args = list(start = list(a = 0.1, b = 0.1)))
-
-myData %>% ggplot(aes(x=Engine.HP.Clean, y=log(MSRP), colour=Vehicle.Size)) + geom_point()
-myData %>% ggplot(aes(x=Engine.HP.Clean, y=log(MSRP))) + geom_smooth()
+#### Lasso Regression
 
 
-tempModel <- lm(log(MSRP)~.+Engine.Fuel.Type.Clean*Popularity +I(highway.MPG^2)+I(city.mpg^2) + I(Popularity^2) + I(Popularity^3)+ I(Engine.HP.Clean^2), data=myData)
-plot(tempModel)
-coefplot(tempModel)
-summary(tempModel)
-
-```
-
+We ran a lasso regression, iterating to minize lambda, and datermined the variables that did not shrink to zero and were the highest coeffients were Cylinders, Fuel Type, Vehicle Style, Transmission, Driven Wheels and Vehicle Style, in that order.
 
 
 # Appendix
@@ -338,7 +293,7 @@ ktable
 
 
 
-#### 1.8 MSRP ~ . MODEL
+#### 2.0 MSRP ~ . MODEL
 ```{r, ECHO = FALSE}
 
 model.fit<-lm(log(MSRP)~.,data=myData)
@@ -351,15 +306,7 @@ vif(model.fit)
 
 ```
 
-
-#### 2.0 MSRP ~ . MODEL- VIF DATA
-```{r, ECHO = FALSE}
-
-vif(model.fit)
-
-```
-
-#### 2.1 Correlation Plot
+#### 2.0 Correlation Plot
 
 ```{r, ECHO = FALSE}
 
@@ -379,3 +326,82 @@ corrplot(M, col=brewer.pal(n=6, name="RdYlBu"),tl.cex = .75)
 
 ```
 
+
+
+#### 2.1 MSRP ~ . MODEL- VIF DATA
+```{r, ECHO = FALSE}
+
+vif(model.fit)
+
+```
+
+
+#### 2.2 Lasso Regression All Data ~ Logged MSRP
+``` {r, echo = FALSE}
+
+set.seed(1234)
+splitPerc = .70
+trainIndices = sample(1:dim(myData)[1],round(splitPerc * dim(myData)[1]))
+train = myData[trainIndices,]
+test = myData[-trainIndices,]
+
+
+#Formatting data for GLM net
+x_train=model.matrix(log(MSRP)~.,train)[, -1]
+y_train=log(train$MSRP)
+lambdas <- 10^seq(2, -3, by = -.1)
+
+
+x_test<-model.matrix(log(MSRP)~.,test)[, -1]
+y_test<-log(test$MSRP)
+
+# Setting alpha = 1 implements lasso regression
+#grid=10^seq(10,-2, length =100)
+
+#x_train
+lasso_reg <- cv.glmnet(x_train, y_train, alpha=1, lambda =lambdas, scale=TRUE, center=TRUE, nfolds=5)
+
+
+#plot(lasso_reg)
+#coef(lasso_reg)
+#coefplot(lasso_reg)
+
+best_lambda <- lasso_reg$lambda.min
+
+
+lasso_reg_Lmin <- cv.glmnet(x_train, y_train, alpha=1, lamda =best_lamda, scale=TRUE, center=TRUE, nfolds=5)
+
+
+coef(lasso_reg_Lmin)
+
+```
+
+
+
+
+
+
+
+
+
+#### Exploring data relationships
+```{r, ECHO=FALSE}
+#myData %>% ggplot(aes(x=Year, y=log(MSRP))) + geom_point()
+#myData %>% ggplot(aes(x=Year, y=log(MSRP))) + geom_smooth()
+
+
+#myData %>% ggplot(aes(x=highway.MPG, y=log(MSRP), colour=Engine.Fuel.Type.Clean)) + geom_point()
+#myData %>% ggplot(aes(x=highway.MPG, y=log(MSRP))) + geom_smooth()
+
+#myData %>% ggplot(aes(x=city.mpg, y=log(MSRP), colour=Engine.Fuel.Type.Clean)) + geom_point()
+#myData %>% ggplot(aes(x=city.mpg, y=log(MSRP))) + geom_smooth()
+
+#myData %>% ggplot(aes(x=Popularity, y=log(MSRP), colour=Engine.Fuel.Type.Clean)) +  geom_point() +
+  geom_smooth(method = "nls", formula = y ~ a * x + b, se = F,
+              method.args = list(start = list(a = 0.1, b = 0.1)))
+
+myData %>% ggplot(aes(x=Engine.HP.Clean, y=log(MSRP), colour=Vehicle.Size)) + geom_point() + geom_smooth()
+#myData %>% ggplot(aes(x=Engine.HP.Clean, y=log(MSRP))) + geom_smooth()
+
+
+```
