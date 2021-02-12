@@ -44,6 +44,7 @@ CaseData = read.csv('data1.csv',header = T,sep = ",", stringsAsFactors = TRUE)
 CaseData = data.frame(CaseData, stringsAsFactors = TRUE)
 CaseData$Popularity2 <- as.factor(CaseData$Popularity)
 ```
+## Introduction
 
 ### Introduction
 We will analyze the relationship between vehicle characteristics, MSRP and the relevance of the popularity score that is calculated across platforms.
@@ -74,10 +75,6 @@ There were some inconsistencies in the numerical data types so we aligned them a
 
 #### Test / Train Data:
 The data will be divided into Train, Test and Validation to ensure the models are not corrupted by the test results.
-
-
-#### Skewness:
-Evaluating the MSRP data in Appendix 1.4 it is evident that the MSRP data is normally distributed, 
 
 #### Popularity:
 Evaluating the Popularity data in Appendix 1.5 it appears very bi-modal, we were not able to effectively delineate what drives the two distinct segments, there may be other attributes that are not considered in our dataset influencing this data, it could also be due to the collection method, source would be a good addition to this analysis.
@@ -142,7 +139,7 @@ CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean <- as.factor(Case
 CaseData.NewCars.Filtered.ImputedHPAndCylindersAndFuelType <- CaseData.NewCars.Filtered.ImputedHPAndCylinders %>% filter(Engine.Fuel.Type != "electric" & highway.MPG < 100) %>%  mutate(Engine.Fuel.Type.Clean=as.factor(bucketFuelType(Engine.Fuel.Type)))
 
 myData <- CaseData.NewCars.Filtered.ImputedHPAndCylindersAndFuelType[, c('Vehicle.Size','Year', 'Engine.Fuel.Type.Clean', 'Transmission.Type', 'Driven_Wheels', 'Vehicle.Style', 'highway.MPG', 'city.mpg', 'Popularity', 'Engine.HP.Clean', 'Engine.Cylinders.Clean', 'NumDoors.Clean', 'MSRP')]
-myData <- myData %>% filter(Year > 2000 & MSRP < 100000)
+myData <- myData %>% filter(Year > 2000 & MSRP < 400000)
 #summary(myData)
 ```
 
@@ -349,7 +346,7 @@ test = myData[-trainIndices,]
 #Formatting data for GLM net
 x_train=model.matrix(log(MSRP)~.,train)[, -1]
 y_train=log(train$MSRP)
-lambdas <- 10^seq(2, -3, by = -.1)
+lambdas <- 10^seq(2, -2, by = -.1)
 
 
 x_test<-model.matrix(log(MSRP)~.,test)[, -1]
@@ -366,10 +363,10 @@ lasso_reg <- cv.glmnet(x_train, y_train, alpha=1, lambda =lambdas, scale=TRUE, c
 #coef(lasso_reg)
 #coefplot(lasso_reg)
 
-best_lambda <- lasso_reg$lambda.min
+best_lambda <- lasso_reg$lambda.1se
 
 
-lasso_reg_Lmin <- cv.glmnet(x_train, y_train, alpha=1, lamda =best_lamda, scale=TRUE, center=TRUE, nfolds=5)
+lasso_reg_Lmin <- cv.glmnet(x_train, y_train, alpha=1, lamda =1, scale=TRUE, center=TRUE, nfolds=5)
 
 
 coef(lasso_reg_Lmin)
@@ -377,10 +374,29 @@ coef(lasso_reg_Lmin)
 ```
 
 
+#### 2.0 MSRP ~ . MODEL
+```{r, ECHO = FALSE}
 
+model_OBJ_1.fit<-lm(log(MSRP)~myData$Engine.Cylinders.Clean + myData$Engine.Fuel.Type.Clean + myData$Vehicle.Style + myData$Engine.HP.Clean + myData$Driven_Wheel ,data=myData)
 
+par(mfrow=c(2,2))
+plot(model_OBJ_1.fit$fitted.values,model_OBJ_1.fit$residuals,ylab="Resdiduals",xlab="Fitted")
+qqnorm(model_OBJ_1.fit$residuals)
 
+summary(model_OBJ_1.fit)
+vif(model_OBJ_1.fit)
+confint(model_OBJ_1.fit)
 
+```
+
+```{r, ECHO=FALSE}
+library(randomForest)
+rf3 <- randomForest(MSRP~., data=myData)
+#rf2$importance
+RFI3 <- as.data.frame(rf3$importance)
+colnames(RFI3) = c("Influence")
+RFI3 %>% slice_max(RFI3,n=10)
+```
 
 
 
