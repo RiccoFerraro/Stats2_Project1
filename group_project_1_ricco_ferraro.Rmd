@@ -332,6 +332,8 @@ splitPerc = .70
 trainIndices = sample(1:dim(myData)[1],round(splitPerc * dim(myData)[1]))
 train = myData[trainIndices,]
 test = myData[-trainIndices,]
+train
+test
 
 #Formatting data for GLM net
 x_train= matrixFormula(train)
@@ -341,11 +343,10 @@ y_test<-log(test$MSRP)
 
 # Setting alpha = 1 implements lasso regression 
 ?seq
-grid=10^seq(from=-3.0,to=0.5,by=0.1)
+grid=10^seq(from=-3.0,to=0,by=0.1)
 lasso_reg <- cv.glmnet(x_train, y_train, alpha=1, lambda =grid, scale=TRUE, center=TRUE)
 plot(lasso_reg)
 coefplot(lasso_reg)
-
 
 #for loop here to iterate all ase's vs lambda's
 getTestAse <- function(lambda) {
@@ -376,7 +377,7 @@ testMSE_LASSO.1se<-mean((y_test-lasso.pred.lambda.1se)^2)
 testMSE_LASSO.1se
 
 chosenLassoModel <-lasso.pred.lambda.min
-## We use Lambda MIN, it works the best on our test set! 
+## We use Lambda MIN, it works the best on our test set!?
 ```
 
 ```{r}
@@ -398,13 +399,16 @@ df_coeff.filtered.lambda.min #there should be 36 variables in the model at this 
 Backward-Selection for validation of Lasso
 ```{r}
 # Forward Selection 
-reg.bkwd=regsubsets(log(MSRP)~(.)^2,data=train,method="backward",nvmax=50)
+summary(train)
+?regsubsets
+reg.bkwd=regsubsets(log(MSRP)~(.)^2,data=train,method="backward")
 ```
 
 
 ASE plots
 ```{r}
 bics<-summary(reg.bkwd)$bic
+bics
 plot(1:50,bics,type="l",ylab="BIC",xlab="# of predictors")
 index<-which(bics==min(bics))
 points(index,bics[index],col="red",pch=10)
