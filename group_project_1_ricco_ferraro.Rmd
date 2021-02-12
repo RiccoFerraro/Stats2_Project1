@@ -30,6 +30,7 @@ library(glmnet)
 library(kableExtra)
 library(coefplot)
 library(data.table)
+library(plotmo)
 ```
 
 Data I/O
@@ -319,30 +320,44 @@ vif(myModel3)
 
 ```
 
+train, test, and validation set splits
+```{r}
+set.seed(1234)
+
+dim(myData)
+splitPerc = .80
+trainIndices = sample(1:dim(myData)[1],round(splitPerc * dim(myData)[1]))
+train = myData[trainIndices,]
+test.preSplit = myData[-trainIndices,]
+dim(train)
+
+# split the remaining 20% into 10% test and 10% validation
+splitPerc.validation = .50
+validationIndices = sample(1:dim(test.preSplit)[1], round(splitPerc.validation * dim(test.preSplit)[1]))
+validation = test.preSplit[validationIndices,]
+test = test.preSplit[-validationIndices,]
+dim(validation)
+dim(test)
+```
+
 Lasso Complex
 ``` {r}
-# Todo: split out validation set so we don't use it here!!
 matrixFormula <- function(data)
 {
   # use fully saturated model with squared terms
   model.matrix(log(MSRP)~(.)^2, data)[, -1]
 }
-set.seed(1234)
-splitPerc = .70
-trainIndices = sample(1:dim(myData)[1],round(splitPerc * dim(myData)[1]))
-train = myData[trainIndices,]
-test = myData[-trainIndices,]
-train
-test
+
 
 #Formatting data for GLM net
 x_train= matrixFormula(train)
 y_train=log(train$MSRP)
 x_test<-matrixFormula(test)
 y_test<-log(test$MSRP)
+x_validation<-matrixFormula(validation)
+y_validation <- log(validation$MSRP)
 
 # Setting alpha = 1 implements lasso regression 
-?seq
 grid=10^seq(from=-3.0,to=0,by=0.1)
 lasso_reg <- cv.glmnet(x_train, y_train, alpha=1, lambda =grid, scale=TRUE, center=TRUE)
 plot(lasso_reg)
@@ -350,9 +365,7 @@ coefplot(lasso_reg)
 
 #for loop here to iterate all ase's vs lambda's
 getTestAse <- function(lambda) {
-  print(lambda)
   pred <- predict(lasso_reg, s=lambda, newx=x_test)
-  print(mean(y_test-pred)^2)
   mean((y_test-pred)^2)
 }
 
@@ -367,18 +380,46 @@ TestAse %>% ggplot(aes(x=log(lambda), y=Test_ASE)) + geom_point() + geom_vline(x
                 color = "blue", size=0.5) + geom_text(aes(x=log(lasso_reg$lambda.min), label="\nLambda Min"), colour="blue",y=getTestAse(lasso_reg$lambda.min), text=element_text(size=11)) + geom_vline(xintercept =log(lasso_reg$lambda.1se), linetype="dashed", 
                 color = "red", size=0.5) + geom_text(aes(x=log(lasso_reg$lambda.1se), label="\nLambda 1 SE"), colour="red",y=getTestAse(lasso_reg$lambda.min), text=element_text(size=11)) + ggtitle("Test ASE vs log Lambda")
 
-lasso.pred.lambda.min=predict(lasso_reg,s=lasso_reg$lambda.min, newx=x_test)
-lasso.pred.lambda.1se=predict(lasso_reg ,s=lasso_reg$lambda.1se, newx=x_test)
+## We use Lambda MIN, it works the best on our test set!
 
-testMSE_LASSO.min<-mean((y_test-lasso.pred.lambda.min)^2)
-testMSE_LASSO.min
+# Test
+test_prediction=predict(lasso_reg,s=lasso_reg$lambda.min, newx=x_test)
+test_ASE<-mean((y_test-test_prediction)^2)
+test_ASE
 
-testMSE_LASSO.1se<-mean((y_test-lasso.pred.lambda.1se)^2)
-testMSE_LASSO.1se
-
-chosenLassoModel <-lasso.pred.lambda.min
-## We use Lambda MIN, it works the best on our test set!?
+# Validation
+validation_prediction=predict(lasso_reg,s=lasso_reg$lambda.min, newx=x_validation)
+validation_ASE<-mean((y_validation-validation_prediction)^2)
+validation_ASE
 ```
+
+R-Squared
+```{r}
+# R-Squared Train
+rsq_train = 1 - lasso_reg$cvm/var(y_train)
+rsq_train
+plot(lasso_reg$lambda,rsq_train)
+plotres(lasso_reg)
+
+
+# R-Squared Test
+pred <- predict(lasso_reg, s=lasso_reg$lambda.min, newx=x_test)
+rss <- sum((y_test-pred)^2)
+tss <- sum((y_test - mean(y_test)) ^ 2)
+rsq <- 1 - rss/tss
+rsq
+
+# R-Squared Validation
+pred <- predict(lasso_reg, s=lasso_reg$lambda.min, newx=x_validation)
+rss <- sum((y_validation-pred)^2)
+tss <- sum((y_validation - mean(y_validation)) ^ 2)
+rsq <- 1 - rss/tss
+rsq
+
+
+```
+
+
 
 ```{r}
 # makes a dense matrix
@@ -400,7 +441,6 @@ Backward-Selection for validation of Lasso
 ```{r}
 # Forward Selection 
 summary(train)
-?regsubsets
 reg.bkwd=regsubsets(log(MSRP)~(.)^2,data=train,method="backward")
 ```
 
