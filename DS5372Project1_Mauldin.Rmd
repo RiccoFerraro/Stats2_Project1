@@ -233,3 +233,500 @@ par(mfrow=c(1,2))
 ols_plot_cooksd_chart(CaseModel)
 ols_plot_resid_lev(CaseModel)
 ```
+---
+title: "Project 1 ~ Stats 2"
+author: "Ricco, Ana, Andre"
+
+
+output: 
+       prettydoc::html_pretty:
+       theme: leonids
+       highlight: github
+       fig_caption: yes
+
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+  
+Libraries
+```{r, echo = FALSE}
+#library(leaps)
+library(magrittr) # makes the pipe %>% work
+library(ggplot2)
+library(tidyverse)
+library(reshape2)
+library(car)     # where vif function lives
+library(ISLR)
+library(leaps)
+library(dplyr)
+library(doBy)
+library(e1071)
+library(class)
+library(caret)
+library(Metrics)
+library(gtools)
+library(glmnet)
+library(kableExtra)
+library(coefplot)
+library(randomForest)
+library(FNN)
+```
+
+Data I/O
+```{r, echo = FALSE}
+# setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
+CaseData = read.csv('data1.csv',header = T,sep = ",", stringsAsFactors = TRUE)
+CaseData = data.frame(CaseData, stringsAsFactors = TRUE)
+CaseData$Popularity2 <- as.factor(CaseData$Popularity)
+```
+## Introduction
+
+### Introduction
+We will analyze the relationship between vehicle characteristics, MSRP and the relevance of the popularity score that is calculated across platforms.
+
+### Data Clean Up
+
+Upon closer inspection, it was determined that the data required some clean-up and pre-processing before fitting the models.  Please refer to appendix item 1.1 to view the EDA supporting our findings.
+
+#### Categorical values:
+First, we examined the categorical attributes.  Make and Model were excluded from the model due to the excess number of unique values.  
+Engine Fuel type was re-categorized from 11 to 3 main fuel types
+
+
+#### Continuous values:
+Plotting MSRP by year revealed a data quality issue, where vehicles manufactured prior to 1999 had a default value of $2000, which we believe would confound the true relationship of a vehicle's price and the age of the car.  We limited the data to cars manufactured after the year 2000.  Appendix 1.2
+
+
+#### Missing Data:
+Engine HP	had 69 missing values and Engine Cylinders had 30, we replaced them with the their median as determined by car size.
+
+Engine Fuel Type and Transmission Type had blanks and 'unknown' values, we removed the 5 blank records, kept the category 'unknown' and excluded natural gas.
+
+#### Outliers
+There were two sets of outliers in the MSRP data.  As seen in Appendix 1.6? we can observe there are car values for exceptionally expensive vehicles, we limited the vehicle data set to cars valued under $100,000.
+
+#### Data Types:
+There were some inconsistencies in the numerical data types so we aligned them as doubles.  Any attributes that were updated we appended the word Clean to the end of the column name.
+
+#### Test / Train Data:
+The data will be divided into Train, Test and Validation to ensure the models are not corrupted by the test results.
+
+#### Popularity:
+Evaluating the Popularity data in Appendix 1.5 it appears very bi-modal, we were not able to effectively delineate what drives the two distinct segments, there may be other attributes that are not considered in our dataset influencing this data, it could also be due to the collection method, source would be a good addition to this analysis.
+
+#### Evaluation after Data Prep:
+Evaluating the data before and after the imputation and update of missing values, as sees in summary statistics in Appendix 1.6, we can see that the population mean remained the same. 
+
+
+
+### Filter and Impute the Data
+```{r, echo = FALSE}
+isEmpty <- function(column) {
+    is.na(column) | column == 0 | column == "" | column == " " | column == "NA" | column == "na" | column == "Na" | column == "nA" | column == "NaN" 
+}
+
+bucketFuelType <- function(fuelType) {
+  regexPremium = "premium"
+  regexNonPremium= "diesel|electric|unleaded"
+  if_else(str_detect(fuelType, regexPremium), "premium", 
+          if_else(str_detect(fuelType, regexNonPremium), str_extract(fuelType, regexNonPremium),
+                  "other")
+  )
+}
+
+#Filter out old cars
+#CaseData
+CaseData %>% filter(MSRP > 2000) -> CaseData.NewCars.1
+CaseData.NewCars = data.frame(CaseData.NewCars.1, stringsAsFactors = TRUE)
+
+# filter Fuel.Type
+CaseData.NewCars %>% filter(!isEmpty(Engine.Fuel.Type) & Engine.Fuel.Type != "natural gas") -> CaseData.NewCars.Filtered
+#CaseData.NewCars.Filtered
+
+# summary known Engine.Hp's
+Vehicle.Size.Summary <- CaseData.NewCars.Filtered %>% filter(!isEmpty(Engine.HP)) %>% group_by(Vehicle.Size) %>% summarise(median_hp_by_vehicle_size=median(Engine.HP)) 
+
+# look at our summary
+#Vehicle.Size.Summary
+
+#Impute values for Engine.HP by Vehicle.Size (for median Engine.HP)
+
+CaseData.NewCars.Filtered.ImputedHP <-merge(CaseData.NewCars.Filtered, Vehicle.Size.Summary, by="Vehicle.Size")  %>% mutate(Engine.HP.Clean = if_else(isEmpty(Engine.HP), median_hp_by_vehicle_size, as.double(Engine.HP)))
+#CaseData.NewCars.Filtered.ImputedHP
+
+# summary known Engine.Cylinders
+Vehicle.Size.Summary <- CaseData.NewCars.Filtered.ImputedHP %>% filter(!isEmpty(Engine.Cylinders)) %>% group_by(Vehicle.Size) %>% summarise(median_cylinder_by_vehicle_size=median(Engine.Cylinders)) 
+
+# look at our summary
+#Vehicle.Size.Summary
+
+#Impute values for Engine.HP by Vehicle.Size (for median Engine.HP)
+CaseData.NewCars.Filtered.ImputedHP$Engine.Cylinders <- as.double(CaseData.NewCars.Filtered.ImputedHP$Engine.Cylinders)
+CaseData.NewCars.Filtered.ImputedHPAndCylinders <-merge(CaseData.NewCars.Filtered.ImputedHP, Vehicle.Size.Summary, by="Vehicle.Size")  %>% mutate(Engine.Cylinders.Clean = if_else(isEmpty(Engine.Cylinders), as.double(median_cylinder_by_vehicle_size), Engine.Cylinders))
+
+#Doors (This mutates CaseData.NewCars.Filtered.ImputedHPAndCylinders)
+CaseData.NewCars.Filtered.ImputedHPAndCylinders <- CaseData.NewCars.Filtered.ImputedHPAndCylinders %>% mutate(NumDoors.Clean=if_else((Make == 'Tesla' | Make == 'Ferrari') & isEmpty(Number.of.Doors), 4, as.numeric(Number.of.Doors))) 
+
+CaseData.NewCars.Filtered.ImputedHPAndCylinders$Engine.Cylinders.Clean <- as.factor(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Engine.Cylinders.Clean)
+CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean <- as.factor(CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean)
+
+#Bucket Engine.Fuel.Type 
+CaseData.NewCars.Filtered.ImputedHPAndCylindersAndFuelType <- CaseData.NewCars.Filtered.ImputedHPAndCylinders %>% filter(Engine.Fuel.Type != "electric" & highway.MPG < 100) %>%  mutate(Engine.Fuel.Type.Clean=as.factor(bucketFuelType(Engine.Fuel.Type)))
+
+myData <- CaseData.NewCars.Filtered.ImputedHPAndCylindersAndFuelType[, c('Vehicle.Size','Year', 'Engine.Fuel.Type.Clean', 'Transmission.Type', 'Driven_Wheels', 'Vehicle.Style', 'highway.MPG', 'city.mpg', 'Popularity', 'Engine.HP.Clean', 'Engine.Cylinders.Clean', 'NumDoors.Clean', 'MSRP')]
+myData <- myData %>% filter(Year > 2000 & MSRP < 400000)
+#summary(myData)
+```
+
+
+# Model Selection
+
+#### Collinearity
+After preparing the data for modeling, we evaluate the relationship of the data by generating a correlation plot, Appendix 2.0.  We can observe the correlations between Highway and City MPG, Engine HP and Number of Doors show signs of collinearity.   
+
+We verify our observations, with a first pass linear modeling of MSRP vs the cleaned subset of data, including the highly correlated attributes.  
+
+The pattern of the residuals on Appendix 2.1, appears random and the QQ plot looks normally distributed.  After confirming our assumptions, we move on to look at the model results.  The VIF data for the regressor variables, , appendix 2.2, indicates that the highly correlated atttributes also carry a VIF greater than 2, so we will remove City MPG from the first pair and Number of Doors and reasses our model.
+
+
+#### Lasso Regression
+
+
+We ran a lasso regression, iterating to minize lambda, and datermined the variables that did not shrink to zero and were the highest coeffients were Cylinders, Fuel Type, Vehicle Style, Transmission, Driven Wheels and Vehicle Style, in that order.
+
+
+# Appendix
+
+#### 1.1 EDA on Missing Data and Categories  
+
+```{r, echo = FALSE}
+
+sapply(CaseData, function(x) length(unique(x)))
+
+CaseData %>%
+  summarise_all(funs(sum(is.na(.))))
+
+
+```
+
+#### 1.2 EDA: MSRP by Year
+
+```{r, echo = FALSE}
+
+CaseDataPlot <- CaseData %>% filter(MSRP < 500000)
+
+CaseDataPlot %>% ggplot(aes(x=Year, y=MSRP)) + geom_point()
+
+```
+
+
+#### 1.3 EDA: DISTRIBUTION OF DATA BY CATEGORY
+
+
+```{r, ECHO = FALSE}
+
+count_pct <- function(df) {
+  return(
+    df %>%
+      tally %>% 
+      mutate(n_pct = 100*n/sum(n))
+  )
+}
+
+CaseData %>% 
+  group_by(Transmission.Type) %>% 
+  count_pct
+
+
+CaseData %>% 
+  group_by(Driven_Wheels) %>% 
+  count_pct
+
+CaseData %>% 
+  group_by(Number.of.Doors) %>% 
+  count_pct
+
+
+CaseData %>% 
+  group_by(Vehicle.Size) %>% 
+  count_pct
+
+CaseData %>% 
+  group_by(Engine.Fuel.Type) %>% 
+  count_pct
+
+
+```
+
+
+#### 1.4 EDA: MSRP evaluation
+``` {r, ECHO = FALSE}
+
+CaseData %>% ggplot(mapping = aes(x=MSRP)) + geom_histogram(binwidth =250 )
+
+CaseDataPlot %>% ggplot(mapping = aes(x=MSRP)) + geom_histogram(binwidth =10000 )
+
+```
+
+
+
+#### 1.5 Outlier analysis
+```{r, ECHO=FALSE}
+
+CaseData %>% ggplot(aes(x=Year, y=MSRP, group = Year, color=Driven_Wheels)) + geom_boxplot() + theme_dark() + facet_wrap(~Driven_Wheels)
+
+```
+
+
+#### 1.6 EDA: Popularity evaluation
+
+
+``` {r, ECHO = FALSE}
+
+
+
+CaseData %>% ggplot(mapping = aes(x=Popularity)) + geom_histogram(binwidth =250 )
+
+CaseData$Market.Category.Clean <- 
+  substr(CaseData$Market.Category,1,regexpr(",",CaseData$Market.Category)-1)
+
+CaseData %>% ggplot(mapping = aes(x=Popularity, fill = Market.Category.Clean)) + geom_histogram(binwidth =250 )
+
+
+```
+
+
+
+#### 1.7 Summary of Data Before and After Impuding (Data Prep Continued)
+```{r,echo = FALSE}
+CaseData.NewCars.Filtered.ImputedHPAndCylinders -> A
+
+# This can be placed in the main document
+# Summary of Data Before and After Imputing
+ktable <- data.frame(
+  Horsepower = matrix(summary(A$Engine.HP)),
+  HorsepowerClean = c(matrix(summary(as.double(A$Engine.HP.Clean))),"-"),
+  Cylinders = matrix(summary(A$Engine.Cylinders)),
+  CylindersClean = c(matrix(summary(as.numeric(A$Engine.Cylinders.Clean))),"-"),
+  Doors =	matrix(summary(A$Number.of.Doors)),
+  DoorsClean = c(matrix(summary(as.numeric(A$NumDoors.Clean))),"-")
+)%>%
+ kbl() %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), font_size = 12)%>%
+    add_header_above(c("Summary Data Continued" = 6))
+ktable
+
+# data.frame(summary(CaseData.NewCars))
+# data.frame(matrix(summary(CaseData.NewCars)))
+
+```
+
+
+
+
+
+#### 2.0 MSRP ~ . MODEL
+```{r, ECHO = FALSE}
+
+model.fit<-lm(log(MSRP)~.,data=myData)
+par(mfrow=c(2,2))
+plot(model.fit$fitted.values,model.fit$residuals,ylab="Resdiduals",xlab="Fitted")
+qqnorm(model.fit$residuals)
+
+summary(model.fit)
+vif(model.fit)
+
+```
+
+#### 2.0 Correlation Plot
+
+```{r, ECHO = FALSE}
+
+myDataNum <- myData[, c('Year', 'highway.MPG', 'city.mpg', 'Popularity', 'Engine.HP.Clean', 'Engine.Cylinders.Clean', 'NumDoors.Clean', 'MSRP')]
+
+myDataNum$Engine.Cylinders.Clean <- as.numeric(myData$Engine.Cylinders.Clean)
+myDataNum$NumDoors.Clean <- as.numeric(myData$NumDoors.Clean)
+
+
+
+library(corrplot)
+library(RColorBrewer)
+M <- cor(myDataNum)
+
+corrplot(M, col=brewer.pal(n=6, name="RdYlBu"),tl.cex = .75)
+
+
+```
+
+
+
+#### 2.1 MSRP ~ . MODEL- VIF DATA
+```{r, ECHO = FALSE}
+
+vif(model.fit)
+
+```
+
+
+#### 2.2 Lasso Regression All Data ~ Logged MSRP
+``` {r, echo = FALSE}
+
+set.seed(1234)
+splitPerc = .70
+trainIndices = sample(1:dim(myData)[1],round(splitPerc * dim(myData)[1]))
+train = myData[trainIndices,]
+test = myData[-trainIndices,]
+
+
+#Formatting data for GLM net
+x_train=model.matrix(log(MSRP)~.,train)[, -1]
+y_train=log(train$MSRP)
+lambdas <- 10^seq(2, -2, by = -.1)
+
+
+x_test<-model.matrix(log(MSRP)~.,test)[, -1]
+y_test<-log(test$MSRP)
+
+# Setting alpha = 1 implements lasso regression
+#grid=10^seq(10,-2, length =100)
+
+#x_train
+lasso_reg <- cv.glmnet(x_train, y_train, alpha=1, lambda =lambdas, scale=TRUE, center=TRUE, nfolds=5)
+
+
+#plot(lasso_reg)
+#coef(lasso_reg)
+#coefplot(lasso_reg)
+
+best_lambda <- lasso_reg$lambda.1se
+
+
+lasso_reg_Lmin <- cv.glmnet(x_train, y_train, alpha=1, lamda =1, scale=TRUE, center=TRUE, nfolds=5)
+
+
+coef(lasso_reg_Lmin)
+
+```
+
+
+#### 2.0 MSRP ~ . MODEL
+```{r, ECHO = FALSE}
+
+model_OBJ_1.fit<-lm(log(MSRP)~myData$Engine.Cylinders.Clean + myData$Engine.Fuel.Type.Clean + myData$Vehicle.Style + myData$Engine.HP.Clean + myData$Driven_Wheel ,data=myData)
+
+par(mfrow=c(2,2))
+plot(model_OBJ_1.fit$fitted.values,model_OBJ_1.fit$residuals,ylab="Resdiduals",xlab="Fitted")
+qqnorm(model_OBJ_1.fit$residuals)
+
+summary(model_OBJ_1.fit)
+vif(model_OBJ_1.fit)
+confint(model_OBJ_1.fit)
+
+```
+
+```{r, ECHO=FALSE}
+library(randomForest)
+rf3 <- randomForest(MSRP~., data=myData)
+#rf2$importance
+RFI3 <- as.data.frame(rf3$importance)
+colnames(RFI3) = c("Influence")
+RFI3 %>% slice_max(RFI3,n=10)
+```
+
+
+
+#### Exploring data relationships
+```{r, ECHO=FALSE}
+#myData %>% ggplot(aes(x=Year, y=log(MSRP))) + geom_point()
+#myData %>% ggplot(aes(x=Year, y=log(MSRP))) + geom_smooth()
+
+
+#myData %>% ggplot(aes(x=highway.MPG, y=log(MSRP), colour=Engine.Fuel.Type.Clean)) + geom_point()
+#myData %>% ggplot(aes(x=highway.MPG, y=log(MSRP))) + geom_smooth()
+
+#myData %>% ggplot(aes(x=city.mpg, y=log(MSRP), colour=Engine.Fuel.Type.Clean)) + geom_point()
+#myData %>% ggplot(aes(x=city.mpg, y=log(MSRP))) + geom_smooth()
+
+#myData %>% ggplot(aes(x=Popularity, y=log(MSRP), colour=Engine.Fuel.Type.Clean)) +  geom_point() +
+  geom_smooth(method = "nls", formula = y ~ a * x + b, se = F,
+              method.args = list(start = list(a = 0.1, b = 0.1)))
+
+myData %>% ggplot(aes(x=Engine.HP.Clean, y=log(MSRP), colour=Vehicle.Size)) + geom_point() + geom_smooth()
+#myData %>% ggplot(aes(x=Engine.HP.Clean, y=log(MSRP))) + geom_smooth()
+
+
+```
+
+```{r}
+myData
+
+myDataKNN <- myData[, c('Year', 'highway.MPG', 'city.mpg', 'Popularity', 'Engine.HP.Clean', 'MSRP')]
+glimpse(myDataKNN)
+
+# Scaling each column besides MSRP
+preProc <- preProcess(myDataKNN[,-6],method=c('center','scale'))
+myDataKNN_Scaled = predict(preProc, newdata=myDataKNN[-6])
+myDataKNN_Scaled$MSRP = myDataKNN$MSRP
+
+# tail(myDataKNN)
+# tail(myDataKNN_Scaled)
+
+set.seed(1234)
+splitPercKNN = .80
+trainIndicesKNN = sample(1:dim(myDataKNN_Scaled)[1],round(splitPercKNN * dim(myDataKNN_Scaled)[1]))
+trainKNN = myDataKNN_Scaled[trainIndicesKNN,]
+testKNN.preSplit = myDataKNN_Scaled[-trainIndices,]
+
+# split the remaining 20% into 10% test and 10% validation
+splitPerc.validation = .50
+validationIndices = sample(1:dim(testKNN.preSplit)[1], round(splitPerc.validation * dim(testKNN.preSplit)[1]))
+validationKNN = myDataKNN_Scaled[validationIndices,]
+testKNN = myDataKNN_Scaled[-validationIndices,]
+
+rf2 <- randomForest(MSRP~., data=myDataKNN_Scaled)
+#rf2$importance
+RFI2 <- as.data.frame(rf2$importance)
+colnames(RFI2) = c("Influence")
+RFI2 %>% slice_max(RFI2,n=3)
+
+# preProc <- preProcess(trainKNN,method=c('center','scale'))
+# scaledTrainKNN = predict(preProc, newdata=trainKNN)
+# scaledTestKNN = predict(preProc, newdata=testKNN)
+
+#sapply(myData, function(x) length(unique(x)))
+myData %>%
+  summarise_all(funs(sum(is.na(.))))
+
+
+# KNN_Model1 <- knn.reg(train=trainKNN,   
+#                      y=trainKNN$MSRP,
+#                     test=testKNN,
+#                      k=3)
+
+KNN_Scaled <- knn.reg(train=trainKNN,
+                      y=trainKNN$MSRP,
+                      test=testKNN,
+                      k=3)
+# KNN_Model1
+# KNN_Model1_Scaled
+
+#MSE for knn
+# mse_KNN <- mean((KNN_Model1$pred - testKNN$MSRP) ^ 2)
+# mse_KNN
+#r2 for knn
+#R2_KNN <- 1-mse_KNN/(var(testKNN$MSRP)) #168/169 is added to correct 
+#R2_KNN
+#MSE for knn scaled
+
+mse_KNN_Scaled <- mean((KNN_Scaled$pred - scaledTestKNN$MSRP) ^ 2) 
+mse_KNN_Scaled
+#r2 for knn scaled
+R2_KNN_Scaled <- 1-mse_KNN_Scaled/(var(scaledTestKNN$MSRP)) #168/169 is added to correct 
+R2_KNN_Scaled
+
+# mean(y_test-(pred)^2)
+head(KNN_Scaled$pred)
+head(scaledTestKNN$MSRP)
+```
