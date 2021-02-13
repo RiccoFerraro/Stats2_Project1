@@ -35,6 +35,9 @@ library(gtools)
 library(glmnet)
 library(kableExtra)
 library(coefplot)
+library(plotmo)
+library(randomForest)
+library(FNN)
 ```
 
 Data I/O
@@ -141,6 +144,28 @@ CaseData.NewCars.Filtered.ImputedHPAndCylindersAndFuelType <- CaseData.NewCars.F
 myData <- CaseData.NewCars.Filtered.ImputedHPAndCylindersAndFuelType[, c('Vehicle.Size','Year', 'Engine.Fuel.Type.Clean', 'Transmission.Type', 'Driven_Wheels', 'Vehicle.Style', 'highway.MPG', 'city.mpg', 'Popularity', 'Engine.HP.Clean', 'Engine.Cylinders.Clean', 'NumDoors.Clean', 'MSRP')]
 myData <- myData %>% filter(Year > 2000 & MSRP < 400000)
 #summary(myData)
+
+
+## Split the Data in Train, Test and Validation
+
+set.seed(1234)
+
+dim(myData)
+splitPerc = .80
+trainIndices = sample(1:dim(myData)[1],round(splitPerc * dim(myData)[1]))
+train = myData[trainIndices,]
+test.preSplit = myData[-trainIndices,]
+dim(train)
+
+# split the remaining 20% into 10% test and 10% validation
+splitPerc.validation = .50
+validationIndices = sample(1:dim(test.preSplit)[1], round(splitPerc.validation * dim(test.preSplit)[1]))
+validation = test.preSplit[validationIndices,]
+test = test.preSplit[-validationIndices,]
+dim(validation)
+dim(test)
+
+
 ```
 
 
@@ -336,13 +361,6 @@ vif(model.fit)
 #### 2.2 Lasso Regression All Data ~ Logged MSRP
 ``` {r, echo = FALSE}
 
-set.seed(1234)
-splitPerc = .70
-trainIndices = sample(1:dim(myData)[1],round(splitPerc * dim(myData)[1]))
-train = myData[trainIndices,]
-test = myData[-trainIndices,]
-
-
 #Formatting data for GLM net
 x_train=model.matrix(log(MSRP)~.,train)[, -1]
 y_train=log(train$MSRP)
@@ -437,3 +455,100 @@ myData %>% ggplot(aes(x=Engine.HP.Clean, y=log(MSRP), colour=Vehicle.Size)) + ge
 
 
 ```
+
+
+
+#### Fully Saturated Lasso Model
+```{r, ECHO = FALSE}
+
+matrixFormula <- function(data)
+{
+  # use fully saturated model with squared terms
+  model.matrix(log(MSRP)~(.)^2, data)[, -1]
+}
+
+#Formatting data for GLM net
+x_train= matrixFormula(train)
+y_train=log(train$MSRP)
+x_test<-matrixFormula(test)
+y_test<-log(test$MSRP)
+x_validation<-matrixFormula(validation)
+y_validation <- log(validation$MSRP)
+
+# Setting alpha = 1 implements lasso regression 
+grid=10^seq(from=-3.0,to=0,by=0.1)
+lasso_reg <- cv.glmnet(x_train, y_train, alpha=1, lambda =grid, scale=TRUE, center=TRUE)
+plot(lasso_reg)
+coefplot(lasso_reg)
+
+```
+
+#### Find best Lamda
+``` {r, ECHO = FALSE}
+
+
+#for loop here to iterate all ase's vs lambda's
+getTestAse <- function(lambda) {
+  pred <- predict(lasso_reg, s=lambda, newx=x_test)
+  mean((y_test-pred)^2)
+}
+
+# Gather our Test ASE's from the lasso fit for different Constraint values (Lambda's)
+TestAse <- data.frame(lambda = seq(from=.75*lasso_reg$lambda.min,to=1.25*lasso_reg$lambda.1se,by=0.00001))
+
+# rowwise is needed here to make the getTestASE function run for every value of lambda....
+TestAse <- TestAse %>% rowwise %>% mutate(Test_ASE=getTestAse(lambda))
+
+# plot 
+TestAse %>% ggplot(aes(x=log(lambda), y=Test_ASE)) + geom_point() + geom_vline(xintercept =log(lasso_reg$lambda.min), linetype="dashed", 
+                color = "blue", size=0.5) + geom_text(aes(x=log(lasso_reg$lambda.min), label="\nLambda Min"), colour="blue",y=getTestAse(lasso_reg$lambda.min), text=element_text(size=11)) + geom_vline(xintercept =log(lasso_reg$lambda.1se), linetype="dashed", 
+                color = "red", size=0.5) + geom_text(aes(x=log(lasso_reg$lambda.1se), label="\nLambda 1 SE"), colour="red",y=getTestAse(lasso_reg$lambda.min), text=element_text(size=11)) + ggtitle("Test ASE vs log Lambda")
+
+## We use Lambda MIN, it works the best on our test set!
+
+# Test
+test_prediction=predict(lasso_reg,s=lasso_reg$lambda.min, newx=x_test)
+test_ASE<-mean((y_test-test_prediction)^2)
+test_ASE
+
+# Validation
+validation_prediction=predict(lasso_reg,s=lasso_reg$lambda.min, newx=x_validation)
+validation_ASE<-mean((y_validation-validation_prediction)^2)
+validation_ASE
+
+
+```
+
+
+
+R-Squared
+```{r}
+
+# R-Squared Train
+rsq_train = 1 - lasso_reg$cvm/var(y_train)
+#rsq_train
+plot(lasso_reg$lambda,rsq_train)
+plotres(lasso_reg)
+#plot(lasso_reg$glmnet.fit, label=TRUE)
+
+# R-Squared Test
+pred <- predict(lasso_reg, s=lasso_reg$lambda.min, newx=x_test)
+rss <- sum((y_test-pred)^2)
+tss <- sum((y_test - mean(y_test)) ^ 2)
+rsq <- 1 - rss/tss
+rsq
+
+# R-Squared Validation
+pred <- predict(lasso_reg, s=lasso_reg$lambda.min, newx=x_validation)
+rss <- sum((y_validation-pred)^2)
+tss <- sum((y_validation - mean(y_validation)) ^ 2)
+rsq <- 1 - rss/tss
+rsq
+
+
+```
+
+
+
+
+
