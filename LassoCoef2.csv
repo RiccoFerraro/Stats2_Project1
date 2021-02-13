@@ -1,0 +1,996 @@
+"","rn","1","variable","estimate"
+"1","(Intercept)",-4.39195509732528,"(Intercept)",-4.39195509732528
+"2","Vehicle.SizeLarge",0,"Vehicle.SizeLarge",0
+"3","Vehicle.SizeMidsize",0,"Vehicle.SizeMidsize",0
+"4","Year",0.00703400336206222,"Year",0.00703400336206222
+"5","Engine.Fuel.Typediesel",0,"Engine.Fuel.Typediesel",0
+"6","Engine.Fuel.Typeelectric",0,"Engine.Fuel.Typeelectric",0
+"7","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85)",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85)",0
+"8","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85)",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85)",0
+"9","Engine.Fuel.Typeflex-fuel (unleaded/E85)",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85)",0
+"10","Engine.Fuel.Typeflex-fuel (unleaded/natural gas)",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas)",0
+"11","Engine.Fuel.Typenatural gas",0,"Engine.Fuel.Typenatural gas",0
+"12","Engine.Fuel.Typepremium unleaded (recommended)",0,"Engine.Fuel.Typepremium unleaded (recommended)",0
+"13","Engine.Fuel.Typepremium unleaded (required)",0,"Engine.Fuel.Typepremium unleaded (required)",0
+"14","Engine.Fuel.Typeregular unleaded",-0.0172489174838714,"Engine.Fuel.Typeregular unleaded",-0.0172489174838714
+"15","Transmission.TypeAUTOMATIC",-0.0352384802519498,"Transmission.TypeAUTOMATIC",-0.0352384802519498
+"16","Transmission.TypeDIRECT_DRIVE",-0.0285310937263148,"Transmission.TypeDIRECT_DRIVE",-0.0285310937263148
+"17","Transmission.TypeMANUAL",0,"Transmission.TypeMANUAL",0
+"18","Transmission.TypeUNKNOWN",0,"Transmission.TypeUNKNOWN",0
+"19","Driven_Wheelsfour wheel drive",0,"Driven_Wheelsfour wheel drive",0
+"20","Driven_Wheelsfront wheel drive",-0.101740196886169,"Driven_Wheelsfront wheel drive",-0.101740196886169
+"21","Driven_Wheelsrear wheel drive",0,"Driven_Wheelsrear wheel drive",0
+"22","Vehicle.Style2dr SUV",0,"Vehicle.Style2dr SUV",0
+"23","Vehicle.Style4dr Hatchback",-0.132300919502932,"Vehicle.Style4dr Hatchback",-0.132300919502932
+"24","Vehicle.Style4dr SUV",0,"Vehicle.Style4dr SUV",0
+"25","Vehicle.StyleCargo Minivan",0,"Vehicle.StyleCargo Minivan",0
+"26","Vehicle.StyleCargo Van",0,"Vehicle.StyleCargo Van",0
+"27","Vehicle.StyleConvertible",0.19786824869386,"Vehicle.StyleConvertible",0.19786824869386
+"28","Vehicle.StyleConvertible SUV",0,"Vehicle.StyleConvertible SUV",0
+"29","Vehicle.StyleCoupe",0.141130154168156,"Vehicle.StyleCoupe",0.141130154168156
+"30","Vehicle.StyleCrew Cab Pickup",0,"Vehicle.StyleCrew Cab Pickup",0
+"31","Vehicle.StyleExtended Cab Pickup",0,"Vehicle.StyleExtended Cab Pickup",0
+"32","Vehicle.StylePassenger Minivan",0,"Vehicle.StylePassenger Minivan",0
+"33","Vehicle.StylePassenger Van",0,"Vehicle.StylePassenger Van",0
+"34","Vehicle.StyleRegular Cab Pickup",-0.0743623952346754,"Vehicle.StyleRegular Cab Pickup",-0.0743623952346754
+"35","Vehicle.StyleSedan",0,"Vehicle.StyleSedan",0
+"36","Vehicle.StyleWagon",0,"Vehicle.StyleWagon",0
+"37","highway.MPG",-2.20212133447713e-05,"highway.MPG",-2.20212133447713e-05
+"38","city.mpg",0,"city.mpg",0
+"39","Popularity",0,"Popularity",0
+"40","Engine.HP.Clean",1.21545891199728e-06,"Engine.HP.Clean",1.21545891199728e-06
+"41","Engine.Cylinders.Clean4",-0.000589329534091483,"Engine.Cylinders.Clean4",-0.000589329534091483
+"42","Engine.Cylinders.Clean5",0,"Engine.Cylinders.Clean5",0
+"43","Engine.Cylinders.Clean6",0,"Engine.Cylinders.Clean6",0
+"44","Engine.Cylinders.Clean8",0.0198167850214478,"Engine.Cylinders.Clean8",0.0198167850214478
+"45","Engine.Cylinders.Clean10",0.082140387151456,"Engine.Cylinders.Clean10",0.082140387151456
+"46","Engine.Cylinders.Clean12",0.589598682510096,"Engine.Cylinders.Clean12",0.589598682510096
+"47","Engine.Cylinders.Clean16",0,"Engine.Cylinders.Clean16",0
+"48","NumDoors.Clean3",0,"NumDoors.Clean3",0
+"49","NumDoors.Clean4",0,"NumDoors.Clean4",0
+"50","Vehicle.SizeLarge:Year",0,"Vehicle.SizeLarge:Year",0
+"51","Vehicle.SizeMidsize:Year",0,"Vehicle.SizeMidsize:Year",0
+"52","Vehicle.SizeLarge:Engine.Fuel.Typediesel",0.0314901977340884,"Vehicle.SizeLarge:Engine.Fuel.Typediesel",0.0314901977340884
+"53","Vehicle.SizeMidsize:Engine.Fuel.Typediesel",0,"Vehicle.SizeMidsize:Engine.Fuel.Typediesel",0
+"54","Vehicle.SizeLarge:Engine.Fuel.Typeelectric",0,"Vehicle.SizeLarge:Engine.Fuel.Typeelectric",0
+"55","Vehicle.SizeMidsize:Engine.Fuel.Typeelectric",0,"Vehicle.SizeMidsize:Engine.Fuel.Typeelectric",0
+"56","Vehicle.SizeLarge:Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85)",0.0283461068377737,"Vehicle.SizeLarge:Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85)",0.0283461068377737
+"57","Vehicle.SizeMidsize:Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85)",0,"Vehicle.SizeMidsize:Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85)",0
+"58","Vehicle.SizeLarge:Engine.Fuel.Typeflex-fuel (premium unleaded required/E85)",0.138593700260342,"Vehicle.SizeLarge:Engine.Fuel.Typeflex-fuel (premium unleaded required/E85)",0.138593700260342
+"59","Vehicle.SizeMidsize:Engine.Fuel.Typeflex-fuel (premium unleaded required/E85)",0,"Vehicle.SizeMidsize:Engine.Fuel.Typeflex-fuel (premium unleaded required/E85)",0
+"60","Vehicle.SizeLarge:Engine.Fuel.Typeflex-fuel (unleaded/E85)",0,"Vehicle.SizeLarge:Engine.Fuel.Typeflex-fuel (unleaded/E85)",0
+"61","Vehicle.SizeMidsize:Engine.Fuel.Typeflex-fuel (unleaded/E85)",-0.0179227577803472,"Vehicle.SizeMidsize:Engine.Fuel.Typeflex-fuel (unleaded/E85)",-0.0179227577803472
+"62","Vehicle.SizeLarge:Engine.Fuel.Typeflex-fuel (unleaded/natural gas)",-7.61159980064286e-05,"Vehicle.SizeLarge:Engine.Fuel.Typeflex-fuel (unleaded/natural gas)",-7.61159980064286e-05
+"63","Vehicle.SizeMidsize:Engine.Fuel.Typeflex-fuel (unleaded/natural gas)",0,"Vehicle.SizeMidsize:Engine.Fuel.Typeflex-fuel (unleaded/natural gas)",0
+"64","Vehicle.SizeLarge:Engine.Fuel.Typenatural gas",0,"Vehicle.SizeLarge:Engine.Fuel.Typenatural gas",0
+"65","Vehicle.SizeMidsize:Engine.Fuel.Typenatural gas",0,"Vehicle.SizeMidsize:Engine.Fuel.Typenatural gas",0
+"66","Vehicle.SizeLarge:Engine.Fuel.Typepremium unleaded (recommended)",-0.00344415547647085,"Vehicle.SizeLarge:Engine.Fuel.Typepremium unleaded (recommended)",-0.00344415547647085
+"67","Vehicle.SizeMidsize:Engine.Fuel.Typepremium unleaded (recommended)",-0.0179379870379371,"Vehicle.SizeMidsize:Engine.Fuel.Typepremium unleaded (recommended)",-0.0179379870379371
+"68","Vehicle.SizeLarge:Engine.Fuel.Typepremium unleaded (required)",0.0487422736594479,"Vehicle.SizeLarge:Engine.Fuel.Typepremium unleaded (required)",0.0487422736594479
+"69","Vehicle.SizeMidsize:Engine.Fuel.Typepremium unleaded (required)",0.00374423812711032,"Vehicle.SizeMidsize:Engine.Fuel.Typepremium unleaded (required)",0.00374423812711032
+"70","Vehicle.SizeLarge:Engine.Fuel.Typeregular unleaded",0,"Vehicle.SizeLarge:Engine.Fuel.Typeregular unleaded",0
+"71","Vehicle.SizeMidsize:Engine.Fuel.Typeregular unleaded",0.0117151129146919,"Vehicle.SizeMidsize:Engine.Fuel.Typeregular unleaded",0.0117151129146919
+"72","Vehicle.SizeLarge:Transmission.TypeAUTOMATIC",0,"Vehicle.SizeLarge:Transmission.TypeAUTOMATIC",0
+"73","Vehicle.SizeMidsize:Transmission.TypeAUTOMATIC",0.0524460778366333,"Vehicle.SizeMidsize:Transmission.TypeAUTOMATIC",0.0524460778366333
+"74","Vehicle.SizeLarge:Transmission.TypeDIRECT_DRIVE",0,"Vehicle.SizeLarge:Transmission.TypeDIRECT_DRIVE",0
+"75","Vehicle.SizeMidsize:Transmission.TypeDIRECT_DRIVE",0,"Vehicle.SizeMidsize:Transmission.TypeDIRECT_DRIVE",0
+"76","Vehicle.SizeLarge:Transmission.TypeMANUAL",0,"Vehicle.SizeLarge:Transmission.TypeMANUAL",0
+"77","Vehicle.SizeMidsize:Transmission.TypeMANUAL",-0.000967092004916804,"Vehicle.SizeMidsize:Transmission.TypeMANUAL",-0.000967092004916804
+"78","Vehicle.SizeLarge:Transmission.TypeUNKNOWN",0,"Vehicle.SizeLarge:Transmission.TypeUNKNOWN",0
+"79","Vehicle.SizeMidsize:Transmission.TypeUNKNOWN",0,"Vehicle.SizeMidsize:Transmission.TypeUNKNOWN",0
+"80","Vehicle.SizeLarge:Driven_Wheelsfour wheel drive",0,"Vehicle.SizeLarge:Driven_Wheelsfour wheel drive",0
+"81","Vehicle.SizeMidsize:Driven_Wheelsfour wheel drive",0,"Vehicle.SizeMidsize:Driven_Wheelsfour wheel drive",0
+"82","Vehicle.SizeLarge:Driven_Wheelsfront wheel drive",0.0113795904827996,"Vehicle.SizeLarge:Driven_Wheelsfront wheel drive",0.0113795904827996
+"83","Vehicle.SizeMidsize:Driven_Wheelsfront wheel drive",0.013494696536763,"Vehicle.SizeMidsize:Driven_Wheelsfront wheel drive",0.013494696536763
+"84","Vehicle.SizeLarge:Driven_Wheelsrear wheel drive",-0.00152986031308555,"Vehicle.SizeLarge:Driven_Wheelsrear wheel drive",-0.00152986031308555
+"85","Vehicle.SizeMidsize:Driven_Wheelsrear wheel drive",-0.0468039931370645,"Vehicle.SizeMidsize:Driven_Wheelsrear wheel drive",-0.0468039931370645
+"86","Vehicle.SizeLarge:Vehicle.Style2dr SUV",0,"Vehicle.SizeLarge:Vehicle.Style2dr SUV",0
+"87","Vehicle.SizeMidsize:Vehicle.Style2dr SUV",0,"Vehicle.SizeMidsize:Vehicle.Style2dr SUV",0
+"88","Vehicle.SizeLarge:Vehicle.Style4dr Hatchback",0.17490807898398,"Vehicle.SizeLarge:Vehicle.Style4dr Hatchback",0.17490807898398
+"89","Vehicle.SizeMidsize:Vehicle.Style4dr Hatchback",0.109412638532215,"Vehicle.SizeMidsize:Vehicle.Style4dr Hatchback",0.109412638532215
+"90","Vehicle.SizeLarge:Vehicle.Style4dr SUV",0,"Vehicle.SizeLarge:Vehicle.Style4dr SUV",0
+"91","Vehicle.SizeMidsize:Vehicle.Style4dr SUV",-0.0539770497469715,"Vehicle.SizeMidsize:Vehicle.Style4dr SUV",-0.0539770497469715
+"92","Vehicle.SizeLarge:Vehicle.StyleCargo Minivan",0,"Vehicle.SizeLarge:Vehicle.StyleCargo Minivan",0
+"93","Vehicle.SizeMidsize:Vehicle.StyleCargo Minivan",0,"Vehicle.SizeMidsize:Vehicle.StyleCargo Minivan",0
+"94","Vehicle.SizeLarge:Vehicle.StyleCargo Van",0,"Vehicle.SizeLarge:Vehicle.StyleCargo Van",0
+"95","Vehicle.SizeMidsize:Vehicle.StyleCargo Van",0.0131039476901905,"Vehicle.SizeMidsize:Vehicle.StyleCargo Van",0.0131039476901905
+"96","Vehicle.SizeLarge:Vehicle.StyleConvertible",0,"Vehicle.SizeLarge:Vehicle.StyleConvertible",0
+"97","Vehicle.SizeMidsize:Vehicle.StyleConvertible",-0.00464862852650778,"Vehicle.SizeMidsize:Vehicle.StyleConvertible",-0.00464862852650778
+"98","Vehicle.SizeLarge:Vehicle.StyleConvertible SUV",0,"Vehicle.SizeLarge:Vehicle.StyleConvertible SUV",0
+"99","Vehicle.SizeMidsize:Vehicle.StyleConvertible SUV",0,"Vehicle.SizeMidsize:Vehicle.StyleConvertible SUV",0
+"100","Vehicle.SizeLarge:Vehicle.StyleCoupe",-0.332620984194457,"Vehicle.SizeLarge:Vehicle.StyleCoupe",-0.332620984194457
+"101","Vehicle.SizeMidsize:Vehicle.StyleCoupe",0,"Vehicle.SizeMidsize:Vehicle.StyleCoupe",0
+"102","Vehicle.SizeLarge:Vehicle.StyleCrew Cab Pickup",0.0199778172914666,"Vehicle.SizeLarge:Vehicle.StyleCrew Cab Pickup",0.0199778172914666
+"103","Vehicle.SizeMidsize:Vehicle.StyleCrew Cab Pickup",0,"Vehicle.SizeMidsize:Vehicle.StyleCrew Cab Pickup",0
+"104","Vehicle.SizeLarge:Vehicle.StyleExtended Cab Pickup",0,"Vehicle.SizeLarge:Vehicle.StyleExtended Cab Pickup",0
+"105","Vehicle.SizeMidsize:Vehicle.StyleExtended Cab Pickup",0,"Vehicle.SizeMidsize:Vehicle.StyleExtended Cab Pickup",0
+"106","Vehicle.SizeLarge:Vehicle.StylePassenger Minivan",0,"Vehicle.SizeLarge:Vehicle.StylePassenger Minivan",0
+"107","Vehicle.SizeMidsize:Vehicle.StylePassenger Minivan",0.0445327951715008,"Vehicle.SizeMidsize:Vehicle.StylePassenger Minivan",0.0445327951715008
+"108","Vehicle.SizeLarge:Vehicle.StylePassenger Van",0,"Vehicle.SizeLarge:Vehicle.StylePassenger Van",0
+"109","Vehicle.SizeMidsize:Vehicle.StylePassenger Van",4.84988381377825e-05,"Vehicle.SizeMidsize:Vehicle.StylePassenger Van",4.84988381377825e-05
+"110","Vehicle.SizeLarge:Vehicle.StyleRegular Cab Pickup",-0.0695664664293106,"Vehicle.SizeLarge:Vehicle.StyleRegular Cab Pickup",-0.0695664664293106
+"111","Vehicle.SizeMidsize:Vehicle.StyleRegular Cab Pickup",0,"Vehicle.SizeMidsize:Vehicle.StyleRegular Cab Pickup",0
+"112","Vehicle.SizeLarge:Vehicle.StyleSedan",0.111831489010742,"Vehicle.SizeLarge:Vehicle.StyleSedan",0.111831489010742
+"113","Vehicle.SizeMidsize:Vehicle.StyleSedan",0.0513431845599982,"Vehicle.SizeMidsize:Vehicle.StyleSedan",0.0513431845599982
+"114","Vehicle.SizeLarge:Vehicle.StyleWagon",0,"Vehicle.SizeLarge:Vehicle.StyleWagon",0
+"115","Vehicle.SizeMidsize:Vehicle.StyleWagon",0.191621608795318,"Vehicle.SizeMidsize:Vehicle.StyleWagon",0.191621608795318
+"116","Vehicle.SizeLarge:highway.MPG",0,"Vehicle.SizeLarge:highway.MPG",0
+"117","Vehicle.SizeMidsize:highway.MPG",0,"Vehicle.SizeMidsize:highway.MPG",0
+"118","Vehicle.SizeLarge:city.mpg",0,"Vehicle.SizeLarge:city.mpg",0
+"119","Vehicle.SizeMidsize:city.mpg",0,"Vehicle.SizeMidsize:city.mpg",0
+"120","Vehicle.SizeLarge:Popularity",0,"Vehicle.SizeLarge:Popularity",0
+"121","Vehicle.SizeMidsize:Popularity",-2.60171267912569e-06,"Vehicle.SizeMidsize:Popularity",-2.60171267912569e-06
+"122","Vehicle.SizeLarge:Engine.HP.Clean",0,"Vehicle.SizeLarge:Engine.HP.Clean",0
+"123","Vehicle.SizeMidsize:Engine.HP.Clean",0,"Vehicle.SizeMidsize:Engine.HP.Clean",0
+"124","Vehicle.SizeLarge:Engine.Cylinders.Clean4",0.156015656618309,"Vehicle.SizeLarge:Engine.Cylinders.Clean4",0.156015656618309
+"125","Vehicle.SizeMidsize:Engine.Cylinders.Clean4",0,"Vehicle.SizeMidsize:Engine.Cylinders.Clean4",0
+"126","Vehicle.SizeLarge:Engine.Cylinders.Clean5",0,"Vehicle.SizeLarge:Engine.Cylinders.Clean5",0
+"127","Vehicle.SizeMidsize:Engine.Cylinders.Clean5",0,"Vehicle.SizeMidsize:Engine.Cylinders.Clean5",0
+"128","Vehicle.SizeLarge:Engine.Cylinders.Clean6",0.100430204008861,"Vehicle.SizeLarge:Engine.Cylinders.Clean6",0.100430204008861
+"129","Vehicle.SizeMidsize:Engine.Cylinders.Clean6",0,"Vehicle.SizeMidsize:Engine.Cylinders.Clean6",0
+"130","Vehicle.SizeLarge:Engine.Cylinders.Clean8",-0.015870005263189,"Vehicle.SizeLarge:Engine.Cylinders.Clean8",-0.015870005263189
+"131","Vehicle.SizeMidsize:Engine.Cylinders.Clean8",-0.156739660415576,"Vehicle.SizeMidsize:Engine.Cylinders.Clean8",-0.156739660415576
+"132","Vehicle.SizeLarge:Engine.Cylinders.Clean10",0,"Vehicle.SizeLarge:Engine.Cylinders.Clean10",0
+"133","Vehicle.SizeMidsize:Engine.Cylinders.Clean10",0,"Vehicle.SizeMidsize:Engine.Cylinders.Clean10",0
+"134","Vehicle.SizeLarge:Engine.Cylinders.Clean12",0.00263723896232276,"Vehicle.SizeLarge:Engine.Cylinders.Clean12",0.00263723896232276
+"135","Vehicle.SizeMidsize:Engine.Cylinders.Clean12",0,"Vehicle.SizeMidsize:Engine.Cylinders.Clean12",0
+"136","Vehicle.SizeLarge:Engine.Cylinders.Clean16",0,"Vehicle.SizeLarge:Engine.Cylinders.Clean16",0
+"137","Vehicle.SizeMidsize:Engine.Cylinders.Clean16",0,"Vehicle.SizeMidsize:Engine.Cylinders.Clean16",0
+"138","Vehicle.SizeLarge:NumDoors.Clean3",0,"Vehicle.SizeLarge:NumDoors.Clean3",0
+"139","Vehicle.SizeMidsize:NumDoors.Clean3",0.0419729508218921,"Vehicle.SizeMidsize:NumDoors.Clean3",0.0419729508218921
+"140","Vehicle.SizeLarge:NumDoors.Clean4",0,"Vehicle.SizeLarge:NumDoors.Clean4",0
+"141","Vehicle.SizeMidsize:NumDoors.Clean4",0,"Vehicle.SizeMidsize:NumDoors.Clean4",0
+"142","Year:Engine.Fuel.Typediesel",0,"Year:Engine.Fuel.Typediesel",0
+"143","Year:Engine.Fuel.Typeelectric",0,"Year:Engine.Fuel.Typeelectric",0
+"144","Year:Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85)",0,"Year:Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85)",0
+"145","Year:Engine.Fuel.Typeflex-fuel (premium unleaded required/E85)",0,"Year:Engine.Fuel.Typeflex-fuel (premium unleaded required/E85)",0
+"146","Year:Engine.Fuel.Typeflex-fuel (unleaded/E85)",0,"Year:Engine.Fuel.Typeflex-fuel (unleaded/E85)",0
+"147","Year:Engine.Fuel.Typeflex-fuel (unleaded/natural gas)",-1.19815012331973e-05,"Year:Engine.Fuel.Typeflex-fuel (unleaded/natural gas)",-1.19815012331973e-05
+"148","Year:Engine.Fuel.Typenatural gas",0,"Year:Engine.Fuel.Typenatural gas",0
+"149","Year:Engine.Fuel.Typepremium unleaded (recommended)",0,"Year:Engine.Fuel.Typepremium unleaded (recommended)",0
+"150","Year:Engine.Fuel.Typepremium unleaded (required)",0,"Year:Engine.Fuel.Typepremium unleaded (required)",0
+"151","Year:Engine.Fuel.Typeregular unleaded",-2.03154072197167e-05,"Year:Engine.Fuel.Typeregular unleaded",-2.03154072197167e-05
+"152","Year:Transmission.TypeAUTOMATIC",-1.43742154764373e-07,"Year:Transmission.TypeAUTOMATIC",-1.43742154764373e-07
+"153","Year:Transmission.TypeDIRECT_DRIVE",-9.3468676008032e-08,"Year:Transmission.TypeDIRECT_DRIVE",-9.3468676008032e-08
+"154","Year:Transmission.TypeMANUAL",0,"Year:Transmission.TypeMANUAL",0
+"155","Year:Transmission.TypeUNKNOWN",0,"Year:Transmission.TypeUNKNOWN",0
+"156","Year:Driven_Wheelsfour wheel drive",0,"Year:Driven_Wheelsfour wheel drive",0
+"157","Year:Driven_Wheelsfront wheel drive",0,"Year:Driven_Wheelsfront wheel drive",0
+"158","Year:Driven_Wheelsrear wheel drive",0,"Year:Driven_Wheelsrear wheel drive",0
+"159","Year:Vehicle.Style2dr SUV",0,"Year:Vehicle.Style2dr SUV",0
+"160","Year:Vehicle.Style4dr Hatchback",0,"Year:Vehicle.Style4dr Hatchback",0
+"161","Year:Vehicle.Style4dr SUV",0,"Year:Vehicle.Style4dr SUV",0
+"162","Year:Vehicle.StyleCargo Minivan",0,"Year:Vehicle.StyleCargo Minivan",0
+"163","Year:Vehicle.StyleCargo Van",0,"Year:Vehicle.StyleCargo Van",0
+"164","Year:Vehicle.StyleConvertible",7.09518311046455e-09,"Year:Vehicle.StyleConvertible",7.09518311046455e-09
+"165","Year:Vehicle.StyleConvertible SUV",0,"Year:Vehicle.StyleConvertible SUV",0
+"166","Year:Vehicle.StyleCoupe",0,"Year:Vehicle.StyleCoupe",0
+"167","Year:Vehicle.StyleCrew Cab Pickup",0,"Year:Vehicle.StyleCrew Cab Pickup",0
+"168","Year:Vehicle.StyleExtended Cab Pickup",0,"Year:Vehicle.StyleExtended Cab Pickup",0
+"169","Year:Vehicle.StylePassenger Minivan",0,"Year:Vehicle.StylePassenger Minivan",0
+"170","Year:Vehicle.StylePassenger Van",0,"Year:Vehicle.StylePassenger Van",0
+"171","Year:Vehicle.StyleRegular Cab Pickup",-1.4628988885189e-07,"Year:Vehicle.StyleRegular Cab Pickup",-1.4628988885189e-07
+"172","Year:Vehicle.StyleSedan",0,"Year:Vehicle.StyleSedan",0
+"173","Year:Vehicle.StyleWagon",0,"Year:Vehicle.StyleWagon",0
+"174","Year:highway.MPG",0,"Year:highway.MPG",0
+"175","Year:city.mpg",0,"Year:city.mpg",0
+"176","Year:Popularity",0,"Year:Popularity",0
+"177","Year:Engine.HP.Clean",7.19146089494121e-07,"Year:Engine.HP.Clean",7.19146089494121e-07
+"178","Year:Engine.Cylinders.Clean4",-4.54958727397697e-09,"Year:Engine.Cylinders.Clean4",-4.54958727397697e-09
+"179","Year:Engine.Cylinders.Clean5",0,"Year:Engine.Cylinders.Clean5",0
+"180","Year:Engine.Cylinders.Clean6",0,"Year:Engine.Cylinders.Clean6",0
+"181","Year:Engine.Cylinders.Clean8",4.55725945372413e-05,"Year:Engine.Cylinders.Clean8",4.55725945372413e-05
+"182","Year:Engine.Cylinders.Clean10",2.59599238500701e-07,"Year:Engine.Cylinders.Clean10",2.59599238500701e-07
+"183","Year:Engine.Cylinders.Clean12",7.19947536915891e-07,"Year:Engine.Cylinders.Clean12",7.19947536915891e-07
+"184","Year:Engine.Cylinders.Clean16",0,"Year:Engine.Cylinders.Clean16",0
+"185","Year:NumDoors.Clean3",0,"Year:NumDoors.Clean3",0
+"186","Year:NumDoors.Clean4",0,"Year:NumDoors.Clean4",0
+"187","Engine.Fuel.Typediesel:Transmission.TypeAUTOMATIC",0.0398285871641584,"Engine.Fuel.Typediesel:Transmission.TypeAUTOMATIC",0.0398285871641584
+"188","Engine.Fuel.Typeelectric:Transmission.TypeAUTOMATIC",0,"Engine.Fuel.Typeelectric:Transmission.TypeAUTOMATIC",0
+"189","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Transmission.TypeAUTOMATIC",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Transmission.TypeAUTOMATIC",0
+"190","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Transmission.TypeAUTOMATIC",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Transmission.TypeAUTOMATIC",0
+"191","Engine.Fuel.Typeflex-fuel (unleaded/E85):Transmission.TypeAUTOMATIC",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Transmission.TypeAUTOMATIC",0
+"192","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Transmission.TypeAUTOMATIC",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Transmission.TypeAUTOMATIC",0
+"193","Engine.Fuel.Typenatural gas:Transmission.TypeAUTOMATIC",0,"Engine.Fuel.Typenatural gas:Transmission.TypeAUTOMATIC",0
+"194","Engine.Fuel.Typepremium unleaded (recommended):Transmission.TypeAUTOMATIC",0,"Engine.Fuel.Typepremium unleaded (recommended):Transmission.TypeAUTOMATIC",0
+"195","Engine.Fuel.Typepremium unleaded (required):Transmission.TypeAUTOMATIC",-0.0012590951625651,"Engine.Fuel.Typepremium unleaded (required):Transmission.TypeAUTOMATIC",-0.0012590951625651
+"196","Engine.Fuel.Typeregular unleaded:Transmission.TypeAUTOMATIC",0,"Engine.Fuel.Typeregular unleaded:Transmission.TypeAUTOMATIC",0
+"197","Engine.Fuel.Typediesel:Transmission.TypeDIRECT_DRIVE",0,"Engine.Fuel.Typediesel:Transmission.TypeDIRECT_DRIVE",0
+"198","Engine.Fuel.Typeelectric:Transmission.TypeDIRECT_DRIVE",0,"Engine.Fuel.Typeelectric:Transmission.TypeDIRECT_DRIVE",0
+"199","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Transmission.TypeDIRECT_DRIVE",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Transmission.TypeDIRECT_DRIVE",0
+"200","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Transmission.TypeDIRECT_DRIVE",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Transmission.TypeDIRECT_DRIVE",0
+"201","Engine.Fuel.Typeflex-fuel (unleaded/E85):Transmission.TypeDIRECT_DRIVE",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Transmission.TypeDIRECT_DRIVE",0
+"202","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Transmission.TypeDIRECT_DRIVE",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Transmission.TypeDIRECT_DRIVE",0
+"203","Engine.Fuel.Typenatural gas:Transmission.TypeDIRECT_DRIVE",0,"Engine.Fuel.Typenatural gas:Transmission.TypeDIRECT_DRIVE",0
+"204","Engine.Fuel.Typepremium unleaded (recommended):Transmission.TypeDIRECT_DRIVE",0,"Engine.Fuel.Typepremium unleaded (recommended):Transmission.TypeDIRECT_DRIVE",0
+"205","Engine.Fuel.Typepremium unleaded (required):Transmission.TypeDIRECT_DRIVE",0,"Engine.Fuel.Typepremium unleaded (required):Transmission.TypeDIRECT_DRIVE",0
+"206","Engine.Fuel.Typeregular unleaded:Transmission.TypeDIRECT_DRIVE",-6.07126114451753e-05,"Engine.Fuel.Typeregular unleaded:Transmission.TypeDIRECT_DRIVE",-6.07126114451753e-05
+"207","Engine.Fuel.Typediesel:Transmission.TypeMANUAL",0.0224376670979913,"Engine.Fuel.Typediesel:Transmission.TypeMANUAL",0.0224376670979913
+"208","Engine.Fuel.Typeelectric:Transmission.TypeMANUAL",0,"Engine.Fuel.Typeelectric:Transmission.TypeMANUAL",0
+"209","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Transmission.TypeMANUAL",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Transmission.TypeMANUAL",0
+"210","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Transmission.TypeMANUAL",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Transmission.TypeMANUAL",0
+"211","Engine.Fuel.Typeflex-fuel (unleaded/E85):Transmission.TypeMANUAL",-0.0549854341199471,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Transmission.TypeMANUAL",-0.0549854341199471
+"212","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Transmission.TypeMANUAL",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Transmission.TypeMANUAL",0
+"213","Engine.Fuel.Typenatural gas:Transmission.TypeMANUAL",0,"Engine.Fuel.Typenatural gas:Transmission.TypeMANUAL",0
+"214","Engine.Fuel.Typepremium unleaded (recommended):Transmission.TypeMANUAL",0,"Engine.Fuel.Typepremium unleaded (recommended):Transmission.TypeMANUAL",0
+"215","Engine.Fuel.Typepremium unleaded (required):Transmission.TypeMANUAL",0,"Engine.Fuel.Typepremium unleaded (required):Transmission.TypeMANUAL",0
+"216","Engine.Fuel.Typeregular unleaded:Transmission.TypeMANUAL",-0.0387443631363726,"Engine.Fuel.Typeregular unleaded:Transmission.TypeMANUAL",-0.0387443631363726
+"217","Engine.Fuel.Typediesel:Transmission.TypeUNKNOWN",0,"Engine.Fuel.Typediesel:Transmission.TypeUNKNOWN",0
+"218","Engine.Fuel.Typeelectric:Transmission.TypeUNKNOWN",0,"Engine.Fuel.Typeelectric:Transmission.TypeUNKNOWN",0
+"219","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Transmission.TypeUNKNOWN",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Transmission.TypeUNKNOWN",0
+"220","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Transmission.TypeUNKNOWN",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Transmission.TypeUNKNOWN",0
+"221","Engine.Fuel.Typeflex-fuel (unleaded/E85):Transmission.TypeUNKNOWN",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Transmission.TypeUNKNOWN",0
+"222","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Transmission.TypeUNKNOWN",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Transmission.TypeUNKNOWN",0
+"223","Engine.Fuel.Typenatural gas:Transmission.TypeUNKNOWN",0,"Engine.Fuel.Typenatural gas:Transmission.TypeUNKNOWN",0
+"224","Engine.Fuel.Typepremium unleaded (recommended):Transmission.TypeUNKNOWN",0,"Engine.Fuel.Typepremium unleaded (recommended):Transmission.TypeUNKNOWN",0
+"225","Engine.Fuel.Typepremium unleaded (required):Transmission.TypeUNKNOWN",0,"Engine.Fuel.Typepremium unleaded (required):Transmission.TypeUNKNOWN",0
+"226","Engine.Fuel.Typeregular unleaded:Transmission.TypeUNKNOWN",0,"Engine.Fuel.Typeregular unleaded:Transmission.TypeUNKNOWN",0
+"227","Engine.Fuel.Typediesel:Driven_Wheelsfour wheel drive",0.18998512447459,"Engine.Fuel.Typediesel:Driven_Wheelsfour wheel drive",0.18998512447459
+"228","Engine.Fuel.Typeelectric:Driven_Wheelsfour wheel drive",0,"Engine.Fuel.Typeelectric:Driven_Wheelsfour wheel drive",0
+"229","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Driven_Wheelsfour wheel drive",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Driven_Wheelsfour wheel drive",0
+"230","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Driven_Wheelsfour wheel drive",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Driven_Wheelsfour wheel drive",0
+"231","Engine.Fuel.Typeflex-fuel (unleaded/E85):Driven_Wheelsfour wheel drive",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Driven_Wheelsfour wheel drive",0
+"232","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Driven_Wheelsfour wheel drive",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Driven_Wheelsfour wheel drive",0
+"233","Engine.Fuel.Typenatural gas:Driven_Wheelsfour wheel drive",0,"Engine.Fuel.Typenatural gas:Driven_Wheelsfour wheel drive",0
+"234","Engine.Fuel.Typepremium unleaded (recommended):Driven_Wheelsfour wheel drive",0.10517379513463,"Engine.Fuel.Typepremium unleaded (recommended):Driven_Wheelsfour wheel drive",0.10517379513463
+"235","Engine.Fuel.Typepremium unleaded (required):Driven_Wheelsfour wheel drive",0.127305494071266,"Engine.Fuel.Typepremium unleaded (required):Driven_Wheelsfour wheel drive",0.127305494071266
+"236","Engine.Fuel.Typeregular unleaded:Driven_Wheelsfour wheel drive",0,"Engine.Fuel.Typeregular unleaded:Driven_Wheelsfour wheel drive",0
+"237","Engine.Fuel.Typediesel:Driven_Wheelsfront wheel drive",0,"Engine.Fuel.Typediesel:Driven_Wheelsfront wheel drive",0
+"238","Engine.Fuel.Typeelectric:Driven_Wheelsfront wheel drive",0,"Engine.Fuel.Typeelectric:Driven_Wheelsfront wheel drive",0
+"239","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Driven_Wheelsfront wheel drive",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Driven_Wheelsfront wheel drive",0
+"240","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Driven_Wheelsfront wheel drive",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Driven_Wheelsfront wheel drive",0
+"241","Engine.Fuel.Typeflex-fuel (unleaded/E85):Driven_Wheelsfront wheel drive",-0.0965578542243249,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Driven_Wheelsfront wheel drive",-0.0965578542243249
+"242","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Driven_Wheelsfront wheel drive",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Driven_Wheelsfront wheel drive",0
+"243","Engine.Fuel.Typenatural gas:Driven_Wheelsfront wheel drive",0,"Engine.Fuel.Typenatural gas:Driven_Wheelsfront wheel drive",0
+"244","Engine.Fuel.Typepremium unleaded (recommended):Driven_Wheelsfront wheel drive",0,"Engine.Fuel.Typepremium unleaded (recommended):Driven_Wheelsfront wheel drive",0
+"245","Engine.Fuel.Typepremium unleaded (required):Driven_Wheelsfront wheel drive",-0.0896586174681104,"Engine.Fuel.Typepremium unleaded (required):Driven_Wheelsfront wheel drive",-0.0896586174681104
+"246","Engine.Fuel.Typeregular unleaded:Driven_Wheelsfront wheel drive",0,"Engine.Fuel.Typeregular unleaded:Driven_Wheelsfront wheel drive",0
+"247","Engine.Fuel.Typediesel:Driven_Wheelsrear wheel drive",0,"Engine.Fuel.Typediesel:Driven_Wheelsrear wheel drive",0
+"248","Engine.Fuel.Typeelectric:Driven_Wheelsrear wheel drive",0,"Engine.Fuel.Typeelectric:Driven_Wheelsrear wheel drive",0
+"249","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Driven_Wheelsrear wheel drive",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Driven_Wheelsrear wheel drive",0
+"250","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Driven_Wheelsrear wheel drive",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Driven_Wheelsrear wheel drive",0
+"251","Engine.Fuel.Typeflex-fuel (unleaded/E85):Driven_Wheelsrear wheel drive",0.0247779793735622,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Driven_Wheelsrear wheel drive",0.0247779793735622
+"252","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Driven_Wheelsrear wheel drive",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Driven_Wheelsrear wheel drive",0
+"253","Engine.Fuel.Typenatural gas:Driven_Wheelsrear wheel drive",0,"Engine.Fuel.Typenatural gas:Driven_Wheelsrear wheel drive",0
+"254","Engine.Fuel.Typepremium unleaded (recommended):Driven_Wheelsrear wheel drive",-0.0154034194504548,"Engine.Fuel.Typepremium unleaded (recommended):Driven_Wheelsrear wheel drive",-0.0154034194504548
+"255","Engine.Fuel.Typepremium unleaded (required):Driven_Wheelsrear wheel drive",0.0215551283813305,"Engine.Fuel.Typepremium unleaded (required):Driven_Wheelsrear wheel drive",0.0215551283813305
+"256","Engine.Fuel.Typeregular unleaded:Driven_Wheelsrear wheel drive",0,"Engine.Fuel.Typeregular unleaded:Driven_Wheelsrear wheel drive",0
+"257","Engine.Fuel.Typediesel:Vehicle.Style2dr SUV",0,"Engine.Fuel.Typediesel:Vehicle.Style2dr SUV",0
+"258","Engine.Fuel.Typeelectric:Vehicle.Style2dr SUV",0,"Engine.Fuel.Typeelectric:Vehicle.Style2dr SUV",0
+"259","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.Style2dr SUV",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.Style2dr SUV",0
+"260","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.Style2dr SUV",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.Style2dr SUV",0
+"261","Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.Style2dr SUV",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.Style2dr SUV",0
+"262","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.Style2dr SUV",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.Style2dr SUV",0
+"263","Engine.Fuel.Typenatural gas:Vehicle.Style2dr SUV",0,"Engine.Fuel.Typenatural gas:Vehicle.Style2dr SUV",0
+"264","Engine.Fuel.Typepremium unleaded (recommended):Vehicle.Style2dr SUV",0.271463028755238,"Engine.Fuel.Typepremium unleaded (recommended):Vehicle.Style2dr SUV",0.271463028755238
+"265","Engine.Fuel.Typepremium unleaded (required):Vehicle.Style2dr SUV",0,"Engine.Fuel.Typepremium unleaded (required):Vehicle.Style2dr SUV",0
+"266","Engine.Fuel.Typeregular unleaded:Vehicle.Style2dr SUV",0,"Engine.Fuel.Typeregular unleaded:Vehicle.Style2dr SUV",0
+"267","Engine.Fuel.Typediesel:Vehicle.Style4dr Hatchback",-0.0596641640886303,"Engine.Fuel.Typediesel:Vehicle.Style4dr Hatchback",-0.0596641640886303
+"268","Engine.Fuel.Typeelectric:Vehicle.Style4dr Hatchback",0,"Engine.Fuel.Typeelectric:Vehicle.Style4dr Hatchback",0
+"269","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.Style4dr Hatchback",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.Style4dr Hatchback",0
+"270","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.Style4dr Hatchback",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.Style4dr Hatchback",0
+"271","Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.Style4dr Hatchback",-0.00854633957404957,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.Style4dr Hatchback",-0.00854633957404957
+"272","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.Style4dr Hatchback",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.Style4dr Hatchback",0
+"273","Engine.Fuel.Typenatural gas:Vehicle.Style4dr Hatchback",0,"Engine.Fuel.Typenatural gas:Vehicle.Style4dr Hatchback",0
+"274","Engine.Fuel.Typepremium unleaded (recommended):Vehicle.Style4dr Hatchback",-0.0247832321959695,"Engine.Fuel.Typepremium unleaded (recommended):Vehicle.Style4dr Hatchback",-0.0247832321959695
+"275","Engine.Fuel.Typepremium unleaded (required):Vehicle.Style4dr Hatchback",0,"Engine.Fuel.Typepremium unleaded (required):Vehicle.Style4dr Hatchback",0
+"276","Engine.Fuel.Typeregular unleaded:Vehicle.Style4dr Hatchback",0,"Engine.Fuel.Typeregular unleaded:Vehicle.Style4dr Hatchback",0
+"277","Engine.Fuel.Typediesel:Vehicle.Style4dr SUV",0,"Engine.Fuel.Typediesel:Vehicle.Style4dr SUV",0
+"278","Engine.Fuel.Typeelectric:Vehicle.Style4dr SUV",0,"Engine.Fuel.Typeelectric:Vehicle.Style4dr SUV",0
+"279","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.Style4dr SUV",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.Style4dr SUV",0
+"280","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.Style4dr SUV",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.Style4dr SUV",0
+"281","Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.Style4dr SUV",0.00569358387263419,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.Style4dr SUV",0.00569358387263419
+"282","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.Style4dr SUV",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.Style4dr SUV",0
+"283","Engine.Fuel.Typenatural gas:Vehicle.Style4dr SUV",0,"Engine.Fuel.Typenatural gas:Vehicle.Style4dr SUV",0
+"284","Engine.Fuel.Typepremium unleaded (recommended):Vehicle.Style4dr SUV",0.006324302347348,"Engine.Fuel.Typepremium unleaded (recommended):Vehicle.Style4dr SUV",0.006324302347348
+"285","Engine.Fuel.Typepremium unleaded (required):Vehicle.Style4dr SUV",-0.00407386950325352,"Engine.Fuel.Typepremium unleaded (required):Vehicle.Style4dr SUV",-0.00407386950325352
+"286","Engine.Fuel.Typeregular unleaded:Vehicle.Style4dr SUV",0,"Engine.Fuel.Typeregular unleaded:Vehicle.Style4dr SUV",0
+"287","Engine.Fuel.Typediesel:Vehicle.StyleCargo Minivan",0,"Engine.Fuel.Typediesel:Vehicle.StyleCargo Minivan",0
+"288","Engine.Fuel.Typeelectric:Vehicle.StyleCargo Minivan",0,"Engine.Fuel.Typeelectric:Vehicle.StyleCargo Minivan",0
+"289","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleCargo Minivan",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleCargo Minivan",0
+"290","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleCargo Minivan",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleCargo Minivan",0
+"291","Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleCargo Minivan",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleCargo Minivan",0
+"292","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleCargo Minivan",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleCargo Minivan",0
+"293","Engine.Fuel.Typenatural gas:Vehicle.StyleCargo Minivan",0,"Engine.Fuel.Typenatural gas:Vehicle.StyleCargo Minivan",0
+"294","Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleCargo Minivan",-0.0806914532597242,"Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleCargo Minivan",-0.0806914532597242
+"295","Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleCargo Minivan",0,"Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleCargo Minivan",0
+"296","Engine.Fuel.Typeregular unleaded:Vehicle.StyleCargo Minivan",0,"Engine.Fuel.Typeregular unleaded:Vehicle.StyleCargo Minivan",0
+"297","Engine.Fuel.Typediesel:Vehicle.StyleCargo Van",0,"Engine.Fuel.Typediesel:Vehicle.StyleCargo Van",0
+"298","Engine.Fuel.Typeelectric:Vehicle.StyleCargo Van",0,"Engine.Fuel.Typeelectric:Vehicle.StyleCargo Van",0
+"299","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleCargo Van",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleCargo Van",0
+"300","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleCargo Van",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleCargo Van",0
+"301","Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleCargo Van",0.0174781595280464,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleCargo Van",0.0174781595280464
+"302","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleCargo Van",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleCargo Van",0
+"303","Engine.Fuel.Typenatural gas:Vehicle.StyleCargo Van",0,"Engine.Fuel.Typenatural gas:Vehicle.StyleCargo Van",0
+"304","Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleCargo Van",0,"Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleCargo Van",0
+"305","Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleCargo Van",0,"Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleCargo Van",0
+"306","Engine.Fuel.Typeregular unleaded:Vehicle.StyleCargo Van",-0.0782284453778324,"Engine.Fuel.Typeregular unleaded:Vehicle.StyleCargo Van",-0.0782284453778324
+"307","Engine.Fuel.Typediesel:Vehicle.StyleConvertible",0,"Engine.Fuel.Typediesel:Vehicle.StyleConvertible",0
+"308","Engine.Fuel.Typeelectric:Vehicle.StyleConvertible",0,"Engine.Fuel.Typeelectric:Vehicle.StyleConvertible",0
+"309","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleConvertible",0.056495771136049,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleConvertible",0.056495771136049
+"310","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleConvertible",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleConvertible",0
+"311","Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleConvertible",0.014108380338225,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleConvertible",0.014108380338225
+"312","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleConvertible",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleConvertible",0
+"313","Engine.Fuel.Typenatural gas:Vehicle.StyleConvertible",0,"Engine.Fuel.Typenatural gas:Vehicle.StyleConvertible",0
+"314","Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleConvertible",0,"Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleConvertible",0
+"315","Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleConvertible",0.0481046200212875,"Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleConvertible",0.0481046200212875
+"316","Engine.Fuel.Typeregular unleaded:Vehicle.StyleConvertible",0.00189296691030512,"Engine.Fuel.Typeregular unleaded:Vehicle.StyleConvertible",0.00189296691030512
+"317","Engine.Fuel.Typediesel:Vehicle.StyleConvertible SUV",0,"Engine.Fuel.Typediesel:Vehicle.StyleConvertible SUV",0
+"318","Engine.Fuel.Typeelectric:Vehicle.StyleConvertible SUV",0,"Engine.Fuel.Typeelectric:Vehicle.StyleConvertible SUV",0
+"319","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleConvertible SUV",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleConvertible SUV",0
+"320","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleConvertible SUV",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleConvertible SUV",0
+"321","Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleConvertible SUV",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleConvertible SUV",0
+"322","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleConvertible SUV",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleConvertible SUV",0
+"323","Engine.Fuel.Typenatural gas:Vehicle.StyleConvertible SUV",0,"Engine.Fuel.Typenatural gas:Vehicle.StyleConvertible SUV",0
+"324","Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleConvertible SUV",0.260394756419192,"Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleConvertible SUV",0.260394756419192
+"325","Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleConvertible SUV",0,"Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleConvertible SUV",0
+"326","Engine.Fuel.Typeregular unleaded:Vehicle.StyleConvertible SUV",-0.0173413216468203,"Engine.Fuel.Typeregular unleaded:Vehicle.StyleConvertible SUV",-0.0173413216468203
+"327","Engine.Fuel.Typediesel:Vehicle.StyleCoupe",0,"Engine.Fuel.Typediesel:Vehicle.StyleCoupe",0
+"328","Engine.Fuel.Typeelectric:Vehicle.StyleCoupe",0,"Engine.Fuel.Typeelectric:Vehicle.StyleCoupe",0
+"329","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleCoupe",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleCoupe",0
+"330","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleCoupe",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleCoupe",0
+"331","Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleCoupe",0.0513928621667204,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleCoupe",0.0513928621667204
+"332","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleCoupe",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleCoupe",0
+"333","Engine.Fuel.Typenatural gas:Vehicle.StyleCoupe",0,"Engine.Fuel.Typenatural gas:Vehicle.StyleCoupe",0
+"334","Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleCoupe",0,"Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleCoupe",0
+"335","Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleCoupe",0,"Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleCoupe",0
+"336","Engine.Fuel.Typeregular unleaded:Vehicle.StyleCoupe",0.0130354143021559,"Engine.Fuel.Typeregular unleaded:Vehicle.StyleCoupe",0.0130354143021559
+"337","Engine.Fuel.Typediesel:Vehicle.StyleCrew Cab Pickup",0,"Engine.Fuel.Typediesel:Vehicle.StyleCrew Cab Pickup",0
+"338","Engine.Fuel.Typeelectric:Vehicle.StyleCrew Cab Pickup",0,"Engine.Fuel.Typeelectric:Vehicle.StyleCrew Cab Pickup",0
+"339","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleCrew Cab Pickup",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleCrew Cab Pickup",0
+"340","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleCrew Cab Pickup",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleCrew Cab Pickup",0
+"341","Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleCrew Cab Pickup",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleCrew Cab Pickup",0
+"342","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleCrew Cab Pickup",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleCrew Cab Pickup",0
+"343","Engine.Fuel.Typenatural gas:Vehicle.StyleCrew Cab Pickup",0,"Engine.Fuel.Typenatural gas:Vehicle.StyleCrew Cab Pickup",0
+"344","Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleCrew Cab Pickup",0,"Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleCrew Cab Pickup",0
+"345","Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleCrew Cab Pickup",0,"Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleCrew Cab Pickup",0
+"346","Engine.Fuel.Typeregular unleaded:Vehicle.StyleCrew Cab Pickup",0,"Engine.Fuel.Typeregular unleaded:Vehicle.StyleCrew Cab Pickup",0
+"347","Engine.Fuel.Typediesel:Vehicle.StyleExtended Cab Pickup",0,"Engine.Fuel.Typediesel:Vehicle.StyleExtended Cab Pickup",0
+"348","Engine.Fuel.Typeelectric:Vehicle.StyleExtended Cab Pickup",0,"Engine.Fuel.Typeelectric:Vehicle.StyleExtended Cab Pickup",0
+"349","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleExtended Cab Pickup",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleExtended Cab Pickup",0
+"350","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleExtended Cab Pickup",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleExtended Cab Pickup",0
+"351","Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleExtended Cab Pickup",-0.0196115357120055,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleExtended Cab Pickup",-0.0196115357120055
+"352","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleExtended Cab Pickup",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleExtended Cab Pickup",0
+"353","Engine.Fuel.Typenatural gas:Vehicle.StyleExtended Cab Pickup",0,"Engine.Fuel.Typenatural gas:Vehicle.StyleExtended Cab Pickup",0
+"354","Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleExtended Cab Pickup",0,"Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleExtended Cab Pickup",0
+"355","Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleExtended Cab Pickup",0,"Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleExtended Cab Pickup",0
+"356","Engine.Fuel.Typeregular unleaded:Vehicle.StyleExtended Cab Pickup",0,"Engine.Fuel.Typeregular unleaded:Vehicle.StyleExtended Cab Pickup",0
+"357","Engine.Fuel.Typediesel:Vehicle.StylePassenger Minivan",0,"Engine.Fuel.Typediesel:Vehicle.StylePassenger Minivan",0
+"358","Engine.Fuel.Typeelectric:Vehicle.StylePassenger Minivan",0,"Engine.Fuel.Typeelectric:Vehicle.StylePassenger Minivan",0
+"359","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StylePassenger Minivan",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StylePassenger Minivan",0
+"360","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StylePassenger Minivan",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StylePassenger Minivan",0
+"361","Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StylePassenger Minivan",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StylePassenger Minivan",0
+"362","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StylePassenger Minivan",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StylePassenger Minivan",0
+"363","Engine.Fuel.Typenatural gas:Vehicle.StylePassenger Minivan",0,"Engine.Fuel.Typenatural gas:Vehicle.StylePassenger Minivan",0
+"364","Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StylePassenger Minivan",0,"Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StylePassenger Minivan",0
+"365","Engine.Fuel.Typepremium unleaded (required):Vehicle.StylePassenger Minivan",0,"Engine.Fuel.Typepremium unleaded (required):Vehicle.StylePassenger Minivan",0
+"366","Engine.Fuel.Typeregular unleaded:Vehicle.StylePassenger Minivan",0.00437809152741526,"Engine.Fuel.Typeregular unleaded:Vehicle.StylePassenger Minivan",0.00437809152741526
+"367","Engine.Fuel.Typediesel:Vehicle.StylePassenger Van",0,"Engine.Fuel.Typediesel:Vehicle.StylePassenger Van",0
+"368","Engine.Fuel.Typeelectric:Vehicle.StylePassenger Van",0,"Engine.Fuel.Typeelectric:Vehicle.StylePassenger Van",0
+"369","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StylePassenger Van",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StylePassenger Van",0
+"370","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StylePassenger Van",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StylePassenger Van",0
+"371","Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StylePassenger Van",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StylePassenger Van",0
+"372","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StylePassenger Van",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StylePassenger Van",0
+"373","Engine.Fuel.Typenatural gas:Vehicle.StylePassenger Van",0,"Engine.Fuel.Typenatural gas:Vehicle.StylePassenger Van",0
+"374","Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StylePassenger Van",0.0166067742412428,"Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StylePassenger Van",0.0166067742412428
+"375","Engine.Fuel.Typepremium unleaded (required):Vehicle.StylePassenger Van",0,"Engine.Fuel.Typepremium unleaded (required):Vehicle.StylePassenger Van",0
+"376","Engine.Fuel.Typeregular unleaded:Vehicle.StylePassenger Van",0,"Engine.Fuel.Typeregular unleaded:Vehicle.StylePassenger Van",0
+"377","Engine.Fuel.Typediesel:Vehicle.StyleRegular Cab Pickup",0,"Engine.Fuel.Typediesel:Vehicle.StyleRegular Cab Pickup",0
+"378","Engine.Fuel.Typeelectric:Vehicle.StyleRegular Cab Pickup",0,"Engine.Fuel.Typeelectric:Vehicle.StyleRegular Cab Pickup",0
+"379","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleRegular Cab Pickup",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleRegular Cab Pickup",0
+"380","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleRegular Cab Pickup",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleRegular Cab Pickup",0
+"381","Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleRegular Cab Pickup",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleRegular Cab Pickup",0
+"382","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleRegular Cab Pickup",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleRegular Cab Pickup",0
+"383","Engine.Fuel.Typenatural gas:Vehicle.StyleRegular Cab Pickup",0,"Engine.Fuel.Typenatural gas:Vehicle.StyleRegular Cab Pickup",0
+"384","Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleRegular Cab Pickup",0,"Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleRegular Cab Pickup",0
+"385","Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleRegular Cab Pickup",0,"Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleRegular Cab Pickup",0
+"386","Engine.Fuel.Typeregular unleaded:Vehicle.StyleRegular Cab Pickup",0,"Engine.Fuel.Typeregular unleaded:Vehicle.StyleRegular Cab Pickup",0
+"387","Engine.Fuel.Typediesel:Vehicle.StyleSedan",0.0398381892349684,"Engine.Fuel.Typediesel:Vehicle.StyleSedan",0.0398381892349684
+"388","Engine.Fuel.Typeelectric:Vehicle.StyleSedan",0,"Engine.Fuel.Typeelectric:Vehicle.StyleSedan",0
+"389","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleSedan",-0.0252734578584661,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleSedan",-0.0252734578584661
+"390","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleSedan",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleSedan",0
+"391","Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleSedan",-0.0379998237118064,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleSedan",-0.0379998237118064
+"392","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleSedan",-6.78931257128483e-06,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleSedan",-6.78931257128483e-06
+"393","Engine.Fuel.Typenatural gas:Vehicle.StyleSedan",0,"Engine.Fuel.Typenatural gas:Vehicle.StyleSedan",0
+"394","Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleSedan",0,"Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleSedan",0
+"395","Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleSedan",0.0322295647942759,"Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleSedan",0.0322295647942759
+"396","Engine.Fuel.Typeregular unleaded:Vehicle.StyleSedan",-0.0407659949584481,"Engine.Fuel.Typeregular unleaded:Vehicle.StyleSedan",-0.0407659949584481
+"397","Engine.Fuel.Typediesel:Vehicle.StyleWagon",0,"Engine.Fuel.Typediesel:Vehicle.StyleWagon",0
+"398","Engine.Fuel.Typeelectric:Vehicle.StyleWagon",0,"Engine.Fuel.Typeelectric:Vehicle.StyleWagon",0
+"399","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleWagon",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Vehicle.StyleWagon",0
+"400","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleWagon",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Vehicle.StyleWagon",0
+"401","Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleWagon",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Vehicle.StyleWagon",0
+"402","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleWagon",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Vehicle.StyleWagon",0
+"403","Engine.Fuel.Typenatural gas:Vehicle.StyleWagon",0,"Engine.Fuel.Typenatural gas:Vehicle.StyleWagon",0
+"404","Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleWagon",0,"Engine.Fuel.Typepremium unleaded (recommended):Vehicle.StyleWagon",0
+"405","Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleWagon",0.0392584332752075,"Engine.Fuel.Typepremium unleaded (required):Vehicle.StyleWagon",0.0392584332752075
+"406","Engine.Fuel.Typeregular unleaded:Vehicle.StyleWagon",-0.00294583040681704,"Engine.Fuel.Typeregular unleaded:Vehicle.StyleWagon",-0.00294583040681704
+"407","Engine.Fuel.Typediesel:highway.MPG",0,"Engine.Fuel.Typediesel:highway.MPG",0
+"408","Engine.Fuel.Typeelectric:highway.MPG",0,"Engine.Fuel.Typeelectric:highway.MPG",0
+"409","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):highway.MPG",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):highway.MPG",0
+"410","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):highway.MPG",0.00470407757929328,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):highway.MPG",0.00470407757929328
+"411","Engine.Fuel.Typeflex-fuel (unleaded/E85):highway.MPG",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):highway.MPG",0
+"412","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):highway.MPG",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):highway.MPG",0
+"413","Engine.Fuel.Typenatural gas:highway.MPG",0,"Engine.Fuel.Typenatural gas:highway.MPG",0
+"414","Engine.Fuel.Typepremium unleaded (recommended):highway.MPG",0,"Engine.Fuel.Typepremium unleaded (recommended):highway.MPG",0
+"415","Engine.Fuel.Typepremium unleaded (required):highway.MPG",0,"Engine.Fuel.Typepremium unleaded (required):highway.MPG",0
+"416","Engine.Fuel.Typeregular unleaded:highway.MPG",-0.00331804952841203,"Engine.Fuel.Typeregular unleaded:highway.MPG",-0.00331804952841203
+"417","Engine.Fuel.Typediesel:city.mpg",0,"Engine.Fuel.Typediesel:city.mpg",0
+"418","Engine.Fuel.Typeelectric:city.mpg",0,"Engine.Fuel.Typeelectric:city.mpg",0
+"419","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):city.mpg",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):city.mpg",0
+"420","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):city.mpg",9.93119662024506e-05,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):city.mpg",9.93119662024506e-05
+"421","Engine.Fuel.Typeflex-fuel (unleaded/E85):city.mpg",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):city.mpg",0
+"422","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):city.mpg",-5.64820037758696e-07,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):city.mpg",-5.64820037758696e-07
+"423","Engine.Fuel.Typenatural gas:city.mpg",0,"Engine.Fuel.Typenatural gas:city.mpg",0
+"424","Engine.Fuel.Typepremium unleaded (recommended):city.mpg",0,"Engine.Fuel.Typepremium unleaded (recommended):city.mpg",0
+"425","Engine.Fuel.Typepremium unleaded (required):city.mpg",0,"Engine.Fuel.Typepremium unleaded (required):city.mpg",0
+"426","Engine.Fuel.Typeregular unleaded:city.mpg",0,"Engine.Fuel.Typeregular unleaded:city.mpg",0
+"427","Engine.Fuel.Typediesel:Popularity",0,"Engine.Fuel.Typediesel:Popularity",0
+"428","Engine.Fuel.Typeelectric:Popularity",0,"Engine.Fuel.Typeelectric:Popularity",0
+"429","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Popularity",7.42638511639979e-06,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Popularity",7.42638511639979e-06
+"430","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Popularity",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Popularity",0
+"431","Engine.Fuel.Typeflex-fuel (unleaded/E85):Popularity",-1.93329411690786e-06,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Popularity",-1.93329411690786e-06
+"432","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Popularity",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Popularity",0
+"433","Engine.Fuel.Typenatural gas:Popularity",0,"Engine.Fuel.Typenatural gas:Popularity",0
+"434","Engine.Fuel.Typepremium unleaded (recommended):Popularity",-2.75096189818393e-06,"Engine.Fuel.Typepremium unleaded (recommended):Popularity",-2.75096189818393e-06
+"435","Engine.Fuel.Typepremium unleaded (required):Popularity",2.13344770161164e-05,"Engine.Fuel.Typepremium unleaded (required):Popularity",2.13344770161164e-05
+"436","Engine.Fuel.Typeregular unleaded:Popularity",0,"Engine.Fuel.Typeregular unleaded:Popularity",0
+"437","Engine.Fuel.Typediesel:Engine.HP.Clean",0.000196871812138265,"Engine.Fuel.Typediesel:Engine.HP.Clean",0.000196871812138265
+"438","Engine.Fuel.Typeelectric:Engine.HP.Clean",0,"Engine.Fuel.Typeelectric:Engine.HP.Clean",0
+"439","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Engine.HP.Clean",0.000702245577419961,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Engine.HP.Clean",0.000702245577419961
+"440","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Engine.HP.Clean",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Engine.HP.Clean",0
+"441","Engine.Fuel.Typeflex-fuel (unleaded/E85):Engine.HP.Clean",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Engine.HP.Clean",0
+"442","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Engine.HP.Clean",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Engine.HP.Clean",0
+"443","Engine.Fuel.Typenatural gas:Engine.HP.Clean",0,"Engine.Fuel.Typenatural gas:Engine.HP.Clean",0
+"444","Engine.Fuel.Typepremium unleaded (recommended):Engine.HP.Clean",0,"Engine.Fuel.Typepremium unleaded (recommended):Engine.HP.Clean",0
+"445","Engine.Fuel.Typepremium unleaded (required):Engine.HP.Clean",0,"Engine.Fuel.Typepremium unleaded (required):Engine.HP.Clean",0
+"446","Engine.Fuel.Typeregular unleaded:Engine.HP.Clean",0.000412488963336244,"Engine.Fuel.Typeregular unleaded:Engine.HP.Clean",0.000412488963336244
+"447","Engine.Fuel.Typediesel:Engine.Cylinders.Clean4",0,"Engine.Fuel.Typediesel:Engine.Cylinders.Clean4",0
+"448","Engine.Fuel.Typeelectric:Engine.Cylinders.Clean4",0,"Engine.Fuel.Typeelectric:Engine.Cylinders.Clean4",0
+"449","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Engine.Cylinders.Clean4",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Engine.Cylinders.Clean4",0
+"450","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Engine.Cylinders.Clean4",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Engine.Cylinders.Clean4",0
+"451","Engine.Fuel.Typeflex-fuel (unleaded/E85):Engine.Cylinders.Clean4",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Engine.Cylinders.Clean4",0
+"452","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Engine.Cylinders.Clean4",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Engine.Cylinders.Clean4",0
+"453","Engine.Fuel.Typenatural gas:Engine.Cylinders.Clean4",0,"Engine.Fuel.Typenatural gas:Engine.Cylinders.Clean4",0
+"454","Engine.Fuel.Typepremium unleaded (recommended):Engine.Cylinders.Clean4",0,"Engine.Fuel.Typepremium unleaded (recommended):Engine.Cylinders.Clean4",0
+"455","Engine.Fuel.Typepremium unleaded (required):Engine.Cylinders.Clean4",-0.00139594640332233,"Engine.Fuel.Typepremium unleaded (required):Engine.Cylinders.Clean4",-0.00139594640332233
+"456","Engine.Fuel.Typeregular unleaded:Engine.Cylinders.Clean4",-0.0322675135702945,"Engine.Fuel.Typeregular unleaded:Engine.Cylinders.Clean4",-0.0322675135702945
+"457","Engine.Fuel.Typediesel:Engine.Cylinders.Clean5",0,"Engine.Fuel.Typediesel:Engine.Cylinders.Clean5",0
+"458","Engine.Fuel.Typeelectric:Engine.Cylinders.Clean5",0,"Engine.Fuel.Typeelectric:Engine.Cylinders.Clean5",0
+"459","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Engine.Cylinders.Clean5",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Engine.Cylinders.Clean5",0
+"460","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Engine.Cylinders.Clean5",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Engine.Cylinders.Clean5",0
+"461","Engine.Fuel.Typeflex-fuel (unleaded/E85):Engine.Cylinders.Clean5",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Engine.Cylinders.Clean5",0
+"462","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Engine.Cylinders.Clean5",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Engine.Cylinders.Clean5",0
+"463","Engine.Fuel.Typenatural gas:Engine.Cylinders.Clean5",0,"Engine.Fuel.Typenatural gas:Engine.Cylinders.Clean5",0
+"464","Engine.Fuel.Typepremium unleaded (recommended):Engine.Cylinders.Clean5",0.00358885306302043,"Engine.Fuel.Typepremium unleaded (recommended):Engine.Cylinders.Clean5",0.00358885306302043
+"465","Engine.Fuel.Typepremium unleaded (required):Engine.Cylinders.Clean5",0,"Engine.Fuel.Typepremium unleaded (required):Engine.Cylinders.Clean5",0
+"466","Engine.Fuel.Typeregular unleaded:Engine.Cylinders.Clean5",-0.0215377737952152,"Engine.Fuel.Typeregular unleaded:Engine.Cylinders.Clean5",-0.0215377737952152
+"467","Engine.Fuel.Typediesel:Engine.Cylinders.Clean6",0.178642072543373,"Engine.Fuel.Typediesel:Engine.Cylinders.Clean6",0.178642072543373
+"468","Engine.Fuel.Typeelectric:Engine.Cylinders.Clean6",0,"Engine.Fuel.Typeelectric:Engine.Cylinders.Clean6",0
+"469","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Engine.Cylinders.Clean6",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Engine.Cylinders.Clean6",0
+"470","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Engine.Cylinders.Clean6",0.25302726916564,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Engine.Cylinders.Clean6",0.25302726916564
+"471","Engine.Fuel.Typeflex-fuel (unleaded/E85):Engine.Cylinders.Clean6",-0.0146100546759594,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Engine.Cylinders.Clean6",-0.0146100546759594
+"472","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Engine.Cylinders.Clean6",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Engine.Cylinders.Clean6",0
+"473","Engine.Fuel.Typenatural gas:Engine.Cylinders.Clean6",0,"Engine.Fuel.Typenatural gas:Engine.Cylinders.Clean6",0
+"474","Engine.Fuel.Typepremium unleaded (recommended):Engine.Cylinders.Clean6",6.51764172752574e-05,"Engine.Fuel.Typepremium unleaded (recommended):Engine.Cylinders.Clean6",6.51764172752574e-05
+"475","Engine.Fuel.Typepremium unleaded (required):Engine.Cylinders.Clean6",0.119436877049161,"Engine.Fuel.Typepremium unleaded (required):Engine.Cylinders.Clean6",0.119436877049161
+"476","Engine.Fuel.Typeregular unleaded:Engine.Cylinders.Clean6",0,"Engine.Fuel.Typeregular unleaded:Engine.Cylinders.Clean6",0
+"477","Engine.Fuel.Typediesel:Engine.Cylinders.Clean8",0,"Engine.Fuel.Typediesel:Engine.Cylinders.Clean8",0
+"478","Engine.Fuel.Typeelectric:Engine.Cylinders.Clean8",0,"Engine.Fuel.Typeelectric:Engine.Cylinders.Clean8",0
+"479","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Engine.Cylinders.Clean8",0.00229705050639758,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Engine.Cylinders.Clean8",0.00229705050639758
+"480","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Engine.Cylinders.Clean8",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Engine.Cylinders.Clean8",0
+"481","Engine.Fuel.Typeflex-fuel (unleaded/E85):Engine.Cylinders.Clean8",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Engine.Cylinders.Clean8",0
+"482","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Engine.Cylinders.Clean8",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Engine.Cylinders.Clean8",0
+"483","Engine.Fuel.Typenatural gas:Engine.Cylinders.Clean8",0,"Engine.Fuel.Typenatural gas:Engine.Cylinders.Clean8",0
+"484","Engine.Fuel.Typepremium unleaded (recommended):Engine.Cylinders.Clean8",-0.0172905852273501,"Engine.Fuel.Typepremium unleaded (recommended):Engine.Cylinders.Clean8",-0.0172905852273501
+"485","Engine.Fuel.Typepremium unleaded (required):Engine.Cylinders.Clean8",0.0831140877066116,"Engine.Fuel.Typepremium unleaded (required):Engine.Cylinders.Clean8",0.0831140877066116
+"486","Engine.Fuel.Typeregular unleaded:Engine.Cylinders.Clean8",0,"Engine.Fuel.Typeregular unleaded:Engine.Cylinders.Clean8",0
+"487","Engine.Fuel.Typediesel:Engine.Cylinders.Clean10",0,"Engine.Fuel.Typediesel:Engine.Cylinders.Clean10",0
+"488","Engine.Fuel.Typeelectric:Engine.Cylinders.Clean10",0,"Engine.Fuel.Typeelectric:Engine.Cylinders.Clean10",0
+"489","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Engine.Cylinders.Clean10",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Engine.Cylinders.Clean10",0
+"490","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Engine.Cylinders.Clean10",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Engine.Cylinders.Clean10",0
+"491","Engine.Fuel.Typeflex-fuel (unleaded/E85):Engine.Cylinders.Clean10",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Engine.Cylinders.Clean10",0
+"492","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Engine.Cylinders.Clean10",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Engine.Cylinders.Clean10",0
+"493","Engine.Fuel.Typenatural gas:Engine.Cylinders.Clean10",0,"Engine.Fuel.Typenatural gas:Engine.Cylinders.Clean10",0
+"494","Engine.Fuel.Typepremium unleaded (recommended):Engine.Cylinders.Clean10",0,"Engine.Fuel.Typepremium unleaded (recommended):Engine.Cylinders.Clean10",0
+"495","Engine.Fuel.Typepremium unleaded (required):Engine.Cylinders.Clean10",0.00292683990635731,"Engine.Fuel.Typepremium unleaded (required):Engine.Cylinders.Clean10",0.00292683990635731
+"496","Engine.Fuel.Typeregular unleaded:Engine.Cylinders.Clean10",0,"Engine.Fuel.Typeregular unleaded:Engine.Cylinders.Clean10",0
+"497","Engine.Fuel.Typediesel:Engine.Cylinders.Clean12",0,"Engine.Fuel.Typediesel:Engine.Cylinders.Clean12",0
+"498","Engine.Fuel.Typeelectric:Engine.Cylinders.Clean12",0,"Engine.Fuel.Typeelectric:Engine.Cylinders.Clean12",0
+"499","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Engine.Cylinders.Clean12",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Engine.Cylinders.Clean12",0
+"500","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Engine.Cylinders.Clean12",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Engine.Cylinders.Clean12",0
+"501","Engine.Fuel.Typeflex-fuel (unleaded/E85):Engine.Cylinders.Clean12",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Engine.Cylinders.Clean12",0
+"502","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Engine.Cylinders.Clean12",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Engine.Cylinders.Clean12",0
+"503","Engine.Fuel.Typenatural gas:Engine.Cylinders.Clean12",0,"Engine.Fuel.Typenatural gas:Engine.Cylinders.Clean12",0
+"504","Engine.Fuel.Typepremium unleaded (recommended):Engine.Cylinders.Clean12",0.0773201074139608,"Engine.Fuel.Typepremium unleaded (recommended):Engine.Cylinders.Clean12",0.0773201074139608
+"505","Engine.Fuel.Typepremium unleaded (required):Engine.Cylinders.Clean12",0,"Engine.Fuel.Typepremium unleaded (required):Engine.Cylinders.Clean12",0
+"506","Engine.Fuel.Typeregular unleaded:Engine.Cylinders.Clean12",0,"Engine.Fuel.Typeregular unleaded:Engine.Cylinders.Clean12",0
+"507","Engine.Fuel.Typediesel:Engine.Cylinders.Clean16",0,"Engine.Fuel.Typediesel:Engine.Cylinders.Clean16",0
+"508","Engine.Fuel.Typeelectric:Engine.Cylinders.Clean16",0,"Engine.Fuel.Typeelectric:Engine.Cylinders.Clean16",0
+"509","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Engine.Cylinders.Clean16",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):Engine.Cylinders.Clean16",0
+"510","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Engine.Cylinders.Clean16",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):Engine.Cylinders.Clean16",0
+"511","Engine.Fuel.Typeflex-fuel (unleaded/E85):Engine.Cylinders.Clean16",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):Engine.Cylinders.Clean16",0
+"512","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Engine.Cylinders.Clean16",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):Engine.Cylinders.Clean16",0
+"513","Engine.Fuel.Typenatural gas:Engine.Cylinders.Clean16",0,"Engine.Fuel.Typenatural gas:Engine.Cylinders.Clean16",0
+"514","Engine.Fuel.Typepremium unleaded (recommended):Engine.Cylinders.Clean16",0,"Engine.Fuel.Typepremium unleaded (recommended):Engine.Cylinders.Clean16",0
+"515","Engine.Fuel.Typepremium unleaded (required):Engine.Cylinders.Clean16",0,"Engine.Fuel.Typepremium unleaded (required):Engine.Cylinders.Clean16",0
+"516","Engine.Fuel.Typeregular unleaded:Engine.Cylinders.Clean16",0,"Engine.Fuel.Typeregular unleaded:Engine.Cylinders.Clean16",0
+"517","Engine.Fuel.Typediesel:NumDoors.Clean3",0,"Engine.Fuel.Typediesel:NumDoors.Clean3",0
+"518","Engine.Fuel.Typeelectric:NumDoors.Clean3",0,"Engine.Fuel.Typeelectric:NumDoors.Clean3",0
+"519","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):NumDoors.Clean3",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):NumDoors.Clean3",0
+"520","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):NumDoors.Clean3",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):NumDoors.Clean3",0
+"521","Engine.Fuel.Typeflex-fuel (unleaded/E85):NumDoors.Clean3",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):NumDoors.Clean3",0
+"522","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):NumDoors.Clean3",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):NumDoors.Clean3",0
+"523","Engine.Fuel.Typenatural gas:NumDoors.Clean3",0,"Engine.Fuel.Typenatural gas:NumDoors.Clean3",0
+"524","Engine.Fuel.Typepremium unleaded (recommended):NumDoors.Clean3",0,"Engine.Fuel.Typepremium unleaded (recommended):NumDoors.Clean3",0
+"525","Engine.Fuel.Typepremium unleaded (required):NumDoors.Clean3",0,"Engine.Fuel.Typepremium unleaded (required):NumDoors.Clean3",0
+"526","Engine.Fuel.Typeregular unleaded:NumDoors.Clean3",-0.00259354342714106,"Engine.Fuel.Typeregular unleaded:NumDoors.Clean3",-0.00259354342714106
+"527","Engine.Fuel.Typediesel:NumDoors.Clean4",0.114092133869524,"Engine.Fuel.Typediesel:NumDoors.Clean4",0.114092133869524
+"528","Engine.Fuel.Typeelectric:NumDoors.Clean4",0,"Engine.Fuel.Typeelectric:NumDoors.Clean4",0
+"529","Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):NumDoors.Clean4",0,"Engine.Fuel.Typeflex-fuel (premium unleaded recommended/E85):NumDoors.Clean4",0
+"530","Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):NumDoors.Clean4",0,"Engine.Fuel.Typeflex-fuel (premium unleaded required/E85):NumDoors.Clean4",0
+"531","Engine.Fuel.Typeflex-fuel (unleaded/E85):NumDoors.Clean4",0,"Engine.Fuel.Typeflex-fuel (unleaded/E85):NumDoors.Clean4",0
+"532","Engine.Fuel.Typeflex-fuel (unleaded/natural gas):NumDoors.Clean4",0,"Engine.Fuel.Typeflex-fuel (unleaded/natural gas):NumDoors.Clean4",0
+"533","Engine.Fuel.Typenatural gas:NumDoors.Clean4",0,"Engine.Fuel.Typenatural gas:NumDoors.Clean4",0
+"534","Engine.Fuel.Typepremium unleaded (recommended):NumDoors.Clean4",0.0426193851424315,"Engine.Fuel.Typepremium unleaded (recommended):NumDoors.Clean4",0.0426193851424315
+"535","Engine.Fuel.Typepremium unleaded (required):NumDoors.Clean4",0,"Engine.Fuel.Typepremium unleaded (required):NumDoors.Clean4",0
+"536","Engine.Fuel.Typeregular unleaded:NumDoors.Clean4",-0.0127191556895708,"Engine.Fuel.Typeregular unleaded:NumDoors.Clean4",-0.0127191556895708
+"537","Transmission.TypeAUTOMATIC:Driven_Wheelsfour wheel drive",0,"Transmission.TypeAUTOMATIC:Driven_Wheelsfour wheel drive",0
+"538","Transmission.TypeDIRECT_DRIVE:Driven_Wheelsfour wheel drive",0,"Transmission.TypeDIRECT_DRIVE:Driven_Wheelsfour wheel drive",0
+"539","Transmission.TypeMANUAL:Driven_Wheelsfour wheel drive",0,"Transmission.TypeMANUAL:Driven_Wheelsfour wheel drive",0
+"540","Transmission.TypeUNKNOWN:Driven_Wheelsfour wheel drive",0,"Transmission.TypeUNKNOWN:Driven_Wheelsfour wheel drive",0
+"541","Transmission.TypeAUTOMATIC:Driven_Wheelsfront wheel drive",0,"Transmission.TypeAUTOMATIC:Driven_Wheelsfront wheel drive",0
+"542","Transmission.TypeDIRECT_DRIVE:Driven_Wheelsfront wheel drive",-0.00166699762354611,"Transmission.TypeDIRECT_DRIVE:Driven_Wheelsfront wheel drive",-0.00166699762354611
+"543","Transmission.TypeMANUAL:Driven_Wheelsfront wheel drive",0,"Transmission.TypeMANUAL:Driven_Wheelsfront wheel drive",0
+"544","Transmission.TypeUNKNOWN:Driven_Wheelsfront wheel drive",0,"Transmission.TypeUNKNOWN:Driven_Wheelsfront wheel drive",0
+"545","Transmission.TypeAUTOMATIC:Driven_Wheelsrear wheel drive",-0.00219898771745914,"Transmission.TypeAUTOMATIC:Driven_Wheelsrear wheel drive",-0.00219898771745914
+"546","Transmission.TypeDIRECT_DRIVE:Driven_Wheelsrear wheel drive",0,"Transmission.TypeDIRECT_DRIVE:Driven_Wheelsrear wheel drive",0
+"547","Transmission.TypeMANUAL:Driven_Wheelsrear wheel drive",-0.0210705636879792,"Transmission.TypeMANUAL:Driven_Wheelsrear wheel drive",-0.0210705636879792
+"548","Transmission.TypeUNKNOWN:Driven_Wheelsrear wheel drive",0,"Transmission.TypeUNKNOWN:Driven_Wheelsrear wheel drive",0
+"549","Transmission.TypeAUTOMATIC:Vehicle.Style2dr SUV",0.0399991609405004,"Transmission.TypeAUTOMATIC:Vehicle.Style2dr SUV",0.0399991609405004
+"550","Transmission.TypeDIRECT_DRIVE:Vehicle.Style2dr SUV",0,"Transmission.TypeDIRECT_DRIVE:Vehicle.Style2dr SUV",0
+"551","Transmission.TypeMANUAL:Vehicle.Style2dr SUV",0,"Transmission.TypeMANUAL:Vehicle.Style2dr SUV",0
+"552","Transmission.TypeUNKNOWN:Vehicle.Style2dr SUV",0,"Transmission.TypeUNKNOWN:Vehicle.Style2dr SUV",0
+"553","Transmission.TypeAUTOMATIC:Vehicle.Style4dr Hatchback",-0.0158811489043508,"Transmission.TypeAUTOMATIC:Vehicle.Style4dr Hatchback",-0.0158811489043508
+"554","Transmission.TypeDIRECT_DRIVE:Vehicle.Style4dr Hatchback",0,"Transmission.TypeDIRECT_DRIVE:Vehicle.Style4dr Hatchback",0
+"555","Transmission.TypeMANUAL:Vehicle.Style4dr Hatchback",0,"Transmission.TypeMANUAL:Vehicle.Style4dr Hatchback",0
+"556","Transmission.TypeUNKNOWN:Vehicle.Style4dr Hatchback",0,"Transmission.TypeUNKNOWN:Vehicle.Style4dr Hatchback",0
+"557","Transmission.TypeAUTOMATIC:Vehicle.Style4dr SUV",0,"Transmission.TypeAUTOMATIC:Vehicle.Style4dr SUV",0
+"558","Transmission.TypeDIRECT_DRIVE:Vehicle.Style4dr SUV",0,"Transmission.TypeDIRECT_DRIVE:Vehicle.Style4dr SUV",0
+"559","Transmission.TypeMANUAL:Vehicle.Style4dr SUV",-0.0394655041818557,"Transmission.TypeMANUAL:Vehicle.Style4dr SUV",-0.0394655041818557
+"560","Transmission.TypeUNKNOWN:Vehicle.Style4dr SUV",0,"Transmission.TypeUNKNOWN:Vehicle.Style4dr SUV",0
+"561","Transmission.TypeAUTOMATIC:Vehicle.StyleCargo Minivan",0,"Transmission.TypeAUTOMATIC:Vehicle.StyleCargo Minivan",0
+"562","Transmission.TypeDIRECT_DRIVE:Vehicle.StyleCargo Minivan",0,"Transmission.TypeDIRECT_DRIVE:Vehicle.StyleCargo Minivan",0
+"563","Transmission.TypeMANUAL:Vehicle.StyleCargo Minivan",0,"Transmission.TypeMANUAL:Vehicle.StyleCargo Minivan",0
+"564","Transmission.TypeUNKNOWN:Vehicle.StyleCargo Minivan",0,"Transmission.TypeUNKNOWN:Vehicle.StyleCargo Minivan",0
+"565","Transmission.TypeAUTOMATIC:Vehicle.StyleCargo Van",0,"Transmission.TypeAUTOMATIC:Vehicle.StyleCargo Van",0
+"566","Transmission.TypeDIRECT_DRIVE:Vehicle.StyleCargo Van",0,"Transmission.TypeDIRECT_DRIVE:Vehicle.StyleCargo Van",0
+"567","Transmission.TypeMANUAL:Vehicle.StyleCargo Van",0,"Transmission.TypeMANUAL:Vehicle.StyleCargo Van",0
+"568","Transmission.TypeUNKNOWN:Vehicle.StyleCargo Van",0,"Transmission.TypeUNKNOWN:Vehicle.StyleCargo Van",0
+"569","Transmission.TypeAUTOMATIC:Vehicle.StyleConvertible",0.0262836658488172,"Transmission.TypeAUTOMATIC:Vehicle.StyleConvertible",0.0262836658488172
+"570","Transmission.TypeDIRECT_DRIVE:Vehicle.StyleConvertible",0,"Transmission.TypeDIRECT_DRIVE:Vehicle.StyleConvertible",0
+"571","Transmission.TypeMANUAL:Vehicle.StyleConvertible",0,"Transmission.TypeMANUAL:Vehicle.StyleConvertible",0
+"572","Transmission.TypeUNKNOWN:Vehicle.StyleConvertible",0,"Transmission.TypeUNKNOWN:Vehicle.StyleConvertible",0
+"573","Transmission.TypeAUTOMATIC:Vehicle.StyleConvertible SUV",0,"Transmission.TypeAUTOMATIC:Vehicle.StyleConvertible SUV",0
+"574","Transmission.TypeDIRECT_DRIVE:Vehicle.StyleConvertible SUV",0,"Transmission.TypeDIRECT_DRIVE:Vehicle.StyleConvertible SUV",0
+"575","Transmission.TypeMANUAL:Vehicle.StyleConvertible SUV",0,"Transmission.TypeMANUAL:Vehicle.StyleConvertible SUV",0
+"576","Transmission.TypeUNKNOWN:Vehicle.StyleConvertible SUV",0,"Transmission.TypeUNKNOWN:Vehicle.StyleConvertible SUV",0
+"577","Transmission.TypeAUTOMATIC:Vehicle.StyleCoupe",-0.0240408321098881,"Transmission.TypeAUTOMATIC:Vehicle.StyleCoupe",-0.0240408321098881
+"578","Transmission.TypeDIRECT_DRIVE:Vehicle.StyleCoupe",0,"Transmission.TypeDIRECT_DRIVE:Vehicle.StyleCoupe",0
+"579","Transmission.TypeMANUAL:Vehicle.StyleCoupe",0,"Transmission.TypeMANUAL:Vehicle.StyleCoupe",0
+"580","Transmission.TypeUNKNOWN:Vehicle.StyleCoupe",0,"Transmission.TypeUNKNOWN:Vehicle.StyleCoupe",0
+"581","Transmission.TypeAUTOMATIC:Vehicle.StyleCrew Cab Pickup",0,"Transmission.TypeAUTOMATIC:Vehicle.StyleCrew Cab Pickup",0
+"582","Transmission.TypeDIRECT_DRIVE:Vehicle.StyleCrew Cab Pickup",0,"Transmission.TypeDIRECT_DRIVE:Vehicle.StyleCrew Cab Pickup",0
+"583","Transmission.TypeMANUAL:Vehicle.StyleCrew Cab Pickup",0,"Transmission.TypeMANUAL:Vehicle.StyleCrew Cab Pickup",0
+"584","Transmission.TypeUNKNOWN:Vehicle.StyleCrew Cab Pickup",0,"Transmission.TypeUNKNOWN:Vehicle.StyleCrew Cab Pickup",0
+"585","Transmission.TypeAUTOMATIC:Vehicle.StyleExtended Cab Pickup",0,"Transmission.TypeAUTOMATIC:Vehicle.StyleExtended Cab Pickup",0
+"586","Transmission.TypeDIRECT_DRIVE:Vehicle.StyleExtended Cab Pickup",0,"Transmission.TypeDIRECT_DRIVE:Vehicle.StyleExtended Cab Pickup",0
+"587","Transmission.TypeMANUAL:Vehicle.StyleExtended Cab Pickup",0,"Transmission.TypeMANUAL:Vehicle.StyleExtended Cab Pickup",0
+"588","Transmission.TypeUNKNOWN:Vehicle.StyleExtended Cab Pickup",0,"Transmission.TypeUNKNOWN:Vehicle.StyleExtended Cab Pickup",0
+"589","Transmission.TypeAUTOMATIC:Vehicle.StylePassenger Minivan",0,"Transmission.TypeAUTOMATIC:Vehicle.StylePassenger Minivan",0
+"590","Transmission.TypeDIRECT_DRIVE:Vehicle.StylePassenger Minivan",0,"Transmission.TypeDIRECT_DRIVE:Vehicle.StylePassenger Minivan",0
+"591","Transmission.TypeMANUAL:Vehicle.StylePassenger Minivan",0,"Transmission.TypeMANUAL:Vehicle.StylePassenger Minivan",0
+"592","Transmission.TypeUNKNOWN:Vehicle.StylePassenger Minivan",0,"Transmission.TypeUNKNOWN:Vehicle.StylePassenger Minivan",0
+"593","Transmission.TypeAUTOMATIC:Vehicle.StylePassenger Van",0,"Transmission.TypeAUTOMATIC:Vehicle.StylePassenger Van",0
+"594","Transmission.TypeDIRECT_DRIVE:Vehicle.StylePassenger Van",0,"Transmission.TypeDIRECT_DRIVE:Vehicle.StylePassenger Van",0
+"595","Transmission.TypeMANUAL:Vehicle.StylePassenger Van",0,"Transmission.TypeMANUAL:Vehicle.StylePassenger Van",0
+"596","Transmission.TypeUNKNOWN:Vehicle.StylePassenger Van",0,"Transmission.TypeUNKNOWN:Vehicle.StylePassenger Van",0
+"597","Transmission.TypeAUTOMATIC:Vehicle.StyleRegular Cab Pickup",0,"Transmission.TypeAUTOMATIC:Vehicle.StyleRegular Cab Pickup",0
+"598","Transmission.TypeDIRECT_DRIVE:Vehicle.StyleRegular Cab Pickup",0,"Transmission.TypeDIRECT_DRIVE:Vehicle.StyleRegular Cab Pickup",0
+"599","Transmission.TypeMANUAL:Vehicle.StyleRegular Cab Pickup",0,"Transmission.TypeMANUAL:Vehicle.StyleRegular Cab Pickup",0
+"600","Transmission.TypeUNKNOWN:Vehicle.StyleRegular Cab Pickup",0,"Transmission.TypeUNKNOWN:Vehicle.StyleRegular Cab Pickup",0
+"601","Transmission.TypeAUTOMATIC:Vehicle.StyleSedan",0,"Transmission.TypeAUTOMATIC:Vehicle.StyleSedan",0
+"602","Transmission.TypeDIRECT_DRIVE:Vehicle.StyleSedan",0,"Transmission.TypeDIRECT_DRIVE:Vehicle.StyleSedan",0
+"603","Transmission.TypeMANUAL:Vehicle.StyleSedan",-0.011850304964779,"Transmission.TypeMANUAL:Vehicle.StyleSedan",-0.011850304964779
+"604","Transmission.TypeUNKNOWN:Vehicle.StyleSedan",0,"Transmission.TypeUNKNOWN:Vehicle.StyleSedan",0
+"605","Transmission.TypeAUTOMATIC:Vehicle.StyleWagon",0,"Transmission.TypeAUTOMATIC:Vehicle.StyleWagon",0
+"606","Transmission.TypeDIRECT_DRIVE:Vehicle.StyleWagon",0,"Transmission.TypeDIRECT_DRIVE:Vehicle.StyleWagon",0
+"607","Transmission.TypeMANUAL:Vehicle.StyleWagon",0,"Transmission.TypeMANUAL:Vehicle.StyleWagon",0
+"608","Transmission.TypeUNKNOWN:Vehicle.StyleWagon",0,"Transmission.TypeUNKNOWN:Vehicle.StyleWagon",0
+"609","Transmission.TypeAUTOMATIC:highway.MPG",0,"Transmission.TypeAUTOMATIC:highway.MPG",0
+"610","Transmission.TypeDIRECT_DRIVE:highway.MPG",0,"Transmission.TypeDIRECT_DRIVE:highway.MPG",0
+"611","Transmission.TypeMANUAL:highway.MPG",0,"Transmission.TypeMANUAL:highway.MPG",0
+"612","Transmission.TypeUNKNOWN:highway.MPG",0,"Transmission.TypeUNKNOWN:highway.MPG",0
+"613","Transmission.TypeAUTOMATIC:city.mpg",0,"Transmission.TypeAUTOMATIC:city.mpg",0
+"614","Transmission.TypeDIRECT_DRIVE:city.mpg",0,"Transmission.TypeDIRECT_DRIVE:city.mpg",0
+"615","Transmission.TypeMANUAL:city.mpg",-0.00390109867179329,"Transmission.TypeMANUAL:city.mpg",-0.00390109867179329
+"616","Transmission.TypeUNKNOWN:city.mpg",0,"Transmission.TypeUNKNOWN:city.mpg",0
+"617","Transmission.TypeAUTOMATIC:Popularity",-1.90761847087189e-06,"Transmission.TypeAUTOMATIC:Popularity",-1.90761847087189e-06
+"618","Transmission.TypeDIRECT_DRIVE:Popularity",0,"Transmission.TypeDIRECT_DRIVE:Popularity",0
+"619","Transmission.TypeMANUAL:Popularity",-8.60599269128239e-06,"Transmission.TypeMANUAL:Popularity",-8.60599269128239e-06
+"620","Transmission.TypeUNKNOWN:Popularity",0,"Transmission.TypeUNKNOWN:Popularity",0
+"621","Transmission.TypeAUTOMATIC:Engine.HP.Clean",0,"Transmission.TypeAUTOMATIC:Engine.HP.Clean",0
+"622","Transmission.TypeDIRECT_DRIVE:Engine.HP.Clean",-7.66470574894414e-08,"Transmission.TypeDIRECT_DRIVE:Engine.HP.Clean",-7.66470574894414e-08
+"623","Transmission.TypeMANUAL:Engine.HP.Clean",0,"Transmission.TypeMANUAL:Engine.HP.Clean",0
+"624","Transmission.TypeUNKNOWN:Engine.HP.Clean",0,"Transmission.TypeUNKNOWN:Engine.HP.Clean",0
+"625","Transmission.TypeAUTOMATIC:Engine.Cylinders.Clean4",0,"Transmission.TypeAUTOMATIC:Engine.Cylinders.Clean4",0
+"626","Transmission.TypeDIRECT_DRIVE:Engine.Cylinders.Clean4",-2.88658312713903e-14,"Transmission.TypeDIRECT_DRIVE:Engine.Cylinders.Clean4",-2.88658312713903e-14
+"627","Transmission.TypeMANUAL:Engine.Cylinders.Clean4",0,"Transmission.TypeMANUAL:Engine.Cylinders.Clean4",0
+"628","Transmission.TypeUNKNOWN:Engine.Cylinders.Clean4",0,"Transmission.TypeUNKNOWN:Engine.Cylinders.Clean4",0
+"629","Transmission.TypeAUTOMATIC:Engine.Cylinders.Clean5",0,"Transmission.TypeAUTOMATIC:Engine.Cylinders.Clean5",0
+"630","Transmission.TypeDIRECT_DRIVE:Engine.Cylinders.Clean5",0,"Transmission.TypeDIRECT_DRIVE:Engine.Cylinders.Clean5",0
+"631","Transmission.TypeMANUAL:Engine.Cylinders.Clean5",0,"Transmission.TypeMANUAL:Engine.Cylinders.Clean5",0
+"632","Transmission.TypeUNKNOWN:Engine.Cylinders.Clean5",0,"Transmission.TypeUNKNOWN:Engine.Cylinders.Clean5",0
+"633","Transmission.TypeAUTOMATIC:Engine.Cylinders.Clean6",0,"Transmission.TypeAUTOMATIC:Engine.Cylinders.Clean6",0
+"634","Transmission.TypeDIRECT_DRIVE:Engine.Cylinders.Clean6",0,"Transmission.TypeDIRECT_DRIVE:Engine.Cylinders.Clean6",0
+"635","Transmission.TypeMANUAL:Engine.Cylinders.Clean6",0.064568969804172,"Transmission.TypeMANUAL:Engine.Cylinders.Clean6",0.064568969804172
+"636","Transmission.TypeUNKNOWN:Engine.Cylinders.Clean6",0,"Transmission.TypeUNKNOWN:Engine.Cylinders.Clean6",0
+"637","Transmission.TypeAUTOMATIC:Engine.Cylinders.Clean8",0,"Transmission.TypeAUTOMATIC:Engine.Cylinders.Clean8",0
+"638","Transmission.TypeDIRECT_DRIVE:Engine.Cylinders.Clean8",0,"Transmission.TypeDIRECT_DRIVE:Engine.Cylinders.Clean8",0
+"639","Transmission.TypeMANUAL:Engine.Cylinders.Clean8",-0.043923233303567,"Transmission.TypeMANUAL:Engine.Cylinders.Clean8",-0.043923233303567
+"640","Transmission.TypeUNKNOWN:Engine.Cylinders.Clean8",0,"Transmission.TypeUNKNOWN:Engine.Cylinders.Clean8",0
+"641","Transmission.TypeAUTOMATIC:Engine.Cylinders.Clean10",0,"Transmission.TypeAUTOMATIC:Engine.Cylinders.Clean10",0
+"642","Transmission.TypeDIRECT_DRIVE:Engine.Cylinders.Clean10",0,"Transmission.TypeDIRECT_DRIVE:Engine.Cylinders.Clean10",0
+"643","Transmission.TypeMANUAL:Engine.Cylinders.Clean10",0,"Transmission.TypeMANUAL:Engine.Cylinders.Clean10",0
+"644","Transmission.TypeUNKNOWN:Engine.Cylinders.Clean10",0,"Transmission.TypeUNKNOWN:Engine.Cylinders.Clean10",0
+"645","Transmission.TypeAUTOMATIC:Engine.Cylinders.Clean12",0.000236227640742212,"Transmission.TypeAUTOMATIC:Engine.Cylinders.Clean12",0.000236227640742212
+"646","Transmission.TypeDIRECT_DRIVE:Engine.Cylinders.Clean12",0,"Transmission.TypeDIRECT_DRIVE:Engine.Cylinders.Clean12",0
+"647","Transmission.TypeMANUAL:Engine.Cylinders.Clean12",0,"Transmission.TypeMANUAL:Engine.Cylinders.Clean12",0
+"648","Transmission.TypeUNKNOWN:Engine.Cylinders.Clean12",0,"Transmission.TypeUNKNOWN:Engine.Cylinders.Clean12",0
+"649","Transmission.TypeAUTOMATIC:Engine.Cylinders.Clean16",0,"Transmission.TypeAUTOMATIC:Engine.Cylinders.Clean16",0
+"650","Transmission.TypeDIRECT_DRIVE:Engine.Cylinders.Clean16",0,"Transmission.TypeDIRECT_DRIVE:Engine.Cylinders.Clean16",0
+"651","Transmission.TypeMANUAL:Engine.Cylinders.Clean16",0,"Transmission.TypeMANUAL:Engine.Cylinders.Clean16",0
+"652","Transmission.TypeUNKNOWN:Engine.Cylinders.Clean16",0,"Transmission.TypeUNKNOWN:Engine.Cylinders.Clean16",0
+"653","Transmission.TypeAUTOMATIC:NumDoors.Clean3",0,"Transmission.TypeAUTOMATIC:NumDoors.Clean3",0
+"654","Transmission.TypeDIRECT_DRIVE:NumDoors.Clean3",0,"Transmission.TypeDIRECT_DRIVE:NumDoors.Clean3",0
+"655","Transmission.TypeMANUAL:NumDoors.Clean3",0,"Transmission.TypeMANUAL:NumDoors.Clean3",0
+"656","Transmission.TypeUNKNOWN:NumDoors.Clean3",0,"Transmission.TypeUNKNOWN:NumDoors.Clean3",0
+"657","Transmission.TypeAUTOMATIC:NumDoors.Clean4",0,"Transmission.TypeAUTOMATIC:NumDoors.Clean4",0
+"658","Transmission.TypeDIRECT_DRIVE:NumDoors.Clean4",-7.75455422195003e-05,"Transmission.TypeDIRECT_DRIVE:NumDoors.Clean4",-7.75455422195003e-05
+"659","Transmission.TypeMANUAL:NumDoors.Clean4",-0.00848967691901072,"Transmission.TypeMANUAL:NumDoors.Clean4",-0.00848967691901072
+"660","Transmission.TypeUNKNOWN:NumDoors.Clean4",0,"Transmission.TypeUNKNOWN:NumDoors.Clean4",0
+"661","Driven_Wheelsfour wheel drive:Vehicle.Style2dr SUV",0,"Driven_Wheelsfour wheel drive:Vehicle.Style2dr SUV",0
+"662","Driven_Wheelsfront wheel drive:Vehicle.Style2dr SUV",0,"Driven_Wheelsfront wheel drive:Vehicle.Style2dr SUV",0
+"663","Driven_Wheelsrear wheel drive:Vehicle.Style2dr SUV",0,"Driven_Wheelsrear wheel drive:Vehicle.Style2dr SUV",0
+"664","Driven_Wheelsfour wheel drive:Vehicle.Style4dr Hatchback",0,"Driven_Wheelsfour wheel drive:Vehicle.Style4dr Hatchback",0
+"665","Driven_Wheelsfront wheel drive:Vehicle.Style4dr Hatchback",0,"Driven_Wheelsfront wheel drive:Vehicle.Style4dr Hatchback",0
+"666","Driven_Wheelsrear wheel drive:Vehicle.Style4dr Hatchback",0.0405237155771045,"Driven_Wheelsrear wheel drive:Vehicle.Style4dr Hatchback",0.0405237155771045
+"667","Driven_Wheelsfour wheel drive:Vehicle.Style4dr SUV",-0.0116775776349563,"Driven_Wheelsfour wheel drive:Vehicle.Style4dr SUV",-0.0116775776349563
+"668","Driven_Wheelsfront wheel drive:Vehicle.Style4dr SUV",0.031662719040176,"Driven_Wheelsfront wheel drive:Vehicle.Style4dr SUV",0.031662719040176
+"669","Driven_Wheelsrear wheel drive:Vehicle.Style4dr SUV",0.0138805313241968,"Driven_Wheelsrear wheel drive:Vehicle.Style4dr SUV",0.0138805313241968
+"670","Driven_Wheelsfour wheel drive:Vehicle.StyleCargo Minivan",0,"Driven_Wheelsfour wheel drive:Vehicle.StyleCargo Minivan",0
+"671","Driven_Wheelsfront wheel drive:Vehicle.StyleCargo Minivan",0,"Driven_Wheelsfront wheel drive:Vehicle.StyleCargo Minivan",0
+"672","Driven_Wheelsrear wheel drive:Vehicle.StyleCargo Minivan",-0.0134805404938165,"Driven_Wheelsrear wheel drive:Vehicle.StyleCargo Minivan",-0.0134805404938165
+"673","Driven_Wheelsfour wheel drive:Vehicle.StyleCargo Van",0,"Driven_Wheelsfour wheel drive:Vehicle.StyleCargo Van",0
+"674","Driven_Wheelsfront wheel drive:Vehicle.StyleCargo Van",0,"Driven_Wheelsfront wheel drive:Vehicle.StyleCargo Van",0
+"675","Driven_Wheelsrear wheel drive:Vehicle.StyleCargo Van",0,"Driven_Wheelsrear wheel drive:Vehicle.StyleCargo Van",0
+"676","Driven_Wheelsfour wheel drive:Vehicle.StyleConvertible",0,"Driven_Wheelsfour wheel drive:Vehicle.StyleConvertible",0
+"677","Driven_Wheelsfront wheel drive:Vehicle.StyleConvertible",0,"Driven_Wheelsfront wheel drive:Vehicle.StyleConvertible",0
+"678","Driven_Wheelsrear wheel drive:Vehicle.StyleConvertible",0,"Driven_Wheelsrear wheel drive:Vehicle.StyleConvertible",0
+"679","Driven_Wheelsfour wheel drive:Vehicle.StyleConvertible SUV",0,"Driven_Wheelsfour wheel drive:Vehicle.StyleConvertible SUV",0
+"680","Driven_Wheelsfront wheel drive:Vehicle.StyleConvertible SUV",0,"Driven_Wheelsfront wheel drive:Vehicle.StyleConvertible SUV",0
+"681","Driven_Wheelsrear wheel drive:Vehicle.StyleConvertible SUV",-0.0349765095703982,"Driven_Wheelsrear wheel drive:Vehicle.StyleConvertible SUV",-0.0349765095703982
+"682","Driven_Wheelsfour wheel drive:Vehicle.StyleCoupe",0,"Driven_Wheelsfour wheel drive:Vehicle.StyleCoupe",0
+"683","Driven_Wheelsfront wheel drive:Vehicle.StyleCoupe",-0.15981692669692,"Driven_Wheelsfront wheel drive:Vehicle.StyleCoupe",-0.15981692669692
+"684","Driven_Wheelsrear wheel drive:Vehicle.StyleCoupe",0,"Driven_Wheelsrear wheel drive:Vehicle.StyleCoupe",0
+"685","Driven_Wheelsfour wheel drive:Vehicle.StyleCrew Cab Pickup",0.00301761411145934,"Driven_Wheelsfour wheel drive:Vehicle.StyleCrew Cab Pickup",0.00301761411145934
+"686","Driven_Wheelsfront wheel drive:Vehicle.StyleCrew Cab Pickup",0,"Driven_Wheelsfront wheel drive:Vehicle.StyleCrew Cab Pickup",0
+"687","Driven_Wheelsrear wheel drive:Vehicle.StyleCrew Cab Pickup",0,"Driven_Wheelsrear wheel drive:Vehicle.StyleCrew Cab Pickup",0
+"688","Driven_Wheelsfour wheel drive:Vehicle.StyleExtended Cab Pickup",0,"Driven_Wheelsfour wheel drive:Vehicle.StyleExtended Cab Pickup",0
+"689","Driven_Wheelsfront wheel drive:Vehicle.StyleExtended Cab Pickup",0,"Driven_Wheelsfront wheel drive:Vehicle.StyleExtended Cab Pickup",0
+"690","Driven_Wheelsrear wheel drive:Vehicle.StyleExtended Cab Pickup",-0.040381991965869,"Driven_Wheelsrear wheel drive:Vehicle.StyleExtended Cab Pickup",-0.040381991965869
+"691","Driven_Wheelsfour wheel drive:Vehicle.StylePassenger Minivan",0,"Driven_Wheelsfour wheel drive:Vehicle.StylePassenger Minivan",0
+"692","Driven_Wheelsfront wheel drive:Vehicle.StylePassenger Minivan",-2.50851078961966e-05,"Driven_Wheelsfront wheel drive:Vehicle.StylePassenger Minivan",-2.50851078961966e-05
+"693","Driven_Wheelsrear wheel drive:Vehicle.StylePassenger Minivan",0,"Driven_Wheelsrear wheel drive:Vehicle.StylePassenger Minivan",0
+"694","Driven_Wheelsfour wheel drive:Vehicle.StylePassenger Van",0,"Driven_Wheelsfour wheel drive:Vehicle.StylePassenger Van",0
+"695","Driven_Wheelsfront wheel drive:Vehicle.StylePassenger Van",0,"Driven_Wheelsfront wheel drive:Vehicle.StylePassenger Van",0
+"696","Driven_Wheelsrear wheel drive:Vehicle.StylePassenger Van",0.0238834480199071,"Driven_Wheelsrear wheel drive:Vehicle.StylePassenger Van",0.0238834480199071
+"697","Driven_Wheelsfour wheel drive:Vehicle.StyleRegular Cab Pickup",0,"Driven_Wheelsfour wheel drive:Vehicle.StyleRegular Cab Pickup",0
+"698","Driven_Wheelsfront wheel drive:Vehicle.StyleRegular Cab Pickup",0,"Driven_Wheelsfront wheel drive:Vehicle.StyleRegular Cab Pickup",0
+"699","Driven_Wheelsrear wheel drive:Vehicle.StyleRegular Cab Pickup",-0.0754216191843473,"Driven_Wheelsrear wheel drive:Vehicle.StyleRegular Cab Pickup",-0.0754216191843473
+"700","Driven_Wheelsfour wheel drive:Vehicle.StyleSedan",-0.114895884265522,"Driven_Wheelsfour wheel drive:Vehicle.StyleSedan",-0.114895884265522
+"701","Driven_Wheelsfront wheel drive:Vehicle.StyleSedan",0,"Driven_Wheelsfront wheel drive:Vehicle.StyleSedan",0
+"702","Driven_Wheelsrear wheel drive:Vehicle.StyleSedan",0.0286274109732597,"Driven_Wheelsrear wheel drive:Vehicle.StyleSedan",0.0286274109732597
+"703","Driven_Wheelsfour wheel drive:Vehicle.StyleWagon",0,"Driven_Wheelsfour wheel drive:Vehicle.StyleWagon",0
+"704","Driven_Wheelsfront wheel drive:Vehicle.StyleWagon",-0.0115295036609275,"Driven_Wheelsfront wheel drive:Vehicle.StyleWagon",-0.0115295036609275
+"705","Driven_Wheelsrear wheel drive:Vehicle.StyleWagon",0,"Driven_Wheelsrear wheel drive:Vehicle.StyleWagon",0
+"706","Driven_Wheelsfour wheel drive:highway.MPG",0,"Driven_Wheelsfour wheel drive:highway.MPG",0
+"707","Driven_Wheelsfront wheel drive:highway.MPG",0,"Driven_Wheelsfront wheel drive:highway.MPG",0
+"708","Driven_Wheelsrear wheel drive:highway.MPG",0,"Driven_Wheelsrear wheel drive:highway.MPG",0
+"709","Driven_Wheelsfour wheel drive:city.mpg",0,"Driven_Wheelsfour wheel drive:city.mpg",0
+"710","Driven_Wheelsfront wheel drive:city.mpg",0,"Driven_Wheelsfront wheel drive:city.mpg",0
+"711","Driven_Wheelsrear wheel drive:city.mpg",0,"Driven_Wheelsrear wheel drive:city.mpg",0
+"712","Driven_Wheelsfour wheel drive:Popularity",1.17380922440848e-06,"Driven_Wheelsfour wheel drive:Popularity",1.17380922440848e-06
+"713","Driven_Wheelsfront wheel drive:Popularity",-4.63054717508348e-06,"Driven_Wheelsfront wheel drive:Popularity",-4.63054717508348e-06
+"714","Driven_Wheelsrear wheel drive:Popularity",0,"Driven_Wheelsrear wheel drive:Popularity",0
+"715","Driven_Wheelsfour wheel drive:Engine.HP.Clean",0,"Driven_Wheelsfour wheel drive:Engine.HP.Clean",0
+"716","Driven_Wheelsfront wheel drive:Engine.HP.Clean",0,"Driven_Wheelsfront wheel drive:Engine.HP.Clean",0
+"717","Driven_Wheelsrear wheel drive:Engine.HP.Clean",-0.000255614158309289,"Driven_Wheelsrear wheel drive:Engine.HP.Clean",-0.000255614158309289
+"718","Driven_Wheelsfour wheel drive:Engine.Cylinders.Clean4",0,"Driven_Wheelsfour wheel drive:Engine.Cylinders.Clean4",0
+"719","Driven_Wheelsfront wheel drive:Engine.Cylinders.Clean4",0,"Driven_Wheelsfront wheel drive:Engine.Cylinders.Clean4",0
+"720","Driven_Wheelsrear wheel drive:Engine.Cylinders.Clean4",0.00394821239696783,"Driven_Wheelsrear wheel drive:Engine.Cylinders.Clean4",0.00394821239696783
+"721","Driven_Wheelsfour wheel drive:Engine.Cylinders.Clean5",0,"Driven_Wheelsfour wheel drive:Engine.Cylinders.Clean5",0
+"722","Driven_Wheelsfront wheel drive:Engine.Cylinders.Clean5",0,"Driven_Wheelsfront wheel drive:Engine.Cylinders.Clean5",0
+"723","Driven_Wheelsrear wheel drive:Engine.Cylinders.Clean5",-0.0119222955733083,"Driven_Wheelsrear wheel drive:Engine.Cylinders.Clean5",-0.0119222955733083
+"724","Driven_Wheelsfour wheel drive:Engine.Cylinders.Clean6",0.00921349961242112,"Driven_Wheelsfour wheel drive:Engine.Cylinders.Clean6",0.00921349961242112
+"725","Driven_Wheelsfront wheel drive:Engine.Cylinders.Clean6",0,"Driven_Wheelsfront wheel drive:Engine.Cylinders.Clean6",0
+"726","Driven_Wheelsrear wheel drive:Engine.Cylinders.Clean6",0,"Driven_Wheelsrear wheel drive:Engine.Cylinders.Clean6",0
+"727","Driven_Wheelsfour wheel drive:Engine.Cylinders.Clean8",-0.00357873706545837,"Driven_Wheelsfour wheel drive:Engine.Cylinders.Clean8",-0.00357873706545837
+"728","Driven_Wheelsfront wheel drive:Engine.Cylinders.Clean8",0.10977007702139,"Driven_Wheelsfront wheel drive:Engine.Cylinders.Clean8",0.10977007702139
+"729","Driven_Wheelsrear wheel drive:Engine.Cylinders.Clean8",0,"Driven_Wheelsrear wheel drive:Engine.Cylinders.Clean8",0
+"730","Driven_Wheelsfour wheel drive:Engine.Cylinders.Clean10",0,"Driven_Wheelsfour wheel drive:Engine.Cylinders.Clean10",0
+"731","Driven_Wheelsfront wheel drive:Engine.Cylinders.Clean10",0,"Driven_Wheelsfront wheel drive:Engine.Cylinders.Clean10",0
+"732","Driven_Wheelsrear wheel drive:Engine.Cylinders.Clean10",0.000171279080270906,"Driven_Wheelsrear wheel drive:Engine.Cylinders.Clean10",0.000171279080270906
+"733","Driven_Wheelsfour wheel drive:Engine.Cylinders.Clean12",0,"Driven_Wheelsfour wheel drive:Engine.Cylinders.Clean12",0
+"734","Driven_Wheelsfront wheel drive:Engine.Cylinders.Clean12",0,"Driven_Wheelsfront wheel drive:Engine.Cylinders.Clean12",0
+"735","Driven_Wheelsrear wheel drive:Engine.Cylinders.Clean12",0,"Driven_Wheelsrear wheel drive:Engine.Cylinders.Clean12",0
+"736","Driven_Wheelsfour wheel drive:Engine.Cylinders.Clean16",0,"Driven_Wheelsfour wheel drive:Engine.Cylinders.Clean16",0
+"737","Driven_Wheelsfront wheel drive:Engine.Cylinders.Clean16",0,"Driven_Wheelsfront wheel drive:Engine.Cylinders.Clean16",0
+"738","Driven_Wheelsrear wheel drive:Engine.Cylinders.Clean16",0,"Driven_Wheelsrear wheel drive:Engine.Cylinders.Clean16",0
+"739","Driven_Wheelsfour wheel drive:NumDoors.Clean3",0,"Driven_Wheelsfour wheel drive:NumDoors.Clean3",0
+"740","Driven_Wheelsfront wheel drive:NumDoors.Clean3",0,"Driven_Wheelsfront wheel drive:NumDoors.Clean3",0
+"741","Driven_Wheelsrear wheel drive:NumDoors.Clean3",0,"Driven_Wheelsrear wheel drive:NumDoors.Clean3",0
+"742","Driven_Wheelsfour wheel drive:NumDoors.Clean4",0,"Driven_Wheelsfour wheel drive:NumDoors.Clean4",0
+"743","Driven_Wheelsfront wheel drive:NumDoors.Clean4",0,"Driven_Wheelsfront wheel drive:NumDoors.Clean4",0
+"744","Driven_Wheelsrear wheel drive:NumDoors.Clean4",0,"Driven_Wheelsrear wheel drive:NumDoors.Clean4",0
+"745","Vehicle.Style2dr SUV:highway.MPG",0,"Vehicle.Style2dr SUV:highway.MPG",0
+"746","Vehicle.Style4dr Hatchback:highway.MPG",0,"Vehicle.Style4dr Hatchback:highway.MPG",0
+"747","Vehicle.Style4dr SUV:highway.MPG",0,"Vehicle.Style4dr SUV:highway.MPG",0
+"748","Vehicle.StyleCargo Minivan:highway.MPG",0,"Vehicle.StyleCargo Minivan:highway.MPG",0
+"749","Vehicle.StyleCargo Van:highway.MPG",0,"Vehicle.StyleCargo Van:highway.MPG",0
+"750","Vehicle.StyleConvertible:highway.MPG",0,"Vehicle.StyleConvertible:highway.MPG",0
+"751","Vehicle.StyleConvertible SUV:highway.MPG",0,"Vehicle.StyleConvertible SUV:highway.MPG",0
+"752","Vehicle.StyleCoupe:highway.MPG",0,"Vehicle.StyleCoupe:highway.MPG",0
+"753","Vehicle.StyleCrew Cab Pickup:highway.MPG",0,"Vehicle.StyleCrew Cab Pickup:highway.MPG",0
+"754","Vehicle.StyleExtended Cab Pickup:highway.MPG",0,"Vehicle.StyleExtended Cab Pickup:highway.MPG",0
+"755","Vehicle.StylePassenger Minivan:highway.MPG",0,"Vehicle.StylePassenger Minivan:highway.MPG",0
+"756","Vehicle.StylePassenger Van:highway.MPG",0,"Vehicle.StylePassenger Van:highway.MPG",0
+"757","Vehicle.StyleRegular Cab Pickup:highway.MPG",0,"Vehicle.StyleRegular Cab Pickup:highway.MPG",0
+"758","Vehicle.StyleSedan:highway.MPG",0,"Vehicle.StyleSedan:highway.MPG",0
+"759","Vehicle.StyleWagon:highway.MPG",0,"Vehicle.StyleWagon:highway.MPG",0
+"760","Vehicle.Style2dr SUV:city.mpg",0.00150167760538984,"Vehicle.Style2dr SUV:city.mpg",0.00150167760538984
+"761","Vehicle.Style4dr Hatchback:city.mpg",0.00358308747756613,"Vehicle.Style4dr Hatchback:city.mpg",0.00358308747756613
+"762","Vehicle.Style4dr SUV:city.mpg",0,"Vehicle.Style4dr SUV:city.mpg",0
+"763","Vehicle.StyleCargo Minivan:city.mpg",0,"Vehicle.StyleCargo Minivan:city.mpg",0
+"764","Vehicle.StyleCargo Van:city.mpg",0,"Vehicle.StyleCargo Van:city.mpg",0
+"765","Vehicle.StyleConvertible:city.mpg",0,"Vehicle.StyleConvertible:city.mpg",0
+"766","Vehicle.StyleConvertible SUV:city.mpg",0,"Vehicle.StyleConvertible SUV:city.mpg",0
+"767","Vehicle.StyleCoupe:city.mpg",0,"Vehicle.StyleCoupe:city.mpg",0
+"768","Vehicle.StyleCrew Cab Pickup:city.mpg",0,"Vehicle.StyleCrew Cab Pickup:city.mpg",0
+"769","Vehicle.StyleExtended Cab Pickup:city.mpg",0,"Vehicle.StyleExtended Cab Pickup:city.mpg",0
+"770","Vehicle.StylePassenger Minivan:city.mpg",0,"Vehicle.StylePassenger Minivan:city.mpg",0
+"771","Vehicle.StylePassenger Van:city.mpg",0,"Vehicle.StylePassenger Van:city.mpg",0
+"772","Vehicle.StyleRegular Cab Pickup:city.mpg",0,"Vehicle.StyleRegular Cab Pickup:city.mpg",0
+"773","Vehicle.StyleSedan:city.mpg",0,"Vehicle.StyleSedan:city.mpg",0
+"774","Vehicle.StyleWagon:city.mpg",0,"Vehicle.StyleWagon:city.mpg",0
+"775","Vehicle.Style2dr SUV:Popularity",0,"Vehicle.Style2dr SUV:Popularity",0
+"776","Vehicle.Style4dr Hatchback:Popularity",0,"Vehicle.Style4dr Hatchback:Popularity",0
+"777","Vehicle.Style4dr SUV:Popularity",-7.5098634320298e-06,"Vehicle.Style4dr SUV:Popularity",-7.5098634320298e-06
+"778","Vehicle.StyleCargo Minivan:Popularity",0,"Vehicle.StyleCargo Minivan:Popularity",0
+"779","Vehicle.StyleCargo Van:Popularity",7.33115985904912e-06,"Vehicle.StyleCargo Van:Popularity",7.33115985904912e-06
+"780","Vehicle.StyleConvertible:Popularity",-1.03139744599734e-05,"Vehicle.StyleConvertible:Popularity",-1.03139744599734e-05
+"781","Vehicle.StyleConvertible SUV:Popularity",0,"Vehicle.StyleConvertible SUV:Popularity",0
+"782","Vehicle.StyleCoupe:Popularity",-2.03980930683437e-05,"Vehicle.StyleCoupe:Popularity",-2.03980930683437e-05
+"783","Vehicle.StyleCrew Cab Pickup:Popularity",3.7927816707328e-06,"Vehicle.StyleCrew Cab Pickup:Popularity",3.7927816707328e-06
+"784","Vehicle.StyleExtended Cab Pickup:Popularity",0,"Vehicle.StyleExtended Cab Pickup:Popularity",0
+"785","Vehicle.StylePassenger Minivan:Popularity",7.19510422982371e-06,"Vehicle.StylePassenger Minivan:Popularity",7.19510422982371e-06
+"786","Vehicle.StylePassenger Van:Popularity",2.62685727557647e-05,"Vehicle.StylePassenger Van:Popularity",2.62685727557647e-05
+"787","Vehicle.StyleRegular Cab Pickup:Popularity",8.85891368403704e-06,"Vehicle.StyleRegular Cab Pickup:Popularity",8.85891368403704e-06
+"788","Vehicle.StyleSedan:Popularity",-5.59158376522017e-07,"Vehicle.StyleSedan:Popularity",-5.59158376522017e-07
+"789","Vehicle.StyleWagon:Popularity",0,"Vehicle.StyleWagon:Popularity",0
+"790","Vehicle.Style2dr SUV:Engine.HP.Clean",0,"Vehicle.Style2dr SUV:Engine.HP.Clean",0
+"791","Vehicle.Style4dr Hatchback:Engine.HP.Clean",0,"Vehicle.Style4dr Hatchback:Engine.HP.Clean",0
+"792","Vehicle.Style4dr SUV:Engine.HP.Clean",0.000515478126071514,"Vehicle.Style4dr SUV:Engine.HP.Clean",0.000515478126071514
+"793","Vehicle.StyleCargo Minivan:Engine.HP.Clean",0,"Vehicle.StyleCargo Minivan:Engine.HP.Clean",0
+"794","Vehicle.StyleCargo Van:Engine.HP.Clean",0,"Vehicle.StyleCargo Van:Engine.HP.Clean",0
+"795","Vehicle.StyleConvertible:Engine.HP.Clean",0,"Vehicle.StyleConvertible:Engine.HP.Clean",0
+"796","Vehicle.StyleConvertible SUV:Engine.HP.Clean",0,"Vehicle.StyleConvertible SUV:Engine.HP.Clean",0
+"797","Vehicle.StyleCoupe:Engine.HP.Clean",0,"Vehicle.StyleCoupe:Engine.HP.Clean",0
+"798","Vehicle.StyleCrew Cab Pickup:Engine.HP.Clean",0,"Vehicle.StyleCrew Cab Pickup:Engine.HP.Clean",0
+"799","Vehicle.StyleExtended Cab Pickup:Engine.HP.Clean",-0.000117067720690715,"Vehicle.StyleExtended Cab Pickup:Engine.HP.Clean",-0.000117067720690715
+"800","Vehicle.StylePassenger Minivan:Engine.HP.Clean",0,"Vehicle.StylePassenger Minivan:Engine.HP.Clean",0
+"801","Vehicle.StylePassenger Van:Engine.HP.Clean",0,"Vehicle.StylePassenger Van:Engine.HP.Clean",0
+"802","Vehicle.StyleRegular Cab Pickup:Engine.HP.Clean",0,"Vehicle.StyleRegular Cab Pickup:Engine.HP.Clean",0
+"803","Vehicle.StyleSedan:Engine.HP.Clean",0,"Vehicle.StyleSedan:Engine.HP.Clean",0
+"804","Vehicle.StyleWagon:Engine.HP.Clean",0,"Vehicle.StyleWagon:Engine.HP.Clean",0
+"805","Vehicle.Style2dr SUV:Engine.Cylinders.Clean4",0.000941663696064311,"Vehicle.Style2dr SUV:Engine.Cylinders.Clean4",0.000941663696064311
+"806","Vehicle.Style4dr Hatchback:Engine.Cylinders.Clean4",0,"Vehicle.Style4dr Hatchback:Engine.Cylinders.Clean4",0
+"807","Vehicle.Style4dr SUV:Engine.Cylinders.Clean4",0,"Vehicle.Style4dr SUV:Engine.Cylinders.Clean4",0
+"808","Vehicle.StyleCargo Minivan:Engine.Cylinders.Clean4",0.0559337270867885,"Vehicle.StyleCargo Minivan:Engine.Cylinders.Clean4",0.0559337270867885
+"809","Vehicle.StyleCargo Van:Engine.Cylinders.Clean4",0,"Vehicle.StyleCargo Van:Engine.Cylinders.Clean4",0
+"810","Vehicle.StyleConvertible:Engine.Cylinders.Clean4",0,"Vehicle.StyleConvertible:Engine.Cylinders.Clean4",0
+"811","Vehicle.StyleConvertible SUV:Engine.Cylinders.Clean4",0,"Vehicle.StyleConvertible SUV:Engine.Cylinders.Clean4",0
+"812","Vehicle.StyleCoupe:Engine.Cylinders.Clean4",0,"Vehicle.StyleCoupe:Engine.Cylinders.Clean4",0
+"813","Vehicle.StyleCrew Cab Pickup:Engine.Cylinders.Clean4",0.00688636554011073,"Vehicle.StyleCrew Cab Pickup:Engine.Cylinders.Clean4",0.00688636554011073
+"814","Vehicle.StyleExtended Cab Pickup:Engine.Cylinders.Clean4",0.062608926645101,"Vehicle.StyleExtended Cab Pickup:Engine.Cylinders.Clean4",0.062608926645101
+"815","Vehicle.StylePassenger Minivan:Engine.Cylinders.Clean4",0,"Vehicle.StylePassenger Minivan:Engine.Cylinders.Clean4",0
+"816","Vehicle.StylePassenger Van:Engine.Cylinders.Clean4",0,"Vehicle.StylePassenger Van:Engine.Cylinders.Clean4",0
+"817","Vehicle.StyleRegular Cab Pickup:Engine.Cylinders.Clean4",-0.0313485087824775,"Vehicle.StyleRegular Cab Pickup:Engine.Cylinders.Clean4",-0.0313485087824775
+"818","Vehicle.StyleSedan:Engine.Cylinders.Clean4",-0.0210387601776612,"Vehicle.StyleSedan:Engine.Cylinders.Clean4",-0.0210387601776612
+"819","Vehicle.StyleWagon:Engine.Cylinders.Clean4",-0.0149549892775403,"Vehicle.StyleWagon:Engine.Cylinders.Clean4",-0.0149549892775403
+"820","Vehicle.Style2dr SUV:Engine.Cylinders.Clean5",0,"Vehicle.Style2dr SUV:Engine.Cylinders.Clean5",0
+"821","Vehicle.Style4dr Hatchback:Engine.Cylinders.Clean5",-0.0381412780463529,"Vehicle.Style4dr Hatchback:Engine.Cylinders.Clean5",-0.0381412780463529
+"822","Vehicle.Style4dr SUV:Engine.Cylinders.Clean5",0.0905817194842795,"Vehicle.Style4dr SUV:Engine.Cylinders.Clean5",0.0905817194842795
+"823","Vehicle.StyleCargo Minivan:Engine.Cylinders.Clean5",0,"Vehicle.StyleCargo Minivan:Engine.Cylinders.Clean5",0
+"824","Vehicle.StyleCargo Van:Engine.Cylinders.Clean5",0,"Vehicle.StyleCargo Van:Engine.Cylinders.Clean5",0
+"825","Vehicle.StyleConvertible:Engine.Cylinders.Clean5",0.0440866144986034,"Vehicle.StyleConvertible:Engine.Cylinders.Clean5",0.0440866144986034
+"826","Vehicle.StyleConvertible SUV:Engine.Cylinders.Clean5",0,"Vehicle.StyleConvertible SUV:Engine.Cylinders.Clean5",0
+"827","Vehicle.StyleCoupe:Engine.Cylinders.Clean5",0.131254034655361,"Vehicle.StyleCoupe:Engine.Cylinders.Clean5",0.131254034655361
+"828","Vehicle.StyleCrew Cab Pickup:Engine.Cylinders.Clean5",0,"Vehicle.StyleCrew Cab Pickup:Engine.Cylinders.Clean5",0
+"829","Vehicle.StyleExtended Cab Pickup:Engine.Cylinders.Clean5",0,"Vehicle.StyleExtended Cab Pickup:Engine.Cylinders.Clean5",0
+"830","Vehicle.StylePassenger Minivan:Engine.Cylinders.Clean5",0,"Vehicle.StylePassenger Minivan:Engine.Cylinders.Clean5",0
+"831","Vehicle.StylePassenger Van:Engine.Cylinders.Clean5",0,"Vehicle.StylePassenger Van:Engine.Cylinders.Clean5",0
+"832","Vehicle.StyleRegular Cab Pickup:Engine.Cylinders.Clean5",0,"Vehicle.StyleRegular Cab Pickup:Engine.Cylinders.Clean5",0
+"833","Vehicle.StyleSedan:Engine.Cylinders.Clean5",0.0274195640167919,"Vehicle.StyleSedan:Engine.Cylinders.Clean5",0.0274195640167919
+"834","Vehicle.StyleWagon:Engine.Cylinders.Clean5",0,"Vehicle.StyleWagon:Engine.Cylinders.Clean5",0
+"835","Vehicle.Style2dr SUV:Engine.Cylinders.Clean6",0,"Vehicle.Style2dr SUV:Engine.Cylinders.Clean6",0
+"836","Vehicle.Style4dr Hatchback:Engine.Cylinders.Clean6",0,"Vehicle.Style4dr Hatchback:Engine.Cylinders.Clean6",0
+"837","Vehicle.Style4dr SUV:Engine.Cylinders.Clean6",-0.00542139085587831,"Vehicle.Style4dr SUV:Engine.Cylinders.Clean6",-0.00542139085587831
+"838","Vehicle.StyleCargo Minivan:Engine.Cylinders.Clean6",-0.047365549739322,"Vehicle.StyleCargo Minivan:Engine.Cylinders.Clean6",-0.047365549739322
+"839","Vehicle.StyleCargo Van:Engine.Cylinders.Clean6",0,"Vehicle.StyleCargo Van:Engine.Cylinders.Clean6",0
+"840","Vehicle.StyleConvertible:Engine.Cylinders.Clean6",0.0143035358088179,"Vehicle.StyleConvertible:Engine.Cylinders.Clean6",0.0143035358088179
+"841","Vehicle.StyleConvertible SUV:Engine.Cylinders.Clean6",0,"Vehicle.StyleConvertible SUV:Engine.Cylinders.Clean6",0
+"842","Vehicle.StyleCoupe:Engine.Cylinders.Clean6",0.0123480084182749,"Vehicle.StyleCoupe:Engine.Cylinders.Clean6",0.0123480084182749
+"843","Vehicle.StyleCrew Cab Pickup:Engine.Cylinders.Clean6",-0.00133887752304019,"Vehicle.StyleCrew Cab Pickup:Engine.Cylinders.Clean6",-0.00133887752304019
+"844","Vehicle.StyleExtended Cab Pickup:Engine.Cylinders.Clean6",0,"Vehicle.StyleExtended Cab Pickup:Engine.Cylinders.Clean6",0
+"845","Vehicle.StylePassenger Minivan:Engine.Cylinders.Clean6",0,"Vehicle.StylePassenger Minivan:Engine.Cylinders.Clean6",0
+"846","Vehicle.StylePassenger Van:Engine.Cylinders.Clean6",0,"Vehicle.StylePassenger Van:Engine.Cylinders.Clean6",0
+"847","Vehicle.StyleRegular Cab Pickup:Engine.Cylinders.Clean6",0,"Vehicle.StyleRegular Cab Pickup:Engine.Cylinders.Clean6",0
+"848","Vehicle.StyleSedan:Engine.Cylinders.Clean6",0,"Vehicle.StyleSedan:Engine.Cylinders.Clean6",0
+"849","Vehicle.StyleWagon:Engine.Cylinders.Clean6",0.000403871610899574,"Vehicle.StyleWagon:Engine.Cylinders.Clean6",0.000403871610899574
+"850","Vehicle.Style2dr SUV:Engine.Cylinders.Clean8",0,"Vehicle.Style2dr SUV:Engine.Cylinders.Clean8",0
+"851","Vehicle.Style4dr Hatchback:Engine.Cylinders.Clean8",0,"Vehicle.Style4dr Hatchback:Engine.Cylinders.Clean8",0
+"852","Vehicle.Style4dr SUV:Engine.Cylinders.Clean8",0.125927923632091,"Vehicle.Style4dr SUV:Engine.Cylinders.Clean8",0.125927923632091
+"853","Vehicle.StyleCargo Minivan:Engine.Cylinders.Clean8",0,"Vehicle.StyleCargo Minivan:Engine.Cylinders.Clean8",0
+"854","Vehicle.StyleCargo Van:Engine.Cylinders.Clean8",0,"Vehicle.StyleCargo Van:Engine.Cylinders.Clean8",0
+"855","Vehicle.StyleConvertible:Engine.Cylinders.Clean8",0.152369210083176,"Vehicle.StyleConvertible:Engine.Cylinders.Clean8",0.152369210083176
+"856","Vehicle.StyleConvertible SUV:Engine.Cylinders.Clean8",0,"Vehicle.StyleConvertible SUV:Engine.Cylinders.Clean8",0
+"857","Vehicle.StyleCoupe:Engine.Cylinders.Clean8",0.180841382031755,"Vehicle.StyleCoupe:Engine.Cylinders.Clean8",0.180841382031755
+"858","Vehicle.StyleCrew Cab Pickup:Engine.Cylinders.Clean8",0,"Vehicle.StyleCrew Cab Pickup:Engine.Cylinders.Clean8",0
+"859","Vehicle.StyleExtended Cab Pickup:Engine.Cylinders.Clean8",-0.0683749162578067,"Vehicle.StyleExtended Cab Pickup:Engine.Cylinders.Clean8",-0.0683749162578067
+"860","Vehicle.StylePassenger Minivan:Engine.Cylinders.Clean8",0,"Vehicle.StylePassenger Minivan:Engine.Cylinders.Clean8",0
+"861","Vehicle.StylePassenger Van:Engine.Cylinders.Clean8",0.0743010066173886,"Vehicle.StylePassenger Van:Engine.Cylinders.Clean8",0.0743010066173886
+"862","Vehicle.StyleRegular Cab Pickup:Engine.Cylinders.Clean8",-0.0746436892013821,"Vehicle.StyleRegular Cab Pickup:Engine.Cylinders.Clean8",-0.0746436892013821
+"863","Vehicle.StyleSedan:Engine.Cylinders.Clean8",0.0968013150909308,"Vehicle.StyleSedan:Engine.Cylinders.Clean8",0.0968013150909308
+"864","Vehicle.StyleWagon:Engine.Cylinders.Clean8",-0.0530739872406911,"Vehicle.StyleWagon:Engine.Cylinders.Clean8",-0.0530739872406911
+"865","Vehicle.Style2dr SUV:Engine.Cylinders.Clean10",0,"Vehicle.Style2dr SUV:Engine.Cylinders.Clean10",0
+"866","Vehicle.Style4dr Hatchback:Engine.Cylinders.Clean10",0,"Vehicle.Style4dr Hatchback:Engine.Cylinders.Clean10",0
+"867","Vehicle.Style4dr SUV:Engine.Cylinders.Clean10",0,"Vehicle.Style4dr SUV:Engine.Cylinders.Clean10",0
+"868","Vehicle.StyleCargo Minivan:Engine.Cylinders.Clean10",0,"Vehicle.StyleCargo Minivan:Engine.Cylinders.Clean10",0
+"869","Vehicle.StyleCargo Van:Engine.Cylinders.Clean10",0,"Vehicle.StyleCargo Van:Engine.Cylinders.Clean10",0
+"870","Vehicle.StyleConvertible:Engine.Cylinders.Clean10",0,"Vehicle.StyleConvertible:Engine.Cylinders.Clean10",0
+"871","Vehicle.StyleConvertible SUV:Engine.Cylinders.Clean10",0,"Vehicle.StyleConvertible SUV:Engine.Cylinders.Clean10",0
+"872","Vehicle.StyleCoupe:Engine.Cylinders.Clean10",0.00017509271904871,"Vehicle.StyleCoupe:Engine.Cylinders.Clean10",0.00017509271904871
+"873","Vehicle.StyleCrew Cab Pickup:Engine.Cylinders.Clean10",0,"Vehicle.StyleCrew Cab Pickup:Engine.Cylinders.Clean10",0
+"874","Vehicle.StyleExtended Cab Pickup:Engine.Cylinders.Clean10",0,"Vehicle.StyleExtended Cab Pickup:Engine.Cylinders.Clean10",0
+"875","Vehicle.StylePassenger Minivan:Engine.Cylinders.Clean10",0,"Vehicle.StylePassenger Minivan:Engine.Cylinders.Clean10",0
+"876","Vehicle.StylePassenger Van:Engine.Cylinders.Clean10",0,"Vehicle.StylePassenger Van:Engine.Cylinders.Clean10",0
+"877","Vehicle.StyleRegular Cab Pickup:Engine.Cylinders.Clean10",0,"Vehicle.StyleRegular Cab Pickup:Engine.Cylinders.Clean10",0
+"878","Vehicle.StyleSedan:Engine.Cylinders.Clean10",0,"Vehicle.StyleSedan:Engine.Cylinders.Clean10",0
+"879","Vehicle.StyleWagon:Engine.Cylinders.Clean10",0,"Vehicle.StyleWagon:Engine.Cylinders.Clean10",0
+"880","Vehicle.Style2dr SUV:Engine.Cylinders.Clean12",0,"Vehicle.Style2dr SUV:Engine.Cylinders.Clean12",0
+"881","Vehicle.Style4dr Hatchback:Engine.Cylinders.Clean12",0,"Vehicle.Style4dr Hatchback:Engine.Cylinders.Clean12",0
+"882","Vehicle.Style4dr SUV:Engine.Cylinders.Clean12",0,"Vehicle.Style4dr SUV:Engine.Cylinders.Clean12",0
+"883","Vehicle.StyleCargo Minivan:Engine.Cylinders.Clean12",0,"Vehicle.StyleCargo Minivan:Engine.Cylinders.Clean12",0
+"884","Vehicle.StyleCargo Van:Engine.Cylinders.Clean12",0,"Vehicle.StyleCargo Van:Engine.Cylinders.Clean12",0
+"885","Vehicle.StyleConvertible:Engine.Cylinders.Clean12",0,"Vehicle.StyleConvertible:Engine.Cylinders.Clean12",0
+"886","Vehicle.StyleConvertible SUV:Engine.Cylinders.Clean12",0,"Vehicle.StyleConvertible SUV:Engine.Cylinders.Clean12",0
+"887","Vehicle.StyleCoupe:Engine.Cylinders.Clean12",0,"Vehicle.StyleCoupe:Engine.Cylinders.Clean12",0
+"888","Vehicle.StyleCrew Cab Pickup:Engine.Cylinders.Clean12",0,"Vehicle.StyleCrew Cab Pickup:Engine.Cylinders.Clean12",0
+"889","Vehicle.StyleExtended Cab Pickup:Engine.Cylinders.Clean12",0,"Vehicle.StyleExtended Cab Pickup:Engine.Cylinders.Clean12",0
+"890","Vehicle.StylePassenger Minivan:Engine.Cylinders.Clean12",0,"Vehicle.StylePassenger Minivan:Engine.Cylinders.Clean12",0
+"891","Vehicle.StylePassenger Van:Engine.Cylinders.Clean12",0,"Vehicle.StylePassenger Van:Engine.Cylinders.Clean12",0
+"892","Vehicle.StyleRegular Cab Pickup:Engine.Cylinders.Clean12",0,"Vehicle.StyleRegular Cab Pickup:Engine.Cylinders.Clean12",0
+"893","Vehicle.StyleSedan:Engine.Cylinders.Clean12",0.00727890662657182,"Vehicle.StyleSedan:Engine.Cylinders.Clean12",0.00727890662657182
+"894","Vehicle.StyleWagon:Engine.Cylinders.Clean12",0,"Vehicle.StyleWagon:Engine.Cylinders.Clean12",0
+"895","Vehicle.Style2dr SUV:Engine.Cylinders.Clean16",0,"Vehicle.Style2dr SUV:Engine.Cylinders.Clean16",0
+"896","Vehicle.Style4dr Hatchback:Engine.Cylinders.Clean16",0,"Vehicle.Style4dr Hatchback:Engine.Cylinders.Clean16",0
+"897","Vehicle.Style4dr SUV:Engine.Cylinders.Clean16",0,"Vehicle.Style4dr SUV:Engine.Cylinders.Clean16",0
+"898","Vehicle.StyleCargo Minivan:Engine.Cylinders.Clean16",0,"Vehicle.StyleCargo Minivan:Engine.Cylinders.Clean16",0
+"899","Vehicle.StyleCargo Van:Engine.Cylinders.Clean16",0,"Vehicle.StyleCargo Van:Engine.Cylinders.Clean16",0
+"900","Vehicle.StyleConvertible:Engine.Cylinders.Clean16",0,"Vehicle.StyleConvertible:Engine.Cylinders.Clean16",0
+"901","Vehicle.StyleConvertible SUV:Engine.Cylinders.Clean16",0,"Vehicle.StyleConvertible SUV:Engine.Cylinders.Clean16",0
+"902","Vehicle.StyleCoupe:Engine.Cylinders.Clean16",0,"Vehicle.StyleCoupe:Engine.Cylinders.Clean16",0
+"903","Vehicle.StyleCrew Cab Pickup:Engine.Cylinders.Clean16",0,"Vehicle.StyleCrew Cab Pickup:Engine.Cylinders.Clean16",0
+"904","Vehicle.StyleExtended Cab Pickup:Engine.Cylinders.Clean16",0,"Vehicle.StyleExtended Cab Pickup:Engine.Cylinders.Clean16",0
+"905","Vehicle.StylePassenger Minivan:Engine.Cylinders.Clean16",0,"Vehicle.StylePassenger Minivan:Engine.Cylinders.Clean16",0
+"906","Vehicle.StylePassenger Van:Engine.Cylinders.Clean16",0,"Vehicle.StylePassenger Van:Engine.Cylinders.Clean16",0
+"907","Vehicle.StyleRegular Cab Pickup:Engine.Cylinders.Clean16",0,"Vehicle.StyleRegular Cab Pickup:Engine.Cylinders.Clean16",0
+"908","Vehicle.StyleSedan:Engine.Cylinders.Clean16",0,"Vehicle.StyleSedan:Engine.Cylinders.Clean16",0
+"909","Vehicle.StyleWagon:Engine.Cylinders.Clean16",0,"Vehicle.StyleWagon:Engine.Cylinders.Clean16",0
+"910","Vehicle.Style2dr SUV:NumDoors.Clean3",0,"Vehicle.Style2dr SUV:NumDoors.Clean3",0
+"911","Vehicle.Style4dr Hatchback:NumDoors.Clean3",0,"Vehicle.Style4dr Hatchback:NumDoors.Clean3",0
+"912","Vehicle.Style4dr SUV:NumDoors.Clean3",0,"Vehicle.Style4dr SUV:NumDoors.Clean3",0
+"913","Vehicle.StyleCargo Minivan:NumDoors.Clean3",0,"Vehicle.StyleCargo Minivan:NumDoors.Clean3",0
+"914","Vehicle.StyleCargo Van:NumDoors.Clean3",0,"Vehicle.StyleCargo Van:NumDoors.Clean3",0
+"915","Vehicle.StyleConvertible:NumDoors.Clean3",0,"Vehicle.StyleConvertible:NumDoors.Clean3",0
+"916","Vehicle.StyleConvertible SUV:NumDoors.Clean3",0,"Vehicle.StyleConvertible SUV:NumDoors.Clean3",0
+"917","Vehicle.StyleCoupe:NumDoors.Clean3",0,"Vehicle.StyleCoupe:NumDoors.Clean3",0
+"918","Vehicle.StyleCrew Cab Pickup:NumDoors.Clean3",0,"Vehicle.StyleCrew Cab Pickup:NumDoors.Clean3",0
+"919","Vehicle.StyleExtended Cab Pickup:NumDoors.Clean3",-0.0288403710742266,"Vehicle.StyleExtended Cab Pickup:NumDoors.Clean3",-0.0288403710742266
+"920","Vehicle.StylePassenger Minivan:NumDoors.Clean3",0,"Vehicle.StylePassenger Minivan:NumDoors.Clean3",0
+"921","Vehicle.StylePassenger Van:NumDoors.Clean3",0,"Vehicle.StylePassenger Van:NumDoors.Clean3",0
+"922","Vehicle.StyleRegular Cab Pickup:NumDoors.Clean3",0,"Vehicle.StyleRegular Cab Pickup:NumDoors.Clean3",0
+"923","Vehicle.StyleSedan:NumDoors.Clean3",0,"Vehicle.StyleSedan:NumDoors.Clean3",0
+"924","Vehicle.StyleWagon:NumDoors.Clean3",0,"Vehicle.StyleWagon:NumDoors.Clean3",0
+"925","Vehicle.Style2dr SUV:NumDoors.Clean4",0,"Vehicle.Style2dr SUV:NumDoors.Clean4",0
+"926","Vehicle.Style4dr Hatchback:NumDoors.Clean4",-0.00393448581526341,"Vehicle.Style4dr Hatchback:NumDoors.Clean4",-0.00393448581526341
+"927","Vehicle.Style4dr SUV:NumDoors.Clean4",0,"Vehicle.Style4dr SUV:NumDoors.Clean4",0
+"928","Vehicle.StyleCargo Minivan:NumDoors.Clean4",0,"Vehicle.StyleCargo Minivan:NumDoors.Clean4",0
+"929","Vehicle.StyleCargo Van:NumDoors.Clean4",0,"Vehicle.StyleCargo Van:NumDoors.Clean4",0
+"930","Vehicle.StyleConvertible:NumDoors.Clean4",0,"Vehicle.StyleConvertible:NumDoors.Clean4",0
+"931","Vehicle.StyleConvertible SUV:NumDoors.Clean4",0,"Vehicle.StyleConvertible SUV:NumDoors.Clean4",0
+"932","Vehicle.StyleCoupe:NumDoors.Clean4",-0.029064493958443,"Vehicle.StyleCoupe:NumDoors.Clean4",-0.029064493958443
+"933","Vehicle.StyleCrew Cab Pickup:NumDoors.Clean4",0,"Vehicle.StyleCrew Cab Pickup:NumDoors.Clean4",0
+"934","Vehicle.StyleExtended Cab Pickup:NumDoors.Clean4",0,"Vehicle.StyleExtended Cab Pickup:NumDoors.Clean4",0
+"935","Vehicle.StylePassenger Minivan:NumDoors.Clean4",0.0662842665607259,"Vehicle.StylePassenger Minivan:NumDoors.Clean4",0.0662842665607259
+"936","Vehicle.StylePassenger Van:NumDoors.Clean4",0,"Vehicle.StylePassenger Van:NumDoors.Clean4",0
+"937","Vehicle.StyleRegular Cab Pickup:NumDoors.Clean4",0,"Vehicle.StyleRegular Cab Pickup:NumDoors.Clean4",0
+"938","Vehicle.StyleSedan:NumDoors.Clean4",0,"Vehicle.StyleSedan:NumDoors.Clean4",0
+"939","Vehicle.StyleWagon:NumDoors.Clean4",0,"Vehicle.StyleWagon:NumDoors.Clean4",0
+"940","highway.MPG:city.mpg",0,"highway.MPG:city.mpg",0
+"941","highway.MPG:Popularity",0,"highway.MPG:Popularity",0
+"942","highway.MPG:Engine.HP.Clean",6.74251385742225e-06,"highway.MPG:Engine.HP.Clean",6.74251385742225e-06
+"943","highway.MPG:Engine.Cylinders.Clean4",0,"highway.MPG:Engine.Cylinders.Clean4",0
+"944","highway.MPG:Engine.Cylinders.Clean5",0,"highway.MPG:Engine.Cylinders.Clean5",0
+"945","highway.MPG:Engine.Cylinders.Clean6",0,"highway.MPG:Engine.Cylinders.Clean6",0
+"946","highway.MPG:Engine.Cylinders.Clean8",0,"highway.MPG:Engine.Cylinders.Clean8",0
+"947","highway.MPG:Engine.Cylinders.Clean10",2.14203696420213e-06,"highway.MPG:Engine.Cylinders.Clean10",2.14203696420213e-06
+"948","highway.MPG:Engine.Cylinders.Clean12",3.56360609495512e-05,"highway.MPG:Engine.Cylinders.Clean12",3.56360609495512e-05
+"949","highway.MPG:Engine.Cylinders.Clean16",0,"highway.MPG:Engine.Cylinders.Clean16",0
+"950","highway.MPG:NumDoors.Clean3",0,"highway.MPG:NumDoors.Clean3",0
+"951","highway.MPG:NumDoors.Clean4",0,"highway.MPG:NumDoors.Clean4",0
+"952","city.mpg:Popularity",0,"city.mpg:Popularity",0
+"953","city.mpg:Engine.HP.Clean",5.39094100823466e-05,"city.mpg:Engine.HP.Clean",5.39094100823466e-05
+"954","city.mpg:Engine.Cylinders.Clean4",0,"city.mpg:Engine.Cylinders.Clean4",0
+"955","city.mpg:Engine.Cylinders.Clean5",0,"city.mpg:Engine.Cylinders.Clean5",0
+"956","city.mpg:Engine.Cylinders.Clean6",0,"city.mpg:Engine.Cylinders.Clean6",0
+"957","city.mpg:Engine.Cylinders.Clean8",0.000196987235375085,"city.mpg:Engine.Cylinders.Clean8",0.000196987235375085
+"958","city.mpg:Engine.Cylinders.Clean10",0.0156882771590478,"city.mpg:Engine.Cylinders.Clean10",0.0156882771590478
+"959","city.mpg:Engine.Cylinders.Clean12",0.000405855417755789,"city.mpg:Engine.Cylinders.Clean12",0.000405855417755789
+"960","city.mpg:Engine.Cylinders.Clean16",0,"city.mpg:Engine.Cylinders.Clean16",0
+"961","city.mpg:NumDoors.Clean3",0,"city.mpg:NumDoors.Clean3",0
+"962","city.mpg:NumDoors.Clean4",0,"city.mpg:NumDoors.Clean4",0
+"963","Popularity:Engine.HP.Clean",-9.12063977395077e-09,"Popularity:Engine.HP.Clean",-9.12063977395077e-09
+"964","Popularity:Engine.Cylinders.Clean4",7.57306557656042e-06,"Popularity:Engine.Cylinders.Clean4",7.57306557656042e-06
+"965","Popularity:Engine.Cylinders.Clean5",0,"Popularity:Engine.Cylinders.Clean5",0
+"966","Popularity:Engine.Cylinders.Clean6",0,"Popularity:Engine.Cylinders.Clean6",0
+"967","Popularity:Engine.Cylinders.Clean8",-3.95036957493477e-06,"Popularity:Engine.Cylinders.Clean8",-3.95036957493477e-06
+"968","Popularity:Engine.Cylinders.Clean10",2.65058399639604e-06,"Popularity:Engine.Cylinders.Clean10",2.65058399639604e-06
+"969","Popularity:Engine.Cylinders.Clean12",2.1161742796898e-06,"Popularity:Engine.Cylinders.Clean12",2.1161742796898e-06
+"970","Popularity:Engine.Cylinders.Clean16",0,"Popularity:Engine.Cylinders.Clean16",0
+"971","Popularity:NumDoors.Clean3",0,"Popularity:NumDoors.Clean3",0
+"972","Popularity:NumDoors.Clean4",0,"Popularity:NumDoors.Clean4",0
+"973","Engine.HP.Clean:Engine.Cylinders.Clean4",0.000120420539501142,"Engine.HP.Clean:Engine.Cylinders.Clean4",0.000120420539501142
+"974","Engine.HP.Clean:Engine.Cylinders.Clean5",0,"Engine.HP.Clean:Engine.Cylinders.Clean5",0
+"975","Engine.HP.Clean:Engine.Cylinders.Clean6",0,"Engine.HP.Clean:Engine.Cylinders.Clean6",0
+"976","Engine.HP.Clean:Engine.Cylinders.Clean8",-6.03049397856974e-06,"Engine.HP.Clean:Engine.Cylinders.Clean8",-6.03049397856974e-06
+"977","Engine.HP.Clean:Engine.Cylinders.Clean10",4.34353143358174e-08,"Engine.HP.Clean:Engine.Cylinders.Clean10",4.34353143358174e-08
+"978","Engine.HP.Clean:Engine.Cylinders.Clean12",0,"Engine.HP.Clean:Engine.Cylinders.Clean12",0
+"979","Engine.HP.Clean:Engine.Cylinders.Clean16",0,"Engine.HP.Clean:Engine.Cylinders.Clean16",0
+"980","Engine.HP.Clean:NumDoors.Clean3",0,"Engine.HP.Clean:NumDoors.Clean3",0
+"981","Engine.HP.Clean:NumDoors.Clean4",0,"Engine.HP.Clean:NumDoors.Clean4",0
+"982","Engine.Cylinders.Clean4:NumDoors.Clean3",-0.033998495598566,"Engine.Cylinders.Clean4:NumDoors.Clean3",-0.033998495598566
+"983","Engine.Cylinders.Clean5:NumDoors.Clean3",0,"Engine.Cylinders.Clean5:NumDoors.Clean3",0
+"984","Engine.Cylinders.Clean6:NumDoors.Clean3",0,"Engine.Cylinders.Clean6:NumDoors.Clean3",0
+"985","Engine.Cylinders.Clean8:NumDoors.Clean3",0,"Engine.Cylinders.Clean8:NumDoors.Clean3",0
+"986","Engine.Cylinders.Clean10:NumDoors.Clean3",0,"Engine.Cylinders.Clean10:NumDoors.Clean3",0
+"987","Engine.Cylinders.Clean12:NumDoors.Clean3",0,"Engine.Cylinders.Clean12:NumDoors.Clean3",0
+"988","Engine.Cylinders.Clean16:NumDoors.Clean3",0,"Engine.Cylinders.Clean16:NumDoors.Clean3",0
+"989","Engine.Cylinders.Clean4:NumDoors.Clean4",0,"Engine.Cylinders.Clean4:NumDoors.Clean4",0
+"990","Engine.Cylinders.Clean5:NumDoors.Clean4",0.0785603954394789,"Engine.Cylinders.Clean5:NumDoors.Clean4",0.0785603954394789
+"991","Engine.Cylinders.Clean6:NumDoors.Clean4",0,"Engine.Cylinders.Clean6:NumDoors.Clean4",0
+"992","Engine.Cylinders.Clean8:NumDoors.Clean4",0,"Engine.Cylinders.Clean8:NumDoors.Clean4",0
+"993","Engine.Cylinders.Clean10:NumDoors.Clean4",0,"Engine.Cylinders.Clean10:NumDoors.Clean4",0
+"994","Engine.Cylinders.Clean12:NumDoors.Clean4",0.000109866165735393,"Engine.Cylinders.Clean12:NumDoors.Clean4",0.000109866165735393
+"995","Engine.Cylinders.Clean16:NumDoors.Clean4",0,"Engine.Cylinders.Clean16:NumDoors.Clean4",0

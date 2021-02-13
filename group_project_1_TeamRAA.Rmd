@@ -371,6 +371,8 @@ lasso_reg_Lmin <- cv.glmnet(x_train, y_train, alpha=1, lamda =1, scale=TRUE, cen
 
 coef(lasso_reg_Lmin)
 
+
+
 ```
 
 
@@ -390,13 +392,27 @@ confint(model_OBJ_1.fit)
 ```
 
 ```{r, ECHO=FALSE}
-library(randomForest)
-rf3 <- randomForest(MSRP~., data=myData)
+#library(randomForest)
+#rf3 <- randomForest(MSRP~., data=myData)
 #rf2$importance
-RFI3 <- as.data.frame(rf3$importance)
-colnames(RFI3) = c("Influence")
-RFI3 %>% slice_max(RFI3,n=10)
+#RFI3 <- as.data.frame(rf3$importance)
+#colnames(RFI3) = c("Influence")
+#RFI3 %>% slice_max(RFI3,n=10)
 ```
+#### 2.0 MSRP ~ . MODEL
+```{r, ECHO = FALSE}
+
+model.fit<-lm(log(MSRP)~.,data=myData)
+par(mfrow=c(2,2))
+plot(model.fit$fitted.values,model.fit$residuals,ylab="Resdiduals",xlab="Fitted")
+qqnorm(model.fit$residuals)
+
+summary(model.fit)
+vif(model.fit)
+
+```
+
+
 
 
 
