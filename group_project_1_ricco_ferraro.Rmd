@@ -420,6 +420,8 @@ rsq <- 1 - rss/tss
 rsq
 
 
+glimpse(myData)
+
 ```
 
 
@@ -485,6 +487,114 @@ print("Min Mallow CP is:")
 which(MallowCP==min(MallowCP))
 
 ```
+
+
+KNN variable selection and test splits
+```{r}
+myData
+
+myDataKNN <- myData[, c('Year', 'highway.MPG', 'city.mpg', 'Popularity', 'Engine.HP.Clean', 'MSRP')]
+glimpse(myDataKNN)
+
+# Scaling each column besides MSRP
+preProc <- preProcess(myDataKNN[,-6],method=c('center','scale'))
+myDataKNN_Scaled = predict(preProc, newdata=myDataKNN[-6])
+myDataKNN_Scaled$MSRP = myDataKNN$MSRP
+
+# tail(myDataKNN)
+# tail(myDataKNN_Scaled)
+
+set.seed(1234)
+splitPercKNN = .80
+trainIndicesKNN = sample(1:dim(myDataKNN_Scaled)[1],round(splitPercKNN * dim(myDataKNN_Scaled)[1]))
+trainKNN = myDataKNN_Scaled[trainIndicesKNN,]
+testKNN.preSplit = myDataKNN_Scaled[-trainIndicesKNN,]
+
+# split the remaining 20% into 10% test and 10% validation
+splitPerc.validation = .50
+validationIndices = sample(1:dim(testKNN.preSplit)[1], round(splitPerc.validation * dim(testKNN.preSplit)[1]))
+validationKNN = testKNN.preSplit[validationIndices,]
+testKNN = testKNN.preSplit[-validationIndices,]
+
+rf2 <- randomForest(MSRP~., data=myDataKNN_Scaled)
+#rf2$importance
+RFI2 <- as.data.frame(rf2$importance)
+colnames(RFI2) = c("Influence")
+RFI2 %>% slice_max(RFI2,n=3)
+
+# preProc <- preProcess(trainKNN,method=c('center','scale'))
+# scaledTrainKNN = predict(preProc, newdata=trainKNN)
+# scaledTestKNN = predict(preProc, newdata=testKNN)
+
+#sapply(myData, function(x) length(unique(x)))
+myData %>%
+  summarise_all(funs(sum(is.na(.))))
+
+
+# KNN_Model1 <- knn.reg(train=trainKNN,   
+#                      y=trainKNN$MSRP,
+#                     test=testKNN,
+#                      k=3)
+
+```
+
+Find Best K
+```{r}
+numks = 10
+master_MSE = matrix(nrow = numks, ncol = 2)
+for(i in 1:numks)
+{
+  KNN_Scaled_loop <- knn.reg(train=trainKNN,
+                        y=trainKNN$MSRP,
+                        test=testKNN,
+                        k=i)
+  
+  residuals_KNN_loop <- testKNN$MSRP - KNN_Scaled_loop$pred
+  SSE_KNN_Scaled_loop <- sum((residuals_KNN_loop) ^ 2)
+  mse_KNN_Scaled_loop <- SSE_KNN_Scaled_loop/length(residuals_KNN_loop)
+  master_MSE[i,1] = i
+  master_MSE[i,2] = mse_KNN_Scaled_loop
+}
+plot(seq(1,numks,1),master_MSE[,2], type = "l", main="Test MSE vs number of K")
+
+```
+
+Run KNN with best (K USE K=4!!!)
+```{r}
+
+KNN_Scaled <- knn.reg(train=trainKNN,
+                      y=trainKNN$MSRP,
+                      test=testKNN,
+                      k=4)
+# KNN_Model1
+# KNN_Model1_Scaled
+
+#MSE for knn
+# mse_KNN <- mean((KNN_Model1$pred - testKNN$MSRP) ^ 2)
+# mse_KNN
+#r2 for knn
+#R2_KNN <- 1-mse_KNN/(var(testKNN$MSRP)) #168/169 is added to correct 
+#R2_KNN
+#MSE for knn scaled
+residuals_KNN <- testKNN$MSRP - KNN_Scaled$pred
+sse_KNN_Scaled <- sum((residuals_KNN) ^ 2)
+mse_KNN_Scaled <- sse_KNN_Scaled/length(residuals_KNN)
+print(mse_KNN_Scaled)
+#r2 for knn scaled
+# note: var() gives the sum total variance for a dataset
+R2_KNN_Scaled <- 1-ase_KNN_Scaled/(var(testKNN$MSRP)) #168/169 is added to correct 
+print(R2_KNN_Scaled)
+
+plot(1:length(testKNN$MSRP), testKNN$MSRP, col = "red", type = "l", lwd=2,
+     main = "Test vs Predicted KNN values")
+lines(1:length(testKNN$MSRP), KNN_Scaled$pred, col = "blue", lwd=2)
+lines(1:length(validationKNN$MSRP), validationKNN$MSRP, col = "green", lwd=2)
+length(testKNN$MSRP)
+length(validationKNN$MSRP)
+# mean(y_test-(pred)^2)
+head(KNN_Scaled$pred)
+```
+
 
 more EDA
 ```{r}

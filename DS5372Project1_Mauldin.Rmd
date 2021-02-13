@@ -24,7 +24,8 @@ library(caret)
 library(Metrics)
 library(gtools)
 library(glmnet)
-library(arm)
+library(randomForest)
+libary()
 ```
 
 ### Data
@@ -677,7 +678,7 @@ set.seed(1234)
 splitPercKNN = .80
 trainIndicesKNN = sample(1:dim(myDataKNN_Scaled)[1],round(splitPercKNN * dim(myDataKNN_Scaled)[1]))
 trainKNN = myDataKNN_Scaled[trainIndicesKNN,]
-testKNN.preSplit = myDataKNN_Scaled[-trainIndices,]
+testKNN.preSplit = myDataKNN_Scaled[-trainIndicesKNN,]
 
 # split the remaining 20% into 10% test and 10% validation
 splitPerc.validation = .50
@@ -720,12 +721,18 @@ KNN_Scaled <- knn.reg(train=trainKNN,
 #R2_KNN
 #MSE for knn scaled
 
-mse_KNN_Scaled <- mean((KNN_Scaled$pred - scaledTestKNN$MSRP) ^ 2) 
+mse_KNN_Scaled <- mean((testKNN$MSRP - KNN_Scaled$pred) ^ 2) 
 mse_KNN_Scaled
 #r2 for knn scaled
-R2_KNN_Scaled <- 1-mse_KNN_Scaled/(var(scaledTestKNN$MSRP)) #168/169 is added to correct 
+R2_KNN_Scaled <- 1-mse_KNN_Scaled/(var(testKNN$MSRP)) #168/169 is added to correct 
 R2_KNN_Scaled
 
+plot(1:length(testKNN$MSRP), testKNN$MSRP, col = "red", type = "l", lwd=2,
+     main = "Test vs Predicted KNN values")
+lines(1:length(testKNN$MSRP), KNN_Scaled$pred, col = "blue", lwd=2)
+lines(1:length(validationKNN$MSRP), validationKNN$MSRP, col = "green", lwd=2)
+length(testKNN$MSRP)
+length(validationKNN$MSRP)
 # mean(y_test-(pred)^2)
 head(KNN_Scaled$pred)
 head(scaledTestKNN$MSRP)
