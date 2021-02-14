@@ -35,6 +35,10 @@ library(gtools)
 library(glmnet)
 library(kableExtra)
 library(coefplot)
+library(plotmo)
+library(randomForest)
+library(FNN)
+library(data.table)
 ```
 
 Data I/O
@@ -85,7 +89,7 @@ Evaluating the data before and after the imputation and update of missing values
 
 
 ### Filter and Impute the Data
-```{r, echo = FALSE}
+```{r}
 isEmpty <- function(column) {
     is.na(column) | column == 0 | column == "" | column == " " | column == "NA" | column == "na" | column == "Na" | column == "nA" | column == "NaN" 
 }
@@ -100,30 +104,30 @@ bucketFuelType <- function(fuelType) {
 }
 
 #Filter out old cars
-#CaseData
+CaseData
 CaseData %>% filter(MSRP > 2000) -> CaseData.NewCars.1
 CaseData.NewCars = data.frame(CaseData.NewCars.1, stringsAsFactors = TRUE)
 
 # filter Fuel.Type
 CaseData.NewCars %>% filter(!isEmpty(Engine.Fuel.Type) & Engine.Fuel.Type != "natural gas") -> CaseData.NewCars.Filtered
-#CaseData.NewCars.Filtered
+CaseData.NewCars.Filtered
 
 # summary known Engine.Hp's
 Vehicle.Size.Summary <- CaseData.NewCars.Filtered %>% filter(!isEmpty(Engine.HP)) %>% group_by(Vehicle.Size) %>% summarise(median_hp_by_vehicle_size=median(Engine.HP)) 
 
 # look at our summary
-#Vehicle.Size.Summary
+Vehicle.Size.Summary
 
 #Impute values for Engine.HP by Vehicle.Size (for median Engine.HP)
 
 CaseData.NewCars.Filtered.ImputedHP <-merge(CaseData.NewCars.Filtered, Vehicle.Size.Summary, by="Vehicle.Size")  %>% mutate(Engine.HP.Clean = if_else(isEmpty(Engine.HP), median_hp_by_vehicle_size, as.double(Engine.HP)))
-#CaseData.NewCars.Filtered.ImputedHP
+CaseData.NewCars.Filtered.ImputedHP
 
 # summary known Engine.Cylinders
 Vehicle.Size.Summary <- CaseData.NewCars.Filtered.ImputedHP %>% filter(!isEmpty(Engine.Cylinders)) %>% group_by(Vehicle.Size) %>% summarise(median_cylinder_by_vehicle_size=median(Engine.Cylinders)) 
 
 # look at our summary
-#Vehicle.Size.Summary
+Vehicle.Size.Summary
 
 #Impute values for Engine.HP by Vehicle.Size (for median Engine.HP)
 CaseData.NewCars.Filtered.ImputedHP$Engine.Cylinders <- as.double(CaseData.NewCars.Filtered.ImputedHP$Engine.Cylinders)
@@ -135,12 +139,42 @@ CaseData.NewCars.Filtered.ImputedHPAndCylinders <- CaseData.NewCars.Filtered.Imp
 CaseData.NewCars.Filtered.ImputedHPAndCylinders$Engine.Cylinders.Clean <- as.factor(CaseData.NewCars.Filtered.ImputedHPAndCylinders$Engine.Cylinders.Clean)
 CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean <- as.factor(CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean)
 
-#Bucket Engine.Fuel.Type 
-CaseData.NewCars.Filtered.ImputedHPAndCylindersAndFuelType <- CaseData.NewCars.Filtered.ImputedHPAndCylinders %>% filter(Engine.Fuel.Type != "electric" & highway.MPG < 100) %>%  mutate(Engine.Fuel.Type.Clean=as.factor(bucketFuelType(Engine.Fuel.Type)))
+#Bucket Engine.Fuel.Type NOTE we aren't currently using this. 
+CaseData.NewCars.Filtered.ImputedHPAndCylindersAndFuelType <- CaseData.NewCars.Filtered.ImputedHPAndCylinders %>% filter(Engine.Fuel.Type != "electric" & highway.MPG < 100) %>%  mutate(Engine.Fuel.Type.Buckets=as.factor(bucketFuelType(Engine.Fuel.Type)))
 
-myData <- CaseData.NewCars.Filtered.ImputedHPAndCylindersAndFuelType[, c('Vehicle.Size','Year', 'Engine.Fuel.Type.Clean', 'Transmission.Type', 'Driven_Wheels', 'Vehicle.Style', 'highway.MPG', 'city.mpg', 'Popularity', 'Engine.HP.Clean', 'Engine.Cylinders.Clean', 'NumDoors.Clean', 'MSRP')]
-myData <- myData %>% filter(Year > 2000 & MSRP < 400000)
-#summary(myData)
+summary(CaseData.NewCars.Filtered.ImputedHPAndCylindersAndFuelType)
+myData <- CaseData.NewCars.Filtered.ImputedHPAndCylindersAndFuelType[, c('Vehicle.Size','Year', 'Engine.Fuel.Type', 'Transmission.Type', 'Driven_Wheels', 'Vehicle.Style', 'highway.MPG', 'city.mpg', 'Popularity', 'Engine.HP.Clean', 'Engine.Cylinders.Clean', 'NumDoors.Clean', 'MSRP')]
+myData <- myData %>% filter(Year > 2000 & MSRP < 100000)
+summary(myData)
+```
+
+
+
+
+
+
+```{r, ECHO = FALSE}
+
+## Split the Data in Train, Test and Validation
+
+set.seed(1234)
+
+dim(myData)
+splitPerc = .80
+trainIndices = sample(1:dim(myData)[1],round(splitPerc * dim(myData)[1]))
+train = myData[trainIndices,]
+test.preSplit = myData[-trainIndices,]
+dim(train)
+
+# split the remaining 20% into 10% test and 10% validation
+splitPerc.validation = .50
+validationIndices = sample(1:dim(test.preSplit)[1], round(splitPerc.validation * dim(test.preSplit)[1]))
+validation = test.preSplit[validationIndices,]
+test = test.preSplit[-validationIndices,]
+dim(validation)
+dim(test)
+
+
 ```
 
 
@@ -178,7 +212,7 @@ CaseData %>%
 
 ```{r, echo = FALSE}
 
-CaseDataPlot <- CaseData %>% filter(MSRP < 500000)
+CaseDataPlot <- CaseData %>% filter(MSRP < 150000)
 
 CaseDataPlot %>% ggplot(aes(x=Year, y=MSRP)) + geom_point()
 
@@ -262,7 +296,7 @@ CaseData %>% ggplot(mapping = aes(x=Popularity, fill = Market.Category.Clean)) +
 
 
 
-#### 1.7 Summary of Data Before and After Impuding (Data Prep Continued)
+#### 1.7 Summary of Data Before and After Imputing (Data Prep Continued)
 ```{r,echo = FALSE}
 CaseData.NewCars.Filtered.ImputedHPAndCylinders -> A
 
@@ -336,13 +370,6 @@ vif(model.fit)
 #### 2.2 Lasso Regression All Data ~ Logged MSRP
 ``` {r, echo = FALSE}
 
-set.seed(1234)
-splitPerc = .70
-trainIndices = sample(1:dim(myData)[1],round(splitPerc * dim(myData)[1]))
-train = myData[trainIndices,]
-test = myData[-trainIndices,]
-
-
 #Formatting data for GLM net
 x_train=model.matrix(log(MSRP)~.,train)[, -1]
 y_train=log(train$MSRP)
@@ -372,14 +399,13 @@ lasso_reg_Lmin <- cv.glmnet(x_train, y_train, alpha=1, lamda =1, scale=TRUE, cen
 coef(lasso_reg_Lmin)
 
 
-
 ```
 
 
-#### 2.0 MSRP ~ . MODEL
+#### 2.1 OBJECTIVE ONE ~ INTERPRETABLE MODEL
 ```{r, ECHO = FALSE}
 
-model_OBJ_1.fit<-lm(log(MSRP)~myData$Engine.Cylinders.Clean + myData$Engine.Fuel.Type.Clean + myData$Vehicle.Style + myData$Engine.HP.Clean + myData$Driven_Wheel ,data=myData)
+model_OBJ_1.fit<-lm(log(MSRP)~myData$Engine.Cylinders.Clean + myData$Engine.Fuel.Type + myData$Vehicle.Style + myData$Engine.HP.Clean + myData$Driven_Wheel ,data=myData)
 
 par(mfrow=c(2,2))
 plot(model_OBJ_1.fit$fitted.values,model_OBJ_1.fit$residuals,ylab="Resdiduals",xlab="Fitted")
@@ -390,30 +416,6 @@ vif(model_OBJ_1.fit)
 confint(model_OBJ_1.fit)
 
 ```
-
-```{r, ECHO=FALSE}
-#library(randomForest)
-#rf3 <- randomForest(MSRP~., data=myData)
-#rf2$importance
-#RFI3 <- as.data.frame(rf3$importance)
-#colnames(RFI3) = c("Influence")
-#RFI3 %>% slice_max(RFI3,n=10)
-```
-#### 2.0 MSRP ~ . MODEL
-```{r, ECHO = FALSE}
-
-model.fit<-lm(log(MSRP)~.,data=myData)
-par(mfrow=c(2,2))
-plot(model.fit$fitted.values,model.fit$residuals,ylab="Resdiduals",xlab="Fitted")
-qqnorm(model.fit$residuals)
-
-summary(model.fit)
-vif(model.fit)
-
-```
-
-
-
 
 
 #### Exploring data relationships
@@ -437,3 +439,212 @@ myData %>% ggplot(aes(x=Engine.HP.Clean, y=log(MSRP), colour=Vehicle.Size)) + ge
 
 
 ```
+
+
+
+#### Fully Saturated Lasso Model
+```{r, ECHO = FALSE}
+
+matrixFormula <- function(data)
+{
+  # use fully saturated model with squared terms
+  model.matrix(log(MSRP)~(.)^2, data)[, -1]
+}
+
+#Formatting data for GLM net
+x_train= matrixFormula(train)
+y_train=log(train$MSRP)
+x_test<-matrixFormula(test)
+y_test<-log(test$MSRP)
+x_validation<-matrixFormula(validation)
+y_validation <- log(validation$MSRP)
+
+# Setting alpha = 1 implements lasso regression 
+grid=10^seq(from=-3.0,to=0,by=0.1)
+lasso_reg <- cv.glmnet(x_train, y_train, alpha=1, lambda =grid, scale=TRUE, center=TRUE)
+plot(lasso_reg)
+coefplot(lasso_reg)
+
+```
+
+#### Find best Lamda
+``` {r, ECHO = FALSE}
+
+
+#for loop here to iterate all ase's vs lambda's
+getTestAse <- function(lambda) {
+  pred <- predict(lasso_reg, s=lambda, newx=x_test)
+  mean((y_test-pred)^2)
+}
+
+# Gather our Test ASE's from the lasso fit for different Constraint values (Lambda's)
+TestAse <- data.frame(lambda = seq(from=.75*lasso_reg$lambda.min,to=1.25*lasso_reg$lambda.1se,by=0.00001))
+
+# rowwise is needed here to make the getTestASE function run for every value of lambda....
+TestAse <- TestAse %>% rowwise %>% mutate(Test_ASE=getTestAse(lambda))
+
+# plot 
+TestAse %>% ggplot(aes(x=log(lambda), y=Test_ASE)) + geom_point() + geom_vline(xintercept =log(lasso_reg$lambda.min), linetype="dashed", 
+                color = "blue", size=0.5) + geom_text(aes(x=log(lasso_reg$lambda.min), label="\nLambda Min"), colour="blue",y=getTestAse(lasso_reg$lambda.min), text=element_text(size=11)) + geom_vline(xintercept =log(lasso_reg$lambda.1se), linetype="dashed", 
+                color = "red", size=0.5) + geom_text(aes(x=log(lasso_reg$lambda.1se), label="\nLambda 1 SE"), colour="red",y=getTestAse(lasso_reg$lambda.min), text=element_text(size=11)) + ggtitle("Test ASE vs log Lambda")
+
+## We use Lambda MIN, it works the best on our test set!
+
+# Test
+test_prediction=predict(lasso_reg,s=lasso_reg$lambda.min, newx=x_test)
+test_ASE<-mean((y_test-test_prediction)^2)
+test_ASE
+
+# Validation
+validation_prediction=predict(lasso_reg,s=lasso_reg$lambda.min, newx=x_validation)
+validation_ASE<-mean((y_validation-validation_prediction)^2)
+validation_ASE
+
+
+```
+
+
+
+#### R-Squared for Fully Saturated Lasso Model
+```{r}
+
+rsq_train = 1 - lasso_reg$cvm/var(y_train)
+#rsq_train
+#plot(lasso_reg$lambda,rsq_train)
+plotres(lasso_reg)
+plot(lasso_reg$glmnet.fit, label=TRUE)
+# R-Squared Test
+pred <- predict(lasso_reg, s=lasso_reg$lambda.min, newx=x_test)
+rss <- sum((y_test-pred)^2)
+tss <- sum((y_test - mean(y_test)) ^ 2)
+rsq <- 1 - rss/tss
+rsq
+# R-Squared Validation
+pred <- predict(lasso_reg, s=lasso_reg$lambda.min, newx=x_validation)
+rss <- sum((y_validation-pred)^2)
+tss <- sum((y_validation - mean(y_validation)) ^ 2)
+rsq <- 1 - rss/tss
+rsq
+
+
+
+```
+#### Filter for Lasso Coefficients < > 0
+```{r, ECHO = FALSE}
+
+
+
+# makes a dense matrix
+coef(lasso_reg, s = "lambda.min")
+df_coeff.lambda.min <- as.data.frame(as.matrix(coef(lasso_reg, s = "lambda.min"))) 
+# This captures row names from the matrix dataframe
+setDT(df_coeff.lambda.min, keep.rownames = TRUE)[] 
+#Capture variables in readable names
+df_coeff.lambda.min.clean <- df_coeff.lambda.min %>% mutate(variable=rn)
+df_coeff.lambda.min.clean$estimate = df_coeff.lambda.min$`1`
+df_coeff.lambda.min <- rename(df_coeff.lambda.min, estimate=`1`)
+df_coeff.lambda.min <- rename(df_coeff.lambda.min, variable=rn)
+df_coeff.lambda.min.clean <- df_coeff.lambda.min %>% filter(abs(estimate) > 0.000000e+00)
+df_coeff.lambda.min.clean
+
+```
+
+
+KNN variable selection and test splits
+```{r}
+myData
+
+myDataKNN <- myData[, c('Year', 'highway.MPG', 'city.mpg', 'Popularity', 'Engine.HP.Clean', 'MSRP')]
+glimpse(myDataKNN)
+
+# Scaling each column besides MSRP
+preProc <- preProcess(myDataKNN[,-6],method=c('center','scale'))
+myDataKNN_Scaled = predict(preProc, newdata=myDataKNN[-6])
+myDataKNN_Scaled$MSRP = myDataKNN$MSRP
+
+set.seed(1234)
+splitPercKNN = .80
+trainIndicesKNN = sample(1:dim(myDataKNN_Scaled)[1],round(splitPercKNN * dim(myDataKNN_Scaled)[1]))
+trainKNN = myDataKNN_Scaled[trainIndicesKNN,]
+testKNN.preSplit = myDataKNN_Scaled[-trainIndicesKNN,]
+
+# split the remaining 20% into 10% test and 10% validation
+splitPerc.validation = .50
+validationIndices = sample(1:dim(testKNN.preSplit)[1], round(splitPerc.validation * dim(testKNN.preSplit)[1]))
+validationKNN = testKNN.preSplit[validationIndices,]
+testKNN = testKNN.preSplit[-validationIndices,]
+
+rf2 <- randomForest(MSRP~., data=myDataKNN_Scaled)
+#rf2$importance
+RFI2 <- as.data.frame(rf2$importance)
+colnames(RFI2) = c("Influence")
+RFI2 %>% slice_max(RFI2,n=3)
+
+myData %>%
+  summarise_all(funs(sum(is.na(.))))
+
+
+
+```
+
+Find Best K
+```{r}
+numks = 10
+master_MSE = matrix(nrow = numks, ncol = 2)
+for(i in 1:numks)
+{
+  KNN_Scaled_loop <- knn.reg(train=trainKNN,
+                        y=trainKNN$MSRP,
+                        test=testKNN,
+                        k=i)
+  
+  residuals_KNN_loop <- testKNN$MSRP - KNN_Scaled_loop$pred
+  SSE_KNN_Scaled_loop <- sum((residuals_KNN_loop) ^ 2)
+  mse_KNN_Scaled_loop <- SSE_KNN_Scaled_loop/length(residuals_KNN_loop)
+  master_MSE[i,1] = i
+  master_MSE[i,2] = mse_KNN_Scaled_loop
+}
+plot(seq(1,numks,1),master_MSE[,2], type = "l", main="Test MSE vs number of K")
+
+```
+
+Run KNN with best (K USE K=4!!!)
+```{r}
+
+KNN_Scaled <- knn.reg(train=trainKNN,
+                      y=trainKNN$MSRP,
+                      test=testKNN,
+                      k=4)
+# KNN_Model1
+# KNN_Model1_Scaled
+
+#MSE for knn
+# mse_KNN <- mean((KNN_Model1$pred - testKNN$MSRP) ^ 2)
+# mse_KNN
+#r2 for knn
+#R2_KNN <- 1-mse_KNN/(var(testKNN$MSRP)) #168/169 is added to correct 
+#R2_KNN
+#MSE for knn scaled
+residuals_KNN <- testKNN$MSRP - KNN_Scaled$pred
+sse_KNN_Scaled <- sum((residuals_KNN) ^ 2)
+mse_KNN_Scaled <- sse_KNN_Scaled/length(residuals_KNN)
+print(mse_KNN_Scaled)
+#r2 for knn scaled
+# note: var() gives the sum total variance for a dataset
+#R2_KNN_Scaled <- 1-ase_KNN_Scaled/(var(testKNN$MSRP)) #168/169 is added to correct 
+#print(R2_KNN_Scaled)
+
+plot(1:length(testKNN$MSRP), testKNN$MSRP, col = "red", type = "l", lwd=2,
+     main = "Test vs Predicted KNN values")
+lines(1:length(testKNN$MSRP), KNN_Scaled$pred, col = "blue", lwd=2)
+lines(1:length(validationKNN$MSRP), validationKNN$MSRP, col = "green", lwd=2)
+length(testKNN$MSRP)
+length(validationKNN$MSRP)
+# mean(y_test-(pred)^2)
+head(KNN_Scaled$pred)
+```
+
+
+
+
+

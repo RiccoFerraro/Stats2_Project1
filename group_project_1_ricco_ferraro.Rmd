@@ -582,8 +582,8 @@ mse_KNN_Scaled <- sse_KNN_Scaled/length(residuals_KNN)
 print(mse_KNN_Scaled)
 #r2 for knn scaled
 # note: var() gives the sum total variance for a dataset
-R2_KNN_Scaled <- 1-ase_KNN_Scaled/(var(testKNN$MSRP)) #168/169 is added to correct 
-print(R2_KNN_Scaled)
+#R2_KNN_Scaled <- 1-ase_KNN_Scaled/(var(testKNN$MSRP)) #168/169 is added to correct 
+#print(R2_KNN_Scaled)
 
 plot(1:length(testKNN$MSRP), testKNN$MSRP, col = "red", type = "l", lwd=2,
      main = "Test vs Predicted KNN values")
@@ -621,3 +621,6 @@ coefplot(tempModel)
 summary(tempModel)
 
 ```
+
+
+
