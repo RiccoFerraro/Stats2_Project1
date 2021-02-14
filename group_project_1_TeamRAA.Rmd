@@ -584,7 +584,7 @@ myData %>%
   summarise_all(funs(sum(is.na(.))))
 
 
-
+#
 ```
 
 Find Best K
