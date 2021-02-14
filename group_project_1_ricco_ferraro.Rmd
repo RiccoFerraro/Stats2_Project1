@@ -428,8 +428,9 @@ glimpse(myData)
 
 ```{r}
 # makes a dense matrix
-coef(lasso_reg, s = "lambda.min")
-df_coeff.lambda.min <- as.data.frame(as.matrix(coef(lasso_reg, s = "lambda.min"))) 
+lm.fit <- lm(log(MSRP)~.^2, data = myData)
+length(lm.fit$coefficients)
+df_coeff.lambda.min <- data.frame(as.data.frame(as.matrix(coef(lasso_reg, s = "lambda.min"))))
 
 # This captures row names from the matrix dataframe
 setDT(df_coeff.lambda.min, keep.rownames = TRUE)[] 
@@ -442,15 +443,6 @@ df_coeff.lambda.min <- rename(df_coeff.lambda.min, variable=rn)
 df_coeff.lambda.min
 df_coeff.lambda.min.clean <- df_coeff.lambda.min %>% filter(abs(estimate) > 0.000000e+00)
 df_coeff.lambda.min.clean
-```
-```{r}
-plot(cooks.distance(final.LASSOmodel))
-ols_plot_cooksd_bar(lasso_reg$glmnet.fit)
-cutoff <- 4/((nrow(mtcars)-length(fit$coefficients)-2))
-plot(fit, which=4, cook.levels=cutoff)
-# Influence Plot
-influencePlot(fit, id.method="identify", main="Influence Plot", sub="Circle size is proportial to Cook's Distance" )
-
 ```
 
 Backward-Selection for validation of Lasso
