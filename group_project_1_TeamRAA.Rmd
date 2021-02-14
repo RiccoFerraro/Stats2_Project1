@@ -104,30 +104,30 @@ bucketFuelType <- function(fuelType) {
 }
 
 #Filter out old cars
-CaseData
+#CaseData
 CaseData %>% filter(MSRP > 2000) -> CaseData.NewCars.1
 CaseData.NewCars = data.frame(CaseData.NewCars.1, stringsAsFactors = TRUE)
 
 # filter Fuel.Type
 CaseData.NewCars %>% filter(!isEmpty(Engine.Fuel.Type) & Engine.Fuel.Type != "natural gas") -> CaseData.NewCars.Filtered
-CaseData.NewCars.Filtered
+#CaseData.NewCars.Filtered
 
 # summary known Engine.Hp's
 Vehicle.Size.Summary <- CaseData.NewCars.Filtered %>% filter(!isEmpty(Engine.HP)) %>% group_by(Vehicle.Size) %>% summarise(median_hp_by_vehicle_size=median(Engine.HP)) 
 
 # look at our summary
-Vehicle.Size.Summary
+#Vehicle.Size.Summary
 
 #Impute values for Engine.HP by Vehicle.Size (for median Engine.HP)
 
 CaseData.NewCars.Filtered.ImputedHP <-merge(CaseData.NewCars.Filtered, Vehicle.Size.Summary, by="Vehicle.Size")  %>% mutate(Engine.HP.Clean = if_else(isEmpty(Engine.HP), median_hp_by_vehicle_size, as.double(Engine.HP)))
-CaseData.NewCars.Filtered.ImputedHP
+#CaseData.NewCars.Filtered.ImputedHP
 
 # summary known Engine.Cylinders
 Vehicle.Size.Summary <- CaseData.NewCars.Filtered.ImputedHP %>% filter(!isEmpty(Engine.Cylinders)) %>% group_by(Vehicle.Size) %>% summarise(median_cylinder_by_vehicle_size=median(Engine.Cylinders)) 
 
 # look at our summary
-Vehicle.Size.Summary
+#Vehicle.Size.Summary
 
 #Impute values for Engine.HP by Vehicle.Size (for median Engine.HP)
 CaseData.NewCars.Filtered.ImputedHP$Engine.Cylinders <- as.double(CaseData.NewCars.Filtered.ImputedHP$Engine.Cylinders)
@@ -142,10 +142,10 @@ CaseData.NewCars.Filtered.ImputedHPAndCylinders$NumDoors.Clean <- as.factor(Case
 #Bucket Engine.Fuel.Type NOTE we aren't currently using this. 
 CaseData.NewCars.Filtered.ImputedHPAndCylindersAndFuelType <- CaseData.NewCars.Filtered.ImputedHPAndCylinders %>% filter(Engine.Fuel.Type != "electric" & highway.MPG < 100) %>%  mutate(Engine.Fuel.Type.Buckets=as.factor(bucketFuelType(Engine.Fuel.Type)))
 
-summary(CaseData.NewCars.Filtered.ImputedHPAndCylindersAndFuelType)
+#summary(CaseData.NewCars.Filtered.ImputedHPAndCylindersAndFuelType)
 myData <- CaseData.NewCars.Filtered.ImputedHPAndCylindersAndFuelType[, c('Vehicle.Size','Year', 'Engine.Fuel.Type', 'Transmission.Type', 'Driven_Wheels', 'Vehicle.Style', 'highway.MPG', 'city.mpg', 'Popularity', 'Engine.HP.Clean', 'Engine.Cylinders.Clean', 'NumDoors.Clean', 'MSRP')]
 myData <- myData %>% filter(Year > 2000 & MSRP < 100000)
-summary(myData)
+#summary(myData)
 ```
 
 
@@ -551,8 +551,8 @@ df_coeff.lambda.min.clean
 
 
 KNN variable selection and test splits
-```{r}
-myData
+```{r, ECHO = FALSE}
+#myData
 
 myDataKNN <- myData[, c('Year', 'highway.MPG', 'city.mpg', 'Popularity', 'Engine.HP.Clean', 'MSRP')]
 glimpse(myDataKNN)
