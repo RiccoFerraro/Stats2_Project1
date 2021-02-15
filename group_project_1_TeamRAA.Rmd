@@ -291,6 +291,8 @@ CaseData$Market.Category.Clean <-
 
 CaseData %>% ggplot(mapping = aes(x=Popularity, fill = Market.Category.Clean)) + geom_histogram(binwidth =250 )
 
+ifelse(CaseData$Market.Category.Clean == "",CaseData$Market.Category, CaseData$Market.Category.Clean )
+
 
 ```
 
@@ -317,7 +319,7 @@ ktable
 
 # data.frame(summary(CaseData.NewCars))
 # data.frame(matrix(summary(CaseData.NewCars)))
-
+summary()
 ```
 
 
@@ -405,15 +407,19 @@ coef(lasso_reg_Lmin)
 #### 2.1 OBJECTIVE ONE ~ INTERPRETABLE MODEL
 ```{r, ECHO = FALSE}
 
-model_OBJ_1.fit<-lm(log(MSRP)~myData$Engine.Cylinders.Clean + myData$Engine.Fuel.Type + myData$Vehicle.Style + myData$Engine.HP.Clean + myData$Driven_Wheel ,data=myData)
+model_OBJ_1.fit<-lm(log(MSRP)~myData$Engine.Cylinders.Clean + myData$Engine.Fuel.Type + myData$Vehicle.Style + myData$Year,data=myData)
 
-par(mfrow=c(2,2))
+par(mfrow=c(4,2))
+plot(model_OBJ_1.fit)
+
 plot(model_OBJ_1.fit$fitted.values,model_OBJ_1.fit$residuals,ylab="Resdiduals",xlab="Fitted")
 qqnorm(model_OBJ_1.fit$residuals)
 
 summary(model_OBJ_1.fit)
 vif(model_OBJ_1.fit)
 confint(model_OBJ_1.fit)
+
+
 
 ```
 
@@ -434,8 +440,9 @@ confint(model_OBJ_1.fit)
   geom_smooth(method = "nls", formula = y ~ a * x + b, se = F,
               method.args = list(start = list(a = 0.1, b = 0.1)))
 
-myData %>% ggplot(aes(x=Engine.HP.Clean, y=log(MSRP), colour=Vehicle.Size)) + geom_point() + geom_smooth()
-#myData %>% ggplot(aes(x=Engine.HP.Clean, y=log(MSRP))) + geom_smooth()
+myData %>% ggplot(aes(x=Engine.HP.Clean, y=log(MSRP), colour=Vehicle.Size)) +  geom_smooth() + facet_wrap(~Vehicle.Size)
+
+myData %>% ggplot(aes(x=Engine.HP.Clean, y=log(MSRP))) + geom_smooth()
 
 
 ```
@@ -515,12 +522,15 @@ plotres(lasso_reg)
 plot(lasso_reg$glmnet.fit, label=TRUE)
 # R-Squared Test
 pred <- predict(lasso_reg, s=lasso_reg$lambda.min, newx=x_test)
+
 rss <- sum((y_test-pred)^2)
 tss <- sum((y_test - mean(y_test)) ^ 2)
 rsq <- 1 - rss/tss
 rsq
 # R-Squared Validation
 pred <- predict(lasso_reg, s=lasso_reg$lambda.min, newx=x_validation)
+
+
 rss <- sum((y_validation-pred)^2)
 tss <- sum((y_validation - mean(y_validation)) ^ 2)
 rsq <- 1 - rss/tss
@@ -557,6 +567,8 @@ KNN variable selection and test splits
 myDataKNN <- myData[, c('Year', 'highway.MPG', 'city.mpg', 'Popularity', 'Engine.HP.Clean', 'MSRP')]
 glimpse(myDataKNN)
 
+
+
 # Scaling each column besides MSRP
 preProc <- preProcess(myDataKNN[,-6],method=c('center','scale'))
 myDataKNN_Scaled = predict(preProc, newdata=myDataKNN[-6])
@@ -574,11 +586,11 @@ validationIndices = sample(1:dim(testKNN.preSplit)[1], round(splitPerc.validatio
 validationKNN = testKNN.preSplit[validationIndices,]
 testKNN = testKNN.preSplit[-validationIndices,]
 
-rf2 <- randomForest(MSRP~., data=myDataKNN_Scaled)
+rf2 <- randomForest(log(MSRP)~., data=myDataKNN_Scaled)
 #rf2$importance
 RFI2 <- as.data.frame(rf2$importance)
 colnames(RFI2) = c("Influence")
-RFI2 %>% slice_max(RFI2,n=3)
+RFI2 %>% slice_max(RFI2,n=10)
 
 myData %>%
   summarise_all(funs(sum(is.na(.))))
